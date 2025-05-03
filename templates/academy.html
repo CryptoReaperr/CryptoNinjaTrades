@@ -22,6 +22,102 @@
     
     <!-- AOS Library for Scroll Animations -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Inline Academy-specific CSS -->
+    <style>
+        /* Override background styling */
+        #particles-container, #liquid-mesh {
+            opacity: 0.2 !important;
+            z-index: -2;
+        }
+        
+        .hero-backdrop, .hero-grid-pattern {
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* Better contrast for text */
+        .academy-section {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+        }
+        
+        /* Ensure content is always visible */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Fix for glitch effect */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+            color: #fff;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        
+        .glitch-text.glitch-active::before {
+            opacity: 0.8;
+            color: #63B3ED;
+            animation: glitch-anim-1 0.4s linear forwards;
+        }
+        
+        .glitch-text.glitch-active::after {
+            opacity: 0.8;
+            color: #F687B3;
+            animation: glitch-anim-2 0.3s linear forwards;
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); opacity: 0; }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { transform: translate(0); }
+            25% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 2px); }
+            75% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); opacity: 0; }
+        }
+        
+        /* Enhanced card hover effect */
+        .enhanced-card {
+            transition: all 0.3s ease;
+        }
+        
+        .enhanced-card:hover, .enhanced-card-active {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(55, 95, 124, 0.2);
+        }
+        
+        /* Academy-specific styling */
+        .academy-hero {
+            background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)),
+                            url("{{ url_for('static', filename='images/official-logo.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: multiply;
+        }
+    </style>
 </head>
 <body class="bg-ninja-black text-white font-roboto custom-scrollbar overflow-x-hidden">
     <!-- Loading Screen -->
@@ -151,7 +247,7 @@
     </section>
     
     <!-- Academy Introduction -->
-    <section class="py-16 bg-ninja-dark">
+    <section class="py-16 bg-ninja-dark academy-section">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="glass-card frosted-glass p-8 rounded-xl border border-ninja-gray/30" data-aos="fade-up">
@@ -181,7 +277,7 @@
     </section>
     
     <!-- Beginner Courses -->
-    <section id="beginner-courses" class="py-16 bg-ninja-black">
+    <section id="beginner-courses" class="py-16 bg-ninja-black academy-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-2 flex items-center" data-aos="fade-right">
                 <span class="bg-blue-500/20 text-blue-400 p-2 rounded-md mr-3">
@@ -316,7 +412,7 @@
     </section>
     
     <!-- Intermediate Courses -->
-    <section id="intermediate-courses" class="py-16 bg-ninja-dark">
+    <section id="intermediate-courses" class="py-16 bg-ninja-dark academy-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-2 flex items-center" data-aos="fade-right">
                 <span class="bg-indigo-500/20 text-indigo-400 p-2 rounded-md mr-3">
@@ -452,7 +548,7 @@
     </section>
     
     <!-- Advanced Courses -->
-    <section id="advanced-courses" class="py-16 bg-ninja-black">
+    <section id="advanced-courses" class="py-16 bg-ninja-black academy-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-2 flex items-center" data-aos="fade-right">
                 <span class="bg-purple-500/20 text-purple-400 p-2 rounded-md mr-3">
@@ -589,7 +685,7 @@
     </section>
     
     <!-- Quizzes Section -->
-    <section id="quizzes" class="py-16 bg-ninja-dark">
+    <section id="quizzes" class="py-16 bg-ninja-dark academy-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-2 flex items-center" data-aos="fade-right">
                 <span class="bg-amber-500/20 text-amber-400 p-2 rounded-md mr-3">
@@ -742,7 +838,7 @@
     </section>
     
     <!-- Resources Section -->
-    <section id="resources" class="py-16 bg-ninja-black">
+    <section id="resources" class="py-16 bg-ninja-black academy-section">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-2 flex items-center" data-aos="fade-right">
                 <span class="bg-teal-500/20 text-teal-400 p-2 rounded-md mr-3">
@@ -895,7 +991,7 @@
     </section>
     
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-b from-ninja-dark to-ninja-black relative overflow-hidden">
+    <section class="py-20 bg-gradient-to-b from-ninja-dark to-ninja-black relative overflow-hidden academy-section">
         <div class="absolute inset-0 bg-blue-900/10 z-0"></div>
         
         <!-- Decorative elements -->
