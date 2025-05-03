@@ -9,10 +9,10 @@
   --ninja-dark: #1A1A1A;
   --ninja-gray: #333333;
   --ninja-light: #E0E0E0;
-  --neon-green: #0050FF; /* Changed from #00FF88 to dark blue */
-  --electric-blue: #2B7FFF; /* Changed from #00D4FF to light blue */
-  --ninja-purple: #3D5AFE;
-  --ninja-gold: #0096FF;
+  --neon-green: #003344; /* Petrol blue */
+  --electric-blue: #001C2E; /* Darker blue */
+  --ninja-purple: #004466; /* Steel blue */
+  --ninja-gold: #001524; /* Deep navy */
 }
 
 /* Liquid mesh background */
