@@ -60,19 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1,
         ease: 'back.out(1.7)'
       })
-      .from('.hero-title', {
+      .from('.holographic-heading', {
         y: 30,
         opacity: 0,
         duration: 0.8,
         ease: 'power3.out'
       }, '-=0.4')
-      .from('.hero-subtitle', {
+      .from('h2.ninja-animate', {
         y: 20,
         opacity: 0,
         duration: 0.8,
         ease: 'power3.out'
       }, '-=0.6')
-      .from('.hero-cta', {
+      .from('.ninja-animate a', {
         scale: 0.9,
         opacity: 0,
         duration: 0.5,
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(card, {
         y: -10,
         scale: 1.03,
-        boxShadow: '0 10px 25px rgba(0, 255, 136, 0.3)',
+        boxShadow: '0 10px 25px rgba(55, 95, 124, 0.3)',
         duration: 0.3,
         ease: 'power2.out'
       });
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(card, {
         y: 0,
         scale: 1,
-        boxShadow: '0 0 0 rgba(0, 255, 136, 0)',
+        boxShadow: '0 0 0 rgba(55, 95, 124, 0)',
         duration: 0.3,
         ease: 'power2.out'
       });
@@ -236,14 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
   glowButtons.forEach(button => {
     button.addEventListener('mouseenter', () => {
       gsap.to(button, {
-        boxShadow: '0 0 20px rgba(0, 255, 136, 0.8)',
+        boxShadow: '0 0 20px rgba(55, 95, 124, 0.8)',
         duration: 0.4
       });
     });
     
     button.addEventListener('mouseleave', () => {
       gsap.to(button, {
-        boxShadow: '0 0 0 rgba(0, 255, 136, 0)',
+        boxShadow: '0 0 0 rgba(55, 95, 124, 0)',
         duration: 0.4
       });
     });
