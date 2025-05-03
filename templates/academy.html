@@ -25,37 +25,197 @@
     
     <!-- Inline Academy-specific CSS -->
     <style>
-        /* Override background styling */
-        #particles-container, #liquid-mesh {
-            opacity: 0.2 !important;
-            z-index: -2;
+        :root {
+            --prime-blue: #375F7C;
+            --second-blue: #4A6378;
+            --deep-blue: #2F414F;
+            --accent-blue: #567890;
+            --hover-blue: #63B3ED;
         }
         
-        .hero-backdrop, .hero-grid-pattern {
-            opacity: 0.3;
-            z-index: -1;
+        body {
+            background-color: #0A0A0A;
+            background-image: 
+                radial-gradient(circle at 25% 5%, rgba(47, 65, 79, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 25%, rgba(55, 95, 124, 0.05) 0%, transparent 15%),
+                radial-gradient(circle at 15% 75%, rgba(74, 99, 120, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 75% 95%, rgba(86, 120, 144, 0.08) 0%, transparent 15%);
+            background-attachment: fixed;
         }
         
-        /* Better contrast for text */
+        /* Premium Content Styling */
         .academy-section {
             position: relative;
             z-index: 1;
-            background-color: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(5px);
-            border-radius: 8px;
+            margin: 0 auto;
+            padding: 3rem 0;
+            border-radius: 0;
+            overflow: hidden;
+        }
+        
+        .academy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--prime-blue), transparent);
+            opacity: 0.5;
+            z-index: 1;
+        }
+        
+        .academy-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        /* Background and overlay control */
+        #particles-container {
+            opacity: 0.15 !important;
+            z-index: -2;
+        }
+        
+        #liquid-mesh {
+            opacity: 0.1 !important;
+            z-index: -2;
+            filter: saturate(0.8) hue-rotate(215deg);
+        }
+        
+        .hero-backdrop, .hero-grid-pattern {
+            opacity: 0.2;
+            z-index: -1;
         }
         
         /* Ensure content is always visible */
         .container {
             position: relative;
             z-index: 2;
+            max-width: 1240px;
         }
         
-        /* Fix for glitch effect */
+        /* Premium Card Styling */
+        .premium-card {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(15, 15, 15, 0.95));
+            border: 1px solid rgba(55, 95, 124, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--prime-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .premium-card:hover::before {
+            opacity: 1;
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(55, 95, 124, 0.15);
+            border-color: rgba(55, 95, 124, 0.4);
+        }
+        
+        /* Enhanced course cards */
+        .course-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card .course-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card .course-footer {
+            margin-top: auto;
+        }
+        
+        .course-banner {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+        }
+        
+        /* Buttons and CTAs */
+        .academy-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .academy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        
+        .academy-btn:hover::before {
+            transform: translateX(100%);
+        }
+        
+        /* Section headings */
+        .section-heading {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--prime-blue);
+            border-radius: 3px;
+        }
+        
+        /* Glitch effect */
         .glitch-text {
             position: relative;
             display: inline-block;
             color: #fff;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(55, 95, 124, 0.5);
         }
         
         .glitch-text::before,
@@ -71,13 +231,13 @@
         
         .glitch-text.glitch-active::before {
             opacity: 0.8;
-            color: #63B3ED;
+            color: var(--prime-blue);
             animation: glitch-anim-1 0.4s linear forwards;
         }
         
         .glitch-text.glitch-active::after {
             opacity: 0.8;
-            color: #F687B3;
+            color: var(--accent-blue);
             animation: glitch-anim-2 0.3s linear forwards;
         }
         
@@ -98,24 +258,64 @@
             100% { transform: translate(0); opacity: 0; }
         }
         
-        /* Enhanced card hover effect */
-        .enhanced-card {
+        /* Premium Course Level Tags */
+        .level-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .level-beginner {
+            background: rgba(66, 153, 225, 0.1);
+            color: #63B3ED;
+            border: 1px solid rgba(66, 153, 225, 0.2);
+        }
+        
+        .level-intermediate {
+            background: rgba(102, 126, 234, 0.1);
+            color: #7F9CF5;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        .level-advanced {
+            background: rgba(159, 122, 234, 0.1);
+            color: #B794F4;
+            border: 1px solid rgba(159, 122, 234, 0.2);
+        }
+        
+        /* Resource cards */
+        .resource-card {
             transition: all 0.3s ease;
+            border: 1px solid rgba(55, 95, 124, 0.2);
+            background: rgba(20, 20, 20, 0.5);
         }
         
-        .enhanced-card:hover, .enhanced-card-active {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(55, 95, 124, 0.2);
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(55, 95, 124, 0.4);
         }
         
-        /* Academy-specific styling */
-        .academy-hero {
-            background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.9)),
-                            url("{{ url_for('static', filename='images/official-logo.png') }}");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-blend-mode: multiply;
+        /* Better nav link highlighting */
+        .active-nav-link {
+            color: var(--prime-blue) !important;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .active-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--prime-blue);
+            border-radius: 2px;
         }
     </style>
 </head>
