@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create Batman-style smoke effects
   createSmokeEffects();
   
+  // Initialize FAQ accordion
+  initFaqAccordion();
+  
   // Ensure logo in header doesn't disappear on hover
   const logoLink = document.querySelector('.logo-link');
   if (logoLink) {
@@ -208,4 +211,61 @@ function createSmokeElement(container) {
       container.removeChild(smoke);
     }
   }, 15000 + (delay * 1000));
+}
+
+// Initialize FAQ accordion functionality
+function initFaqAccordion() {
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+      // Toggle this FAQ item
+      const faqItem = this.parentElement;
+      const answer = this.nextElementSibling;
+      const icon = this.querySelector('.faq-icon');
+      
+      // Toggle active state for this item
+      answer.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+      
+      // Apply special styling to the active question
+      if (!answer.classList.contains('hidden')) {
+        // Item is now open
+        faqItem.classList.add('active-faq');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        
+        // Add a subtle animation/glow effect
+        faqItem.classList.add('border-electric-blue/30');
+        
+        // Close other FAQ items
+        faqQuestions.forEach(otherQuestion => {
+          if (otherQuestion !== question) {
+            const otherAnswer = otherQuestion.nextElementSibling;
+            const otherIcon = otherQuestion.querySelector('.faq-icon');
+            const otherItem = otherQuestion.parentElement;
+            
+            // Close other items
+            otherAnswer.classList.add('hidden');
+            otherIcon.classList.remove('rotate-180');
+            otherItem.classList.remove('active-faq');
+            otherItem.classList.remove('border-electric-blue/30');
+            otherAnswer.style.maxHeight = null;
+          }
+        });
+      } else {
+        // Item is now closed
+        faqItem.classList.remove('active-faq');
+        faqItem.classList.remove('border-electric-blue/30');
+        answer.style.maxHeight = null;
+      }
+    });
+  });
+  
+  // Open the first FAQ item by default
+  if (faqQuestions.length > 0) {
+    // Trigger a click on the first question
+    setTimeout(() => {
+      faqQuestions[0].click();
+    }, 500);
+  }
 }
