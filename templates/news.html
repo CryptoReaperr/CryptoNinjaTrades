@@ -25,64 +25,282 @@
     
     <!-- Custom Styles for News Page -->
     <style>
-        /* News page specific styles */
+        /* News page specific styles - With enhanced 2025 design aesthetics */
+        body {
+            background-image: linear-gradient(to bottom, #0f172a, #1a2234, #1e293b);
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544v2.83L25.456 30l-1.414 1.414-28-28L0 0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2v2.83l21.627 21.628-1.414 1.414L0 13.657v2.828l17.8 17.8-1.414 1.414L0 19.1v2.83l14.142 14.14-1.414 1.415L0 24.544v2.83l10.314 10.314L8.9 39.1 0 30.172v2.828l7.544 7.544L6.13 41.97 0 35.83v2.83l3.657 3.657L2.242 43.73 0 41.5v2.83L0 60h60L60 0H0v5.373z' fill='%23375F7C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.8;
+            z-index: -1;
+        }
+        
+        .glitch-text {
+            position: relative;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(55, 95, 124, 0.5);
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #375F7C;
+            animation: glitch-effect 3s infinite alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: 1px 0 #567890;
+            animation: glitch-effect 2s infinite alternate-reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% { clip-path: inset(30% 0 68% 0); }
+            20% { clip-path: inset(63% 0 1% 0); }
+            40% { clip-path: inset(43% 0 47% 0); }
+            60% { clip-path: inset(25% 0 58% 0); }
+            80% { clip-path: inset(75% 0 8% 0); }
+            100% { clip-path: inset(93% 0 7% 0); }
+        }
+        
+        /* News card design with more premium feel */
         .news-card {
-            background: rgba(37, 59, 75, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(87, 120, 144, 0.2);
-            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(87, 120, 144, 0.3);
+            border-left: 3px solid #375F7C;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(55, 95, 124, 0.1), transparent 80%);
+            pointer-events: none;
         }
         
         .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(87, 120, 144, 0.5);
+            transform: translateY(-7px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(55, 95, 124, 0.3);
+            border-color: rgba(87, 120, 144, 0.6);
+            border-left-color: #4A6378;
         }
         
         .source-badge {
             background: linear-gradient(135deg, #375F7C, #4A6378);
             font-size: 10px;
-            padding: 4px 8px;
-            border-radius: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
         .date-text {
             color: rgba(255, 255, 255, 0.6);
             font-size: 12px;
+            font-style: italic;
         }
         
         .news-title {
-            background: linear-gradient(90deg, #567890, #4A6378);
+            background: linear-gradient(90deg, #f8fafc, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
         }
-
+        
+        /* Fancy loading with ninja star spinner */
         .news-loading {
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 99, 120, 0.2);
         }
         
         .news-loading h3 {
             margin-top: 20px;
-            color: #567890;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
         
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(87, 120, 144, 0.2);
-            border-top: 5px solid #375F7C;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: rotate 3s linear infinite;
         }
         
-        @keyframes spin {
+        .loading-spinner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23375F7C' width='24' height='24'%3E%3Cpath d='M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+        
+        @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced card link */
+        .news-card a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: #60a5fa;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+            overflow: hidden;
+        }
+        
+        .news-card a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #60a5fa;
+            transform: translateX(-101%);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card a:hover {
+            color: #93c5fd;
+        }
+        
+        .news-card a:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* Subtle grid pattern for hero section */
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(74, 99, 120, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(74, 99, 120, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        /* Source filter badges - unique interactive element */
+        .source-filter-badge {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(74, 99, 120, 0.4);
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .source-filter-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 99, 120, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .source-filter-badge:hover {
+            border-color: rgba(74, 99, 120, 0.8);
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        
+        .source-filter-badge:hover::before {
+            opacity: 1;
+        }
+        
+        .source-filter-badge.active {
+            background: linear-gradient(135deg, #375F7C, #4A6378);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 2px 10px rgba(55, 95, 124, 0.4);
+        }
+        
+        /* News card animation on load */
+        .news-card {
+            animation: card-appear 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        }
+        
+        @keyframes card-appear {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Hide filtered items */
+        .news-card.filtered {
+            display: none;
         }
     </style>
 </head>
@@ -122,11 +340,28 @@
 
     <main class="container mx-auto py-12 px-6">
         <!-- Hero Section -->
-        <section class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 glitch-text" data-aos="fade-down" data-text="Latest Crypto News">Latest Crypto News</h1>
+        <section class="text-center mb-16 relative py-16">
+            <div class="hero-grid"></div>
+            <div class="absolute -top-8 -left-8 w-16 h-16 opacity-20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#375F7C" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+            </div>
+            <div class="absolute -bottom-6 -right-6 w-12 h-12 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#567890" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 glitch-text" data-aos="fade-down" data-text="Latest Crypto News">Latest Crypto News</h1>
             <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
                 Stay updated with the latest happenings in the crypto world. Our news feed aggregates breaking news from the most reliable sources in the industry.
             </p>
+            
+            <!-- Unique Element: Source Filter Badges -->
+            <div class="flex flex-wrap justify-center mt-8 gap-3" data-aos="fade-up" data-aos-delay="300">
+                <button class="source-filter-badge active" data-source="all">All Sources</button>
+                <button class="source-filter-badge" data-source="investing.com">Investing.com</button>
+                <button class="source-filter-badge" data-source="crypto.news">Crypto.news</button>
+                <button class="source-filter-badge" data-source="cryptonews.com">Cryptonews</button>
+                <button class="source-filter-badge" data-source="cointelegraph.com">Cointelegraph</button>
+            </div>
         </section>
         
         <!-- News Grid -->
@@ -207,8 +442,9 @@
     </footer>
 
     <!-- Crypto Price Ticker -->
-    <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 overflow-hidden z-50">
+    <div class="fixed bottom-0 left-0 w-full overflow-hidden z-50">
         <div class="ticker-wrapper">
+            <div class="spotlight"></div>
             <div class="ticker" id="crypto-ticker">
                 <!-- Crypto prices will be added here dynamically -->
                 <div class="ticker-item skeleton"></div>
@@ -250,7 +486,89 @@
             
             // Fetch crypto prices for ticker
             fetchCryptoPrices();
+            
+            // Setup source filter functionality
+            setupSourceFilters();
         });
+        
+        function setupSourceFilters() {
+            const filterBadges = document.querySelectorAll('.source-filter-badge');
+            
+            filterBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    // Remove active class from all badges
+                    filterBadges.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked badge
+                    this.classList.add('active');
+                    
+                    // Get selected source
+                    const selectedSource = this.getAttribute('data-source');
+                    
+                    // Filter news cards
+                    filterNewsBySource(selectedSource);
+                });
+            });
+        }
+        
+        function filterNewsBySource(source) {
+            const newsCards = document.querySelectorAll('.news-card');
+            
+            newsCards.forEach(card => {
+                if (source === 'all') {
+                    // Show all cards
+                    card.classList.remove('filtered');
+                    // Add animation delay for staggered reveal
+                    setTimeout(() => {
+                        card.style.animationDelay = '0s';
+                    }, 50);
+                } else {
+                    const cardSource = card.querySelector('.source-badge').textContent;
+                    
+                    if (cardSource.toLowerCase() === source.toLowerCase()) {
+                        // Show cards that match the source
+                        card.classList.remove('filtered');
+                        // Add animation delay for staggered reveal
+                        setTimeout(() => {
+                            card.style.animationDelay = '0s';
+                        }, 50);
+                    } else {
+                        // Hide cards that don't match the source
+                        card.classList.add('filtered');
+                    }
+                }
+            });
+            
+            // Check if we have visible cards after filtering
+            const visibleCards = document.querySelectorAll('.news-card:not(.filtered)');
+            const newsContainer = document.getElementById('news-container');
+            
+            if (visibleCards.length === 0) {
+                // No results found
+                const noResultsElement = document.createElement('div');
+                noResultsElement.className = 'col-span-full text-center py-12 no-results';
+                noResultsElement.innerHTML = `
+                    <i data-feather="search" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">No News From This Source</h3>
+                    <p class="text-gray-400">Try selecting a different source or check back later for updates.</p>
+                `;
+                
+                // Remove any existing no-results element
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+                
+                newsContainer.appendChild(noResultsElement);
+                feather.replace();
+            } else {
+                // Remove any existing no-results element if we have cards to show
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+            }
+        }
         
         function fetchNews() {
             fetch('/api/news-feed')
