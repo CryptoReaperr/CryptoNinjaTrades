@@ -502,8 +502,8 @@
   position: absolute;
   background: linear-gradient(
     45deg,
-    rgba(0, 255, 136, 0.05),
-    rgba(0, 212, 255, 0.05)
+    rgba(55, 95, 124, 0.05),
+    rgba(86, 120, 144, 0.05)
   );
   border: 1px solid rgba(0, 255, 136, 0.1);
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
