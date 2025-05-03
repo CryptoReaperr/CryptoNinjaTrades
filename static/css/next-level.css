@@ -453,7 +453,7 @@
 
 .glitch-text::after {
   left: -2px;
-  text-shadow: -1px 0 var(--electric-blue);
+  text-shadow: -1px 0 #002844;
   animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 
