@@ -12,13 +12,13 @@ function createLoadingScreen() {
   loader.innerHTML = `
     <div class="loader-content">
       <div class="loader-icon">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="ninja-star-loader">
-          <path d="M40 10L50 30L70 40L50 50L40 70L30 50L10 40L30 30L40 10Z" fill="#00FF88" />
+        <svg width="60" height="60" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="ninja-star-loader">
+          <path d="M40 10L50 30L70 40L50 50L40 70L30 50L10 40L30 30L40 10Z" fill="#375F7C" />
           <circle cx="40" cy="40" r="5" fill="#0A0A0A" />
         </svg>
       </div>
-      <h2 class="loader-text split-text">CRYPTO NINJA TRADES</h2>
-      <p class="loader-subtitle">Prepare for trading excellence...</p>
+      <h2 class="loader-text split-text">CRYPTO NINJA</h2>
+      <p class="loader-subtitle">Trading intelligence at work...</p>
     </div>
   `;
   
