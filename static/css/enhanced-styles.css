@@ -27,7 +27,7 @@
 }
 
 .ninja-star-loader {
-  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.7));
+  filter: drop-shadow(0 0 10px rgba(55, 95, 124, 0.7));
 }
 
 @keyframes spin {
@@ -39,7 +39,7 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 1.8rem;
-  color: #00FF88;
+  color: #567890;
   margin-bottom: 10px;
   letter-spacing: 2px;
   position: relative;
@@ -105,12 +105,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0) 50%);
+  background: radial-gradient(circle at 50% 50%, rgba(55, 95, 124, 0.1) 0%, rgba(10, 10, 10, 0) 50%);
   z-index: 1;
 }
 
 .hero-logo {
-  filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5));
+  filter: drop-shadow(0 0 15px rgba(86, 120, 144, 0.5));
   max-width: 250px;
   margin: 0 auto 2rem;
 }

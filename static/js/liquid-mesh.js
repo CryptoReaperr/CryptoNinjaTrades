@@ -143,6 +143,7 @@ class LiquidMesh {
       const nX = Math.sin(time + point.noiseOffsetX) * this.options.amplitude;
       const nY = Math.cos(time + point.noiseOffsetY) * this.options.amplitude;
       
+      const cellSize = Math.max(this.width, this.height) / this.options.density;
       point.x = point.originX + nX * cellSize;
       point.y = point.originY + nY * cellSize;
     });
@@ -233,8 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (section) {
       // Use different settings depending on the section
       const options = {
-        color: section.id === 'hero' ? '#001A2E' : '#001524',
-        secondaryColor: section.id === 'hero' ? '#002844' : '#002236',
+        color: section.id === 'hero' ? '#375F7C' : '#2F414F',
+        secondaryColor: section.id === 'hero' ? '#567890' : '#4A6378',
         density: section.id === 'hero' ? 25 : 20,
         opacity: section.id === 'hero' ? 0.08 : 0.06,
         amplitude: section.id === 'hero' ? 0.8 : 0.6

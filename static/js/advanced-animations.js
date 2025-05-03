@@ -38,7 +38,7 @@ function initHolographicElements() {
       
       // Apply light reflection effect
       element.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
-      element.style.filter = `hue-rotate(${xPercent}deg) drop-shadow(0 0 ${Math.max(2, xPercent/10)}px rgba(0, 68, 102, 0.${Math.min(9, Math.floor(xPercent/10))}))`;  
+      element.style.filter = `hue-rotate(${xPercent}deg) drop-shadow(0 0 ${Math.max(2, xPercent/10)}px rgba(55, 95, 124, 0.${Math.min(9, Math.floor(xPercent/10))}))`;  
     });
     
     element.addEventListener('mouseleave', () => {
@@ -84,7 +84,7 @@ function initWaveAnimations() {
     wave1.setAttribute('viewBox', '0 0 1200 120');
     wave1.setAttribute('preserveAspectRatio', 'none');
     wave1.classList.add('wave1');
-    wave1.innerHTML = `<path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(0, 68, 102, 0.2)"></path>`;
+    wave1.innerHTML = `<path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(55, 95, 124, 0.2)"></path>`;
     
     wave2.setAttribute('viewBox', '0 0 1200 120');
     wave2.setAttribute('preserveAspectRatio', 'none');
