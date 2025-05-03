@@ -11,7 +11,7 @@ class LiquidMesh {
       color: options.color || '#2F414F',
       secondaryColor: options.secondaryColor || '#375F7C',
       density: options.density || (window.innerWidth < 768 ? 15 : 25),
-      speed: options.speed || 0.015,
+      speed: options.speed || 0.008,
       amplitude: options.amplitude || 0.7,
       opacity: options.opacity || 0.1,
       ...options

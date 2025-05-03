@@ -17,7 +17,7 @@ class ParticleNetwork {
       particleRadius: 2,
       lineWidth: 0.5,
       maxDistance: 150,
-      speed: 0.5,
+      speed: 0.2,
       responsive: true,
       interactMode: 'attract'  // 'attract' or 'repel'
     }, options);
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroSection) {
     new ParticleNetwork(heroSection, {
       particleCount: window.innerWidth < 768 ? 25 : 50,
-      speed: 0.3,
+      speed: 0.2,
       maxDistance: window.innerWidth < 768 ? 100 : 160
     });
   }
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (benefitsSection) {
     new ParticleNetwork(benefitsSection, {
       particleCount: window.innerWidth < 768 ? 20 : 40,
-      speed: 0.25,
+      speed: 0.15,
       maxDistance: window.innerWidth < 768 ? 80 : 120,
       interactMode: 'repel'
     });
