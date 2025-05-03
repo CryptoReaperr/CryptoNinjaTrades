@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Ninja Trades - Exclusive VIP Club for Futures Trading</title>
+    <meta name="description" content="Join Crypto Ninja Trades VIP Club for expert crypto futures trading signals, education, and mentorship. 80%+ signal success rate!">
+    <meta name="keywords" content="crypto trading signals, futures trading, crypto education, trading mentorship">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#00FF88',
+                        'electric-blue': '#00D4FF',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body class="bg-ninja-black text-ninja-light font-inter">
+    <!-- Toast notification for copied text -->
+    <div id="copy-toast" class="copy-toast">Copied!</div>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top bg-neon-green text-ninja-black p-3 rounded-full shadow-lg hover:bg-electric-blue transition-all duration-300">
+        <i data-feather="arrow-up" class="w-5 h-5"></i>
+    </button>
+    
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Branding -->
+                <a href="#hero" class="flex items-center gap-3">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Crypto Ninja Trades logo" class="w-10 h-10">
+                    <div>
+                        <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
+                        <p class="text-xs text-ninja-light/80">Trade with Precision, Win with Confidence</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-6">
+                    <a href="#hero" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
+                    <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
+                    <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
+                    <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
+                </nav>
+                
+                <!-- Join Now Button (Desktop) -->
+                <a href="#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                    Join Now
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30">
+            <div class="container mx-auto px-4 py-5">
+                <nav class="flex flex-col gap-4">
+                    <a href="#hero" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
+                    <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
+                    <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
+                    <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
+                    
+                    <!-- Join Now Button (Mobile) -->
+                    <a href="#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
+                        Join Now
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen pt-28 pb-20 flex items-center">
+        <!-- Background image -->
+        <div class="absolute inset-0 z-0">
+            <img src="{{ url_for('static', filename='images/hero-bg.svg') }}" alt="Crypto background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-ninja-black/60 to-ninja-black/90"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-4 animate-on-scroll neon-text">
+                    Become a Crypto Ninja Trader!
+                </h1>
+                <h2 class="text-xl md:text-2xl text-ninja-light/90 mb-8 animate-on-scroll">
+                    Join our <span class="text-neon-green font-bold">EXCLUSIVE VIP Club</span> for expert futures trading signals, education, and mentorship.
+                </h2>
+                <div class="flex flex-col sm:flex-row gap-4 animate-on-scroll">
+                    <a href="#plans" class="bg-neon-green text-ninja-black px-8 py-4 rounded-md font-bold text-lg hover:bg-electric-blue transition-colors duration-300 text-center pulse">
+                        Join Now
+                    </a>
+                    <a href="#benefits" class="border-2 border-neon-green text-neon-green px-8 py-4 rounded-md font-bold text-lg hover:bg-neon-green/10 transition-colors duration-300 text-center">
+                        Learn More
+                    </a>
+                </div>
+                <p class="mt-6 text-ninja-light/70 text-sm animate-on-scroll">
+                    <i data-feather="users" class="inline-block w-4 h-4 mr-1"></i> 60+ members already thriving in our community!
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 bg-ninja-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 animate-on-scroll">
+                What You Get in the <span class="text-neon-green">VIP Club</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-neon-green mb-4">
+                        <i data-feather="trending-up" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Weekly Trading Signals</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Get access to our carefully curated trading signals with an impressive +80% success rate since January 2023.
+                    </p>
+                    <div class="inline-block bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">
+                        80%+ Success Rate
+                    </div>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-electric-blue mb-4">
+                        <i data-feather="book-open" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Educational Posts</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Comprehensive educational content on Crypto Futures Trading, including crucial tips that can transform your trading approach.
+                    </p>
+                    <div class="inline-block bg-electric-blue/20 text-electric-blue px-3 py-1 rounded-full text-sm">
+                        Premium Content
+                    </div>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-neon-green mb-4">
+                        <i data-feather="shield" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">DO's and DON'Ts</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Key advice on risk management, common mistakes, and proven strategies to protect your capital and maximize returns.
+                    </p>
+                    <div class="inline-block bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">
+                        Risk Management
+                    </div>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-electric-blue mb-4">
+                        <i data-feather="headphones" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Admin Support</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Direct access to our expert team of traders who will guide you through your trading journey and answer your questions.
+                    </p>
+                    <div class="inline-block bg-electric-blue/20 text-electric-blue px-3 py-1 rounded-full text-sm">
+                        Expert Guidance
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center animate-on-scroll">
+                <p class="text-xl mb-6">
+                    Join the <span class="text-neon-green font-bold">60+ members</span> already thriving in our exclusive community!
+                </p>
+                <a href="#plans" class="inline-block bg-neon-green text-ninja-black px-8 py-4 rounded-md font-bold text-lg hover:bg-electric-blue transition-colors duration-300">
+                    Become a Member
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Requirements Section -->
+    <section id="requirements" class="py-20 bg-ninja-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 animate-on-scroll">
+                What You Need to <span class="text-electric-blue">Join</span>
+            </h2>
+            
+            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Requirement 1 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 animate-on-scroll">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-electric-blue/20 p-3 rounded-full">
+                            <i data-feather="bar-chart-2" class="w-6 h-6 text-electric-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Basic Knowledge</h3>
+                    </div>
+                    <p class="text-ninja-light/80">
+                        A fundamental understanding of Futures Trading concepts and terminology. You don't need to be an expert, but basic knowledge is required.
+                    </p>
+                </div>
+                
+                <!-- Requirement 2 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 animate-on-scroll">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-electric-blue/20 p-3 rounded-full">
+                            <i data-feather="target" class="w-6 h-6 text-electric-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Determination</h3>
+                    </div>
+                    <p class="text-ninja-light/80">
+                        A strong commitment to becoming a better trader by learning from mentors, following signals, and applying educational content.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-3xl mx-auto text-center animate-on-scroll">
+                <p class="text-ninja-light/80 italic">
+                    "The difference between successful and unsuccessful traders isn't luck—it's education, discipline, and having the right mentors."
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Membership Plans Section -->
+    <section id="plans" class="py-20 bg-gradient-to-b from-ninja-dark to-ninja-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-4 animate-on-scroll">
+                Choose Your <span class="text-neon-green">VIP Membership</span> Plan
+            </h2>
+            <p class="text-center text-ninja-light/80 mb-12 max-w-2xl mx-auto animate-on-scroll">
+                Select the plan that suits your trading journey. All plans include the same premium benefits.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Plan 1: 1 Month Trial -->
+                <div class="bg-ninja-dark rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 plan-card animate-on-scroll">
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-xl font-bold mb-1">1 Month</h3>
+                        <p class="text-sm text-ninja-light/70">Trial Membership</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-end gap-2 mb-6">
+                            <span class="text-3xl font-bold">$149</span>
+                            <span class="text-ninja-light/60 line-through mb-1">$299</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>2 months for first-time members</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>1 month for renewals</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>All VIP benefits included</span>
+                            </li>
+                        </ul>
+                        <a href="#payment" class="block text-center bg-neon-green text-ninja-black py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Plan 2: 6 Months Premium -->
+                <div class="bg-ninja-dark rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 plan-card animate-on-scroll">
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-xl font-bold mb-1">6 Months</h3>
+                        <p class="text-sm text-ninja-light/70">Premium Membership</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-end gap-2 mb-6">
+                            <span class="text-3xl font-bold">$299</span>
+                            <span class="text-ninja-light/60 line-through mb-1">$499</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>6 full months of access</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>40% savings vs monthly</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>All VIP benefits included</span>
+                            </li>
+                        </ul>
+                        <a href="#payment" class="block text-center bg-neon-green text-ninja-black py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Plan 3: 1 Year Ultimate -->
+                <div class="bg-ninja-dark rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 plan-card animate-on-scroll">
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-xl font-bold mb-1">1 Year</h3>
+                        <p class="text-sm text-ninja-light/70">Ultimate Membership</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-end gap-2 mb-6">
+                            <span class="text-3xl font-bold">$499</span>
+                            <span class="text-ninja-light/60 line-through mb-1">$999</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>12 full months of access</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>72% savings vs monthly</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>All VIP benefits included</span>
+                            </li>
+                        </ul>
+                        <a href="#payment" class="block text-center bg-neon-green text-ninja-black py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Plan 4: Lifetime -->
+                <div class="bg-ninja-dark rounded-xl overflow-hidden border-2 border-neon-green glow-border plan-card relative animate-on-scroll">
+                    <!-- Exclusive badge -->
+                    <div class="absolute -top-4 -right-4 bg-ninja-red text-white py-1 px-4 rounded-full text-sm font-bold shadow-lg">
+                        LAST SPOT LEFT!
+                    </div>
+                    
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-xl font-bold mb-1">Lifetime</h3>
+                        <p class="text-sm text-neon-green">Exclusive Membership</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-end gap-2 mb-6">
+                            <span class="text-3xl font-bold text-neon-green">$999</span>
+                            <span class="text-ninja-light/60 line-through mb-1">$1999</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>Lifetime access, never pay again</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>Best value for serious traders</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green shrink-0 mt-0.5"></i>
+                                <span>Priority support from admins</span>
+                            </li>
+                        </ul>
+                        <a href="#payment" class="block text-center bg-neon-green text-ninja-black py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 pulse">
+                            Secure Your Spot
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-3xl mx-auto text-center animate-on-scroll">
+                <p class="text-ninja-red font-bold mb-2">
+                    <i data-feather="alert-triangle" class="inline-block w-5 h-5 mr-1"></i> No Refunds • No Free Trials
+                </p>
+                <p class="text-ninja-light/80">
+                    Prices are already discounted. No further discounts available. <span class="font-bold text-white">Prices will increase soon!</span>
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Warning Section -->
+    <section class="py-12 bg-ninja-red/10">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center animate-on-scroll">
+                <h2 class="text-3xl font-montserrat font-bold mb-6 text-ninja-red">
+                    <i data-feather="alert-octagon" class="inline-block w-8 h-8 mr-2"></i> Important Warning
+                </h2>
+                <p class="text-xl mb-4">
+                    Futures Trading is <strong>NOT</strong> a 'get rich quick' scheme. If you expect instant profits or have a 'get rich quick' mindset, this club is <strong>NOT</strong> for you!
+                </p>
+                <p class="text-xl">
+                    The VIP Club is for <span class="text-neon-green font-bold">serious traders</span> only. Gamblers, delusional, or lazy people should stay <span class="text-ninja-red font-bold">OUT</span>!
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Section -->
+    <section id="payment" class="py-20 bg-ninja-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 animate-on-scroll">
+                How to Join the <span class="text-electric-blue">VIP Club</span>
+            </h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 mb-8 animate-on-scroll">
+                    <h3 class="text-xl font-bold mb-6">Payment Methods</h3>
+                    
+                    <!-- USDT BEP-20 -->
+                    <div class="mb-6">
+                        <p class="font-medium text-white mb-2">USDT (BEP-20):</p>
+                        <div class="flex items-center gap-2">
+                            <div class="bg-ninja-gray/30 p-3 rounded-md flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm">
+                                0x15f1920cf99814C2b8b1A1FF86B4457548B813A6
+                            </div>
+                            <button class="bg-neon-green text-ninja-black p-3 rounded-md hover:bg-electric-blue transition-colors duration-300 copy-button" data-copy="0x15f1920cf99814C2b8b1A1FF86B4457548B813A6">
+                                <i data-feather="copy" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- USDT TRC20 -->
+                    <div>
+                        <p class="font-medium text-white mb-2">USDT (TRC20):</p>
+                        <div class="flex items-center gap-2">
+                            <div class="bg-ninja-gray/30 p-3 rounded-md flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm">
+                                THbPUmoakqgjzH4f5f5SaGAURG5jZQeraH
+                            </div>
+                            <button class="bg-neon-green text-ninja-black p-3 rounded-md hover:bg-electric-blue transition-colors duration-300 copy-button" data-copy="THbPUmoakqgjzH4f5f5SaGAURG5jZQeraH">
+                                <i data-feather="copy" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructions -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 animate-on-scroll">
+                    <h3 class="text-xl font-bold mb-6">Follow These Steps</h3>
+                    
+                    <ol class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="bg-electric-blue/20 text-electric-blue w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
+                            <div>
+                                <p class="font-medium text-white mb-1">Send payment to one of the addresses above</p>
+                                <p class="text-ninja-light/70 text-sm">Use either BEP-20 or TRC20 network for USDT transfers</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex gap-4">
+                            <div class="bg-electric-blue/20 text-electric-blue w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
+                            <div>
+                                <p class="font-medium text-white mb-1">Click the address to copy it instantly</p>
+                                <p class="text-ninja-light/70 text-sm">Double-check the address before sending</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex gap-4">
+                            <div class="bg-electric-blue/20 text-electric-blue w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
+                            <div>
+                                <p class="font-medium text-white mb-1">Send payment proof to both:</p>
+                                <p class="text-sm mb-2">
+                                    <a href="https://t.me/Crypto_Reaperr" target="_blank" class="text-neon-green hover:underline">@Crypto_Reaperr</a> (CEO) and 
+                                    <a href="https://t.me/CryptoLadyNinja" target="_blank" class="text-neon-green hover:underline">@CryptoLadyNinja</a> (Lead Trader) on Telegram
+                                </p>
+                                <p class="text-ninja-light/70 text-sm">Include your preferred email for communication</p>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <div class="mt-6 pt-6 border-t border-ninja-gray/30">
+                        <p class="text-ninja-light/70 flex items-center gap-2">
+                            <i data-feather="clock" class="w-5 h-5 text-electric-blue"></i>
+                            <span>Payments are processed manually. Allow up to 24 hours for membership activation.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-ninja-dark border-t border-ninja-gray/30">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Logo and Copyright -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center gap-3 justify-center md:justify-start">
+                        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Crypto Ninja Trades logo" class="w-8 h-8">
+                        <h2 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h2>
+                    </div>
+                    <p class="text-sm text-ninja-light/70 mt-2">
+                        © 2025 Crypto Ninja Trades. All Rights Reserved.
+                    </p>
+                </div>
+                
+                <!-- Footer Links -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 text-center md:text-left">
+                    <div>
+                        <h3 class="text-sm font-bold text-white mb-3">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="/privacy" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Privacy Policy</a></li>
+                            <li><a href="/terms" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-bold text-white mb-3">Connect</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://t.me/CryptoNinjaTrades" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Telegram</a></li>
+                            <li><a href="#" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Twitter</a></li>
+                            <li><a href="#" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="mailto:support@cryptoninjatrades.com" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                    support@cryptoninjatrades.com
+                </a>
+                <p class="text-xs text-ninja-light/50 mt-4">
+                    Trading cryptocurrencies involves risk. Past performance is not indicative of future results. Only invest what you can afford to lose.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Initialize Feather Icons -->
+    <script>
+        feather.replace();
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
