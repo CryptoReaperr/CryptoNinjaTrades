@@ -206,7 +206,7 @@
   position: absolute;
   top: 0;
   right: 20px;
-  background: #00FF88;
+  background: #567890;
   color: #0A0A0A;
   font-weight: bold;
   padding: 4px 12px;
@@ -243,8 +243,8 @@
   position: relative;
   padding: 12px 24px;
   background: transparent;
-  color: #00FF88;
-  border: 2px solid #00FF88;
+  color: #567890;
+  border: 2px solid #567890;
   border-radius: 4px;
   font-weight: bold;
   overflow: hidden;
@@ -259,14 +259,14 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: #00FF88;
+  background: #567890;
   z-index: -1;
   transition: width 0.3s ease;
 }
 
 .neon-button:hover {
   color: #0A0A0A;
-  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 15px rgba(55, 95, 124, 0.5);
 }
 
 .neon-button:hover::before {
@@ -287,7 +287,7 @@
   left: 50%;
   width: 150%;
   height: 150%;
-  background: rgba(0, 255, 136, 0.8);
+  background: rgba(55, 95, 124, 0.8);
   border-radius: 50%;
   transform: translate(-150%, -150%) scale(0);
   transition: transform 0.5s ease;
@@ -301,9 +301,9 @@
 /* ===== MODAL ENHANCEMENTS ===== */
 .cyber-modal {
   background: rgba(10, 10, 10, 0.95);
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  border: 1px solid rgba(55, 95, 124, 0.3);
   border-radius: 8px;
-  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 30px rgba(55, 95, 124, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -314,7 +314,7 @@
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background: linear-gradient(135deg, #00FF88, #00D4FF);
+  background: linear-gradient(135deg, #375F7C, #4A6378);
   border-radius: 9px;
   z-index: -1;
   opacity: 0.3;
