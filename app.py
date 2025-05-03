@@ -1,6 +1,8 @@
 import os
 import logging
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
+from services.crypto_api import crypto_api
+from services.news_feed import news_feed
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -28,6 +30,21 @@ def academy():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/news')
+def news():
+    return render_template('news.html')
+
+# API Routes
+@app.route('/api/crypto-prices')
+def crypto_prices():
+    prices = crypto_api.get_latest_prices(limit=10)
+    return jsonify(prices)
+
+@app.route('/api/news-feed')
+def news_feed_api():
+    news_items = news_feed.get_latest_news(limit=8)
+    return jsonify(news_items)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
