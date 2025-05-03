@@ -596,12 +596,20 @@
                         newsCard.setAttribute('data-aos', 'fade-up');
                         newsCard.setAttribute('data-aos-delay', (index * 100).toString());
                         
+                        // Create image URL placeholder in case image doesn't exist
+                        const imageUrl = item.image_url || `https://via.placeholder.com/600x400?text=No+Image`;
+                        
                         newsCard.innerHTML = `
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-3">
+                            <div class="relative">
+                                <div class="h-48 bg-cover bg-center" style="background-image: url('${imageUrl}')"></div>
+                                <div class="absolute top-2 left-2">
                                     <span class="source-badge text-xs font-medium text-white">${item.source}</span>
-                                    <span class="date-text">${item.published}</span>
                                 </div>
+                                <div class="absolute top-2 right-2">
+                                    <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">${item.published}</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
                                 <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">${item.title}</h3>
                                 <p class="text-gray-400 text-sm mb-4 line-clamp-3">${item.description}</p>
                                 <a href="${item.link}" target="_blank" class="text-blue-400 hover:text-blue-300 transition flex items-center text-sm font-medium">

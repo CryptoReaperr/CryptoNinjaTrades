@@ -43,7 +43,9 @@ def crypto_prices():
 
 @app.route('/api/news-feed')
 def news_feed_api():
-    news_items = news_feed.get_latest_news(limit=8)
+    from flask import request
+    limit = request.args.get('limit', default=8, type=int)
+    news_items = news_feed.get_latest_news(limit=limit)
     return jsonify(news_items)
 
 if __name__ == '__main__':

@@ -489,6 +489,53 @@
         </div>
     </section>
     
+    <!-- Latest News Section -->
+    <section class="py-20 bg-ninja-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 animate-on-scroll">
+                Latest <span class="text-neon-green">Crypto News</span>
+            </h2>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- News card container - Will hold the latest 3 news items -->
+                <div id="home-news-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <!-- Loading placeholders -->
+                    <div class="bg-ninja-dark/50 rounded-lg overflow-hidden border border-ninja-gray/30 h-80 animate-pulse">
+                        <div class="h-40 bg-ninja-gray/20"></div>
+                        <div class="p-4">
+                            <div class="h-6 bg-ninja-gray/20 rounded w-3/4 mb-3"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                    <div class="bg-ninja-dark/50 rounded-lg overflow-hidden border border-ninja-gray/30 h-80 animate-pulse">
+                        <div class="h-40 bg-ninja-gray/20"></div>
+                        <div class="p-4">
+                            <div class="h-6 bg-ninja-gray/20 rounded w-3/4 mb-3"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                    <div class="bg-ninja-dark/50 rounded-lg overflow-hidden border border-ninja-gray/30 h-80 animate-pulse">
+                        <div class="h-40 bg-ninja-gray/20"></div>
+                        <div class="p-4">
+                            <div class="h-6 bg-ninja-gray/20 rounded w-3/4 mb-3"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-ninja-gray/20 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <a href="/news" class="inline-block bg-electric-blue/20 text-electric-blue border border-electric-blue/30 hover:bg-electric-blue/30 px-8 py-3 rounded-md font-bold transition-all duration-300 group">
+                        View All News
+                        <i data-feather="arrow-right" class="inline-block w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Payment Section -->
     <section id="payment" class="py-20 bg-ninja-black">
         <div class="container mx-auto px-4">
@@ -630,6 +677,86 @@
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    
+    <!-- Home news section script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch latest news for the homepage
+            fetchLatestNewsForHome();
+        });
+        
+        function fetchLatestNewsForHome() {
+            fetch('/api/news-feed?limit=3')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        // No news available
+                        document.getElementById('home-news-container').innerHTML = `
+                            <div class="col-span-3 text-center py-12">
+                                <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">No News Available</h3>
+                                <p class="text-gray-400">We're working on bringing you the latest crypto news. Please check back later.</p>
+                            </div>
+                        `;
+                        feather.replace();
+                        return;
+                    }
+                    
+                    // Clear the loading placeholders
+                    document.getElementById('home-news-container').innerHTML = '';
+                    
+                    // Add the latest 3 news items
+                    data.forEach((item, index) => {
+                        const newsCard = document.createElement('div');
+                        newsCard.className = 'bg-ninja-dark/50 rounded-lg overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 card-3d';
+                        newsCard.setAttribute('data-aos', 'fade-up');
+                        newsCard.setAttribute('data-aos-delay', (index * 100).toString());
+                        
+                        // Create image URL placeholder in case image doesn't exist
+                        const imageUrl = item.image_url || `https://via.placeholder.com/600x400?text=No+Image`;
+                        
+                        newsCard.innerHTML = `
+                            <div class="relative">
+                                <div class="h-40 bg-cover bg-center" style="background-image: url('${imageUrl}')"></div>
+                                <div class="absolute top-2 left-2">
+                                    <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-gradient-to-r from-ninja-dark to-ninja-dark/80 backdrop-blur-sm">${item.source}</span>
+                                </div>
+                                <div class="absolute top-2 right-2">
+                                    <span class="date-badge text-xs font-medium text-white/70 px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">${item.published}</span>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold mb-2 line-clamp-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">${item.title}</h3>
+                                <p class="text-ninja-light/70 text-sm mb-4 line-clamp-2">${item.description}</p>
+                                <a href="${item.link}" target="_blank" class="text-electric-blue hover:text-neon-green transition-colors duration-300 text-sm font-medium flex items-center">
+                                    Read more
+                                    <i data-feather="external-link" class="ml-1 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        `;
+                        
+                        document.getElementById('home-news-container').appendChild(newsCard);
+                    });
+                    
+                    // Re-initialize feather icons
+                    feather.replace();
+                    
+                    // Refresh AOS animations
+                    AOS.refresh();
+                })
+                .catch(error => {
+                    console.error('Error fetching latest news:', error);
+                    document.getElementById('home-news-container').innerHTML = `
+                        <div class="col-span-3 text-center py-12">
+                            <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Error Loading News</h3>
+                            <p class="text-gray-400">Sorry, we ran into a problem while fetching the latest news. Please try again later.</p>
+                        </div>
+                    `;
+                    feather.replace();
+                });
+        }
+    </script>
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>

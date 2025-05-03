@@ -56,12 +56,37 @@ class NewsFeed:
                         
                         # Clean description/summary text
                         description = ""
+                        image_url = None
+                        
+                        # Extract image from summary or description if available
                         if hasattr(entry, 'summary'):
                             soup = BeautifulSoup(entry.summary, 'html.parser')
                             description = soup.get_text()[:150] + "..." if len(soup.get_text()) > 150 else soup.get_text()
+                            # Try to find image in summary
+                            img_tag = soup.find('img')
+                            if img_tag and img_tag.has_attr('src'):
+                                image_url = img_tag['src']
                         elif hasattr(entry, 'description'):
                             soup = BeautifulSoup(entry.description, 'html.parser')
                             description = soup.get_text()[:150] + "..." if len(soup.get_text()) > 150 else soup.get_text()
+                            # Try to find image in description
+                            img_tag = soup.find('img')
+                            if img_tag and img_tag.has_attr('src'):
+                                image_url = img_tag['src']
+                        
+                        # Check for media content or enclosures (common in RSS feeds)
+                        if not image_url and hasattr(entry, 'media_content') and entry.media_content:
+                            for media in entry.media_content:
+                                if 'url' in media:
+                                    image_url = media['url']
+                                    break
+                        
+                        # Check for enclosures as another potential source of images
+                        if not image_url and hasattr(entry, 'enclosures') and entry.enclosures:
+                            for enclosure in entry.enclosures:
+                                if hasattr(enclosure, 'type') and enclosure.type and enclosure.type.startswith('image/') and hasattr(enclosure, 'href'):
+                                    image_url = enclosure.href
+                                    break
                         
                         # Create news item
                         news_item = {
@@ -69,7 +94,8 @@ class NewsFeed:
                             'link': entry.link,
                             'published': published,
                             'description': description,
-                            'source': domain
+                            'source': domain,
+                            'image_url': image_url
                         }
                         
                         all_entries.append(news_item)
