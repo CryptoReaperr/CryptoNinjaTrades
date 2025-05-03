@@ -1,182 +1,121 @@
-/* Crypto Ticker Styles for Crypto Ninja Trades
- * Advanced ninja-themed ticker with premium visual effects
- * 2025 Edition with cutting-edge design elements
- */
+/* Cutting-edge ticker design for Crypto Ninja Trades - 2025 */
 
+/* Ticker container */
 .ticker-wrapper {
+    width: 100%;
+    height: 40px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(74, 99, 120, 0.3);
     position: relative;
     overflow: hidden;
-    height: 45px;
-    width: 100%;
-    background: linear-gradient(90deg, rgba(30, 41, 59, 0.95), rgba(55, 95, 124, 0.8), rgba(30, 41, 59, 0.95));
-    backdrop-filter: blur(10px);
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
-    border-top: 1px solid rgba(74, 99, 120, 0.5);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
 }
 
-.ticker-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent,
-        rgba(74, 99, 120, 0.8),
-        transparent
-    );
-    z-index: 1;
-}
-
-.ticker-wrapper::after {
-    content: 'CRYPTO NINJA DATA';
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    font-weight: 700;
-    color: rgba(74, 99, 120, 0.7);
-    letter-spacing: 1px;
-    padding-left: 15px;
-    border-left: 2px solid rgba(74, 99, 120, 0.5);
-    z-index: 10;
-}
-
+/* Main ticker element */
 .ticker {
     display: flex;
-    height: 100%;
-    width: max-content;
-    animation: ticker-scroll 35s linear infinite;
     align-items: center;
-    padding-right: 150px; /* Space for the label */
+    height: 100%;
+    animation: ticker-scroll 25s linear infinite;
+    will-change: transform;
 }
 
-.ticker:hover {
-    animation-play-state: paused;
-}
-
+/* Ticker items styling */
 .ticker-item {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 15px;
-    margin-right: 15px;
-    height: 100%;
-    position: relative;
+    padding: 0 24px;
     white-space: nowrap;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    color: white;
+    position: relative;
 }
 
-.ticker-item::after {
+/* Arrow separator between items */
+.ticker-item:not(:last-child)::after {
     content: '';
     position: absolute;
     right: 0;
-    top: 15%;
-    height: 70%;
+    height: 60%;
     width: 1px;
-    background: linear-gradient(to bottom, 
-        rgba(74, 99, 120, 0),
-        rgba(74, 99, 120, 0.7),
-        rgba(74, 99, 120, 0)
+    background: rgba(74, 99, 120, 0.4);
+    transform: skewX(-20deg);
+}
+
+/* Spotlight effect */
+.spotlight {
+    position: absolute;
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(0, 200, 255, 0) 0%, 
+        rgba(0, 200, 255, 0.15) 50%, 
+        rgba(0, 200, 255, 0) 100%
     );
+    z-index: 1;
+    pointer-events: none;
+    animation: spotlight 5s linear infinite;
 }
 
-.ticker-item:hover {
-    background: rgba(74, 99, 120, 0.2);
-}
-
+/* Price and change styling */
 .ticker-item .price {
-    margin: 0 8px;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 8px rgba(74, 99, 120, 0.5);
-    letter-spacing: 0.5px;
-}
-
-.ticker-item .font-medium {
     font-weight: 600;
-    background: linear-gradient(to right, #567890, #375F7C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding-right: 5px;
+    color: #e2e8f0;
+    margin: 0 8px;
 }
 
-/* Ninja star separator - can be seen between some items */
-.ticker-item:nth-child(5n)::after {
+.ticker-item .up {
+    color: #00ffaa;
+}
+
+.ticker-item .down {
+    color: #ff4757;
+}
+
+/* Ninja star decoration */
+.ticker::before {
     content: '';
     position: absolute;
-    right: 0;
+    left: 10px;
     top: 50%;
-    height: 12px;
-    width: 12px;
+    transform: translateY(-50%) rotate(0deg);
+    width: 14px;
+    height: 14px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23375F7C' width='24' height='24'%3E%3Cpath d='M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
-    transform: translateY(-50%) rotate(45deg);
     opacity: 0.7;
+    animation: spin 7s linear infinite;
 }
 
-.ticker-item .text-green-500 {
-    color: #4ade80;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    padding: 2px 6px;
-    border-radius: 4px;
-    background: rgba(74, 222, 128, 0.15);
-}
-
-.ticker-item .text-red-500 {
-    color: #ef4444;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    padding: 2px 6px;
-    border-radius: 4px;
-    background: rgba(239, 68, 68, 0.15);
-}
-
-/* Spotlight effect on ticker */
-.ticker-wrapper .spotlight {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    height: 100%;
-    width: 200px;
-    background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0), 
-        rgba(255, 255, 255, 0.1), 
-        rgba(255, 255, 255, 0)
-    );
-    filter: blur(5px);
-    animation: spotlight 10s infinite;
-    pointer-events: none;
-    z-index: 5;
-}
-
-/* Skeleton loading effect */
-.ticker-item.skeleton {
-    width: 120px;
-    position: relative;
-    overflow: hidden;
-}
-
-.ticker-item.skeleton::after {
+.ticker::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23375F7C' width='24' height='24'%3E%3Cpath d='M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    animation: spin 7s linear infinite reverse;
+}
+
+/* Loading skeleton animation */
+.ticker-item.skeleton {
+    width: 120px;
+    height: 22px;
+    margin: 0 24px;
     background: linear-gradient(90deg, 
-        rgba(47, 65, 79, 0.1), 
-        rgba(47, 65, 79, 0.3), 
-        rgba(47, 65, 79, 0.1)
+        rgba(74, 99, 120, 0.2) 0%, 
+        rgba(74, 99, 120, 0.3) 50%, 
+        rgba(74, 99, 120, 0.2) 100%
     );
-    animation: skeleton-loading 1.5s infinite;
+    background-size: 200% 100%;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
 }
 
 /* Animations */
@@ -189,45 +128,41 @@
     }
 }
 
-@keyframes skeleton-loading {
+@keyframes spotlight {
     0% {
-        transform: translateX(-100%);
+        left: -150px;
     }
     100% {
-        transform: translateX(100%);
-    }
-}
-
-@keyframes spotlight {
-    0%, 100% {
-        left: 0%;
-        opacity: 0;
-    }
-    10% {
-        opacity: 0;
-    }
-    50% {
         left: 100%;
-        opacity: 1;
-    }
-    90% {
-        opacity: 0;
     }
 }
 
-/* Responsive adjustments */
+@keyframes spin {
+    0% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Add responsive fixes for mobile */
 @media (max-width: 768px) {
     .ticker-wrapper {
-        height: 40px;
+        height: 34px;
     }
     
     .ticker-item {
-        padding: 0 10px;
-        margin-right: 10px;
-        font-size: 0.75rem;
-    }
-    
-    .ticker-wrapper::after {
-        display: none;
+        padding: 0 16px;
+        font-size: 14px;
     }
 }

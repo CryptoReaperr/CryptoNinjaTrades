@@ -35,6 +35,10 @@ def login():
 def news():
     return render_template('news.html')
 
+@app.route('/trends')
+def trends():
+    return render_template('trends.html')
+
 # API Routes
 @app.route('/api/crypto-prices')
 def crypto_prices():
@@ -47,6 +51,85 @@ def news_feed_api():
     limit = request.args.get('limit', default=8, type=int)
     news_items = news_feed.get_latest_news(limit=limit)
     return jsonify(news_items)
+
+@app.route('/api/market-trends')
+def market_trends_api():
+    # For now we'll create some simple sample data
+    # In a real app, this would come from a real API with historical data
+    from flask import request
+    import random
+    from datetime import datetime, timedelta
+    
+    symbol = request.args.get('symbol', default='BTC', type=str)
+    days = request.args.get('days', default=7, type=int)
+    
+    # Generate some realistic but sample data
+    today = datetime.now()
+    dates = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(days)][::-1]
+    
+    # Base values for different coins (starting points)
+    base_values = {
+        'BTC': 50000.0,
+        'ETH': 2500.0,
+        'SOL': 150.0,
+        'DOGE': 0.15,
+        'ADA': 0.50,
+        'BNB': 400.0
+    }
+    
+    # Volatility factors for different coins
+    volatility = {
+        'BTC': 0.03,  # 3% daily volatility
+        'ETH': 0.04,
+        'SOL': 0.06,
+        'DOGE': 0.08,
+        'ADA': 0.05,
+        'BNB': 0.04
+    }
+    
+    # Use the base value for the requested symbol, or default to BTC
+    base_value = base_values.get(symbol, 1000.0)  
+    vol = volatility.get(symbol, 0.05)
+    
+    # Generate realistic price movements
+    prices = []
+    current_price = base_value
+    
+    for _ in range(days):
+        # Random movement with some momentum
+        change_percent = random.uniform(-vol, vol) + random.uniform(-vol/2, vol/2)
+        current_price = current_price * (1 + change_percent)
+        prices.append(round(current_price, 2))
+    
+    # Calculate some indicators
+    avg_price = sum(prices) / len(prices)
+    min_price = min(prices)
+    max_price = max(prices)
+    current = prices[-1]
+    previous = prices[-2] if len(prices) > 1 else prices[-1]
+    percent_change = ((current - previous) / previous) * 100
+    
+    # Determine trend direction
+    if current > previous:
+        trend = "up"
+    elif current < previous:
+        trend = "down"
+    else:
+        trend = "stable"
+    
+    return jsonify({
+        'symbol': symbol,
+        'dates': dates,
+        'prices': prices,
+        'trend': trend,
+        'percent_change': round(percent_change, 2),
+        'statistics': {
+            'average': round(avg_price, 2),
+            'min': round(min_price, 2),
+            'max': round(max_price, 2),
+            'current': round(current, 2)
+        }
+    })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
