@@ -305,40 +305,67 @@
     </style>
 </head>
 <body class="bg-gray-900 text-white">
-    <!-- Navigation -->
-    <header class="bg-gray-800 text-white shadow-lg z-50 relative">
-        <div class="container mx-auto py-4 px-6 flex justify-between items-center">
-            <a href="/" class="flex items-center logo-link">
-                <img src="/static/images/logo.png" alt="Crypto Ninja Trades Logo" class="h-12 mr-3">
-                <span class="font-bold text-xl">Crypto Ninja Trades</span>
-            </a>
-            
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="/" class="hover:text-blue-400 transition duration-300">Home</a>
-                <a href="/news" class="text-blue-400 border-b-2 border-blue-400 pb-1">News</a>
-                <a href="/trends" class="hover:text-blue-400 transition duration-300">Trends</a>
-                <a href="/login" class="bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-2 rounded-full hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg">Login</a>
-            </nav>
-            
-            <button class="md:hidden flex items-center text-gray-300 focus:outline-none" id="mobile-menu-button">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Branding -->
+                <a href="/" class="flex items-center gap-3 logo-link relative z-20">
+                    <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
+                        <p class="text-xs text-ninja-light/80">Trade with Precision, Win with Confidence</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-6">
+                    <a href="/" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="/#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
+                    <a href="/#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
+                    <a href="/#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
+                    <a href="/news" class="font-medium text-neon-green transition-colors duration-300">News</a>
+                    <a href="/trends" class="font-medium hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="/#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
+                    <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
+                </nav>
+                
+                <!-- Join Now Button (Desktop) -->
+                <a href="/#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 z-20">
+                    Join Now
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-gray-800 shadow-xl absolute w-full left-0 z-20" id="mobile-menu">
-            <div class="container mx-auto px-6 py-4 space-y-4">
-                <a href="/" class="block hover:text-blue-400 transition duration-300">Home</a>
-                <a href="/news" class="block text-blue-400 border-b border-blue-400 pb-1 inline-block">News</a>
-                <a href="/trends" class="block hover:text-blue-400 transition duration-300">Trends</a>
-                <a href="/login" class="block bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-2 rounded-full hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg text-center">Login</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30 hidden">
+            <div class="container mx-auto px-4 py-5">
+                <nav class="flex flex-col gap-4">
+                    <a href="/" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="/#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
+                    <a href="/#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
+                    <a href="/#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
+                    <a href="/news" class="font-medium text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="/trends" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="/#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
+                    <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
+                    
+                    <!-- Join Now Button (Mobile) -->
+                    <a href="/#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
+                        Join Now
+                    </a>
+                </nav>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto py-12 px-6">
+    <main class="container mx-auto pt-32 pb-20 px-6">
         <!-- Hero Section -->
         <section class="text-center mb-16 relative py-16">
             <div class="hero-grid"></div>
