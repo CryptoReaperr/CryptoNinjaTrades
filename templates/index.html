@@ -547,7 +547,7 @@
                 <!-- Logo and Copyright -->
                 <div class="mb-6 md:mb-0 text-center md:text-left">
                     <div class="flex items-center gap-3 justify-center md:justify-start">
-                        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Crypto Ninja Trades logo" class="w-8 h-8">
+                        <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full glow-border">
                         <h2 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h2>
                     </div>
                     <p class="text-sm text-ninja-light/70 mt-2">
@@ -592,7 +592,14 @@
         feather.replace();
     </script>
     
+    <!-- Initialize AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    
+    <!-- Cursor trail effect -->
+    <div class="cursor-trail"></div>
 </body>
 </html>
