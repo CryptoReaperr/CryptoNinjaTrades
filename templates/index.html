@@ -6,14 +6,18 @@
     <title>Crypto Ninja Trades - Exclusive VIP Club for Futures Trading</title>
     <meta name="description" content="Join Crypto Ninja Trades VIP Club for expert crypto futures trading signals, education, and mentorship. 80%+ signal success rate!">
     <meta name="keywords" content="crypto trading signals, futures trading, crypto education, trading mentorship">
+    <meta name="theme-color" content="#00FF88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/official-logo.png') }}">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts - High Performance Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,6 +39,23 @@
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
                         'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    screens: {
+                        '3xl': '1920px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 5s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    transitionProperty: {
+                        'border': 'border-color, border-width, border-opacity',
                     }
                 }
             }
@@ -54,12 +75,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/next-level.css') }}">
     
     <!-- Preloader Script -->
     <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
 </head>
 
-<body class="bg-ninja-black text-ninja-light font-inter">
+<body class="bg-ninja-black text-ninja-light font-inter font-crisp">
+    <!-- Advanced background effects -->
+    <div class="liquid-mesh"></div>
+    <div class="scanlines"></div>
     <!-- Toast notification for copied text -->
     <div id="copy-toast" class="copy-toast">Copied!</div>
     
@@ -598,8 +623,13 @@
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     
     <!-- Cursor trail effect -->
     <div class="cursor-trail"></div>
+    
+    <!-- Particles containers -->
+    <div id="hero" class="particles-network absolute inset-0 pointer-events-none"></div>
+    <div id="benefits" class="particles-network absolute inset-0 pointer-events-none"></div>
 </body>
 </html>
