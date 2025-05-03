@@ -9,10 +9,10 @@
   --ninja-dark: #1A1A1A;
   --ninja-gray: #333333;
   --ninja-light: #E0E0E0;
-  --neon-green: #003344; /* Petrol blue */
-  --electric-blue: #001C2E; /* Darker blue */
-  --ninja-purple: #004466; /* Steel blue */
-  --ninja-gold: #001524; /* Deep navy */
+  --neon-green: #375F7C; /* Sophisticated blue-grey */
+  --electric-blue: #567890; /* Muted steel blue-grey */
+  --ninja-purple: #2F414F; /* Deep blue-grey */
+  --ninja-gold: #4A6378; /* Medium blue-grey */
 }
 
 /* Liquid mesh background */
@@ -115,17 +115,17 @@
 /* Advanced holographic text */
 .holographic-text {
   background: linear-gradient(90deg, 
-    rgba(0, 51, 68, 0.8),
-    rgba(0, 28, 46, 0.8),
-    rgba(0, 68, 102, 0.8),
-    rgba(0, 40, 56, 0.8),
-    rgba(0, 51, 68, 0.8)
+    rgba(55, 95, 124, 0.8),
+    rgba(47, 65, 79, 0.8),
+    rgba(86, 120, 144, 0.8),
+    rgba(74, 99, 120, 0.8),
+    rgba(55, 95, 124, 0.8)
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   position: relative;
-  filter: drop-shadow(0 0 2px rgba(0, 51, 68, 0.5));
+  filter: drop-shadow(0 0 2px rgba(47, 65, 79, 0.5));
   animation: hologramShift 5s infinite linear;
 }
 
@@ -140,11 +140,11 @@
   left: 0;
   top: 0;
   background: linear-gradient(90deg, 
-    rgba(0, 51, 68, 0.4),
-    rgba(0, 28, 46, 0.4),
-    rgba(0, 68, 102, 0.4),
-    rgba(0, 40, 56, 0.4),
-    rgba(0, 51, 68, 0.4)
+    rgba(55, 95, 124, 0.4),
+    rgba(47, 65, 79, 0.4),
+    rgba(86, 120, 144, 0.4),
+    rgba(74, 99, 120, 0.4),
+    rgba(55, 95, 124, 0.4)
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -511,7 +511,7 @@
   padding: 2px;
   margin: 0 -2px;
   border-radius: 6px;
-  background: linear-gradient(-45deg, #003344, #001C2E, #004466, #001524);
+  background: linear-gradient(-45deg, #375F7C, #2F414F, #567890, #4A6378);
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
 }
