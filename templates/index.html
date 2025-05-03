@@ -76,6 +76,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/next-level.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ultra-responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/immersive.css') }}">
     
     <!-- Preloader Script -->
     <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
@@ -171,7 +173,7 @@
                 <!-- Large hero logo -->
                 <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades" class="hero-logo w-48 md:w-64 rounded-full mb-8 ninja-animate">
                 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-4 ninja-animate gradient-text" data-text="CRYPTO NINJA TRADES">
+                <h1 class="holographic-heading text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-4 ninja-animate" data-text="CRYPTO NINJA TRADES">
                     CRYPTO NINJA TRADES
                 </h1>
                 <h2 class="text-xl md:text-2xl text-ninja-light/90 mb-8 ninja-animate">
@@ -185,7 +187,7 @@
                         Learn More
                     </a>
                 </div>
-                <div class="mt-10 py-4 px-6 glass-card inline-flex items-center ninja-animate hero-stat">
+                <div class="mt-10 py-4 px-6 glass-card frosted-glass inline-flex items-center ninja-animate hero-stat">
                     <i data-feather="users" class="text-electric-blue w-5 h-5 mr-3"></i>
                     <span class="counter-value font-bold text-xl" data-target="60">0</span>
                     <span class="ml-2">+ members already thriving in our community!</span>
@@ -325,7 +327,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Plan 1: 1 Month Trial -->
-                <div class="bg-ninja-dark rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 plan-card animate-on-scroll">
+                <div class="bg-ninja-dark rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 plan-card animate-on-scroll enhanced-card card-3d">
                     <div class="p-6 border-b border-ninja-gray/30">
                         <h3 class="text-xl font-bold mb-1">1 Month</h3>
                         <p class="text-sm text-ninja-light/70">Trial Membership</p>
@@ -624,6 +626,7 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
     
     <!-- Cursor trail effect -->
     <div class="cursor-trail"></div>
