@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto News - Crypto Ninja Trades</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/next-level.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/immersive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ultra-responsive.css') }}">
+    
+    <!-- Animation Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom Styles for News Page -->
+    <style>
+        /* News page specific styles */
+        .news-card {
+            background: rgba(37, 59, 75, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(87, 120, 144, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(87, 120, 144, 0.5);
+        }
+        
+        .source-badge {
+            background: linear-gradient(135deg, #375F7C, #4A6378);
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 10px;
+        }
+        
+        .date-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+        
+        .news-title {
+            background: linear-gradient(90deg, #567890, #4A6378);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .news-loading {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .news-loading h3 {
+            margin-top: 20px;
+            color: #567890;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(87, 120, 144, 0.2);
+            border-top: 5px solid #375F7C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <header class="bg-gray-800 text-white shadow-lg z-50 relative">
+        <div class="container mx-auto py-4 px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center logo-link">
+                <img src="/static/images/logo.png" alt="Crypto Ninja Trades Logo" class="h-12 mr-3">
+                <span class="font-bold text-xl">Crypto Ninja Trades</span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="/" class="hover:text-blue-400 transition duration-300">Home</a>
+                <a href="/academy" class="hover:text-blue-400 transition duration-300">Academy</a>
+                <a href="/news" class="text-blue-400 border-b-2 border-blue-400 pb-1">News</a>
+                <a href="/login" class="bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-2 rounded-full hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg">Login</a>
+            </nav>
+            
+            <button class="md:hidden flex items-center text-gray-300 focus:outline-none" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-gray-800 shadow-xl absolute w-full left-0 z-20" id="mobile-menu">
+            <div class="container mx-auto px-6 py-4 space-y-4">
+                <a href="/" class="block hover:text-blue-400 transition duration-300">Home</a>
+                <a href="/academy" class="block hover:text-blue-400 transition duration-300">Academy</a>
+                <a href="/news" class="block text-blue-400 border-b border-blue-400 pb-1 inline-block">News</a>
+                <a href="/login" class="block bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-2 rounded-full hover:from-blue-600 hover:to-blue-800 transition duration-300 shadow-lg text-center">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-12 px-6">
+        <!-- Hero Section -->
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 glitch-text" data-aos="fade-down" data-text="Latest Crypto News">Latest Crypto News</h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Stay updated with the latest happenings in the crypto world. Our news feed aggregates breaking news from the most reliable sources in the industry.
+            </p>
+        </section>
+        
+        <!-- News Grid -->
+        <section class="mb-16">
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Loading State -->
+                <div class="col-span-full news-loading" id="loading-container">
+                    <div class="loading-spinner"></div>
+                    <h3>Loading latest crypto news...</h3>
+                </div>
+                
+                <!-- News items will be added here dynamically -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-16 border-t border-gray-700">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Crypto Ninja Trades</h3>
+                    <p class="text-gray-400 mb-6">
+                        Empowering traders with elite crypto signals and education since 2021.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i data-feather="telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="/academy" class="text-gray-400 hover:text-white transition duration-300">Ninja Academy</a></li>
+                        <li><a href="/news" class="text-gray-400 hover:text-white transition duration-300">Crypto News</a></li>
+                        <li><a href="/login" class="text-gray-400 hover:text-white transition duration-300">Login</a></li>
+                        <li><a href="/terms" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="/privacy" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="mr-3 h-5 w-5"></i>
+                            support@cryptoninjatrades.com
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="message-circle" class="mr-3 h-5 w-5"></i>
+                            Telegram: @Crypto_Reaperr (CEO)
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="message-circle" class="mr-3 h-5 w-5"></i>
+                            Telegram: @CryptoLadyNinja (Lead Trader)
+                        </li>
+                    </ul>
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-500">
+                            &copy; 2025 Crypto Ninja Trades. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Crypto Price Ticker -->
+    <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 overflow-hidden z-50">
+        <div class="ticker-wrapper">
+            <div class="ticker" id="crypto-ticker">
+                <!-- Crypto prices will be added here dynamically -->
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
+    
+    <!-- News Page Specific Scripts -->
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Toggle mobile menu
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // News Feed functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch news data
+            fetchNews();
+            
+            // Fetch crypto prices for ticker
+            fetchCryptoPrices();
+        });
+        
+        function fetchNews() {
+            fetch('/api/news-feed')
+                .then(response => response.json())
+                .then(data => {
+                    // Hide loading container
+                    document.getElementById('loading-container').style.display = 'none';
+                    
+                    // Display news items
+                    const newsContainer = document.getElementById('news-container');
+                    
+                    if (data.length === 0) {
+                        newsContainer.innerHTML = `
+                            <div class="col-span-full text-center py-12">
+                                <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">No News Available</h3>
+                                <p class="text-gray-400">Sorry, we couldn't load the latest news. Please try again later.</p>
+                            </div>
+                        `;
+                        feather.replace();
+                        return;
+                    }
+                    
+                    data.forEach((item, index) => {
+                        const newsCard = document.createElement('div');
+                        newsCard.className = 'news-card rounded-lg overflow-hidden shadow-lg';
+                        newsCard.setAttribute('data-aos', 'fade-up');
+                        newsCard.setAttribute('data-aos-delay', (index * 100).toString());
+                        
+                        newsCard.innerHTML = `
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="source-badge text-xs font-medium text-white">${item.source}</span>
+                                    <span class="date-text">${item.published}</span>
+                                </div>
+                                <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">${item.title}</h3>
+                                <p class="text-gray-400 text-sm mb-4 line-clamp-3">${item.description}</p>
+                                <a href="${item.link}" target="_blank" class="text-blue-400 hover:text-blue-300 transition flex items-center text-sm font-medium">
+                                    Read more
+                                    <i data-feather="external-link" class="ml-1 h-4 w-4"></i>
+                                </a>
+                            </div>
+                        `;
+                        
+                        newsContainer.appendChild(newsCard);
+                    });
+                    
+                    // Re-initialize feather icons
+                    feather.replace();
+                    
+                    // Refresh AOS animations
+                    AOS.refresh();
+                })
+                .catch(error => {
+                    console.error('Error fetching news:', error);
+                    document.getElementById('loading-container').style.display = 'none';
+                    
+                    const newsContainer = document.getElementById('news-container');
+                    newsContainer.innerHTML = `
+                        <div class="col-span-full text-center py-12">
+                            <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Error Loading News</h3>
+                            <p class="text-gray-400">Sorry, we ran into a problem while fetching the latest news. Please try again later.</p>
+                        </div>
+                    `;
+                    feather.replace();
+                });
+        }
+        
+        function fetchCryptoPrices() {
+            fetch('/api/crypto-prices')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        return;
+                    }
+                    
+                    const tickerContainer = document.getElementById('crypto-ticker');
+                    tickerContainer.innerHTML = '';
+                    
+                    data.forEach(coin => {
+                        const tickerItem = document.createElement('div');
+                        tickerItem.className = 'ticker-item';
+                        
+                        tickerItem.innerHTML = `
+                            <span class="font-medium">${coin.symbol}</span>
+                            <span class="price">${coin.price}</span>
+                            <span class="${coin.change_class} flex items-center">
+                                <i data-feather="${coin.change_icon}" class="h-3 w-3 mr-1"></i>
+                                ${coin.percent_change_24h}
+                            </span>
+                        `;
+                        
+                        tickerContainer.appendChild(tickerItem);
+                    });
+                    
+                    // Re-initialize feather icons
+                    feather.replace();
+                })
+                .catch(error => {
+                    console.error('Error fetching crypto prices:', error);
+                });
+        }
+        
+        // Fetch fresh ticker data every 60 seconds
+        setInterval(fetchCryptoPrices, 60000);
+    </script>
+</body>
+</html>

@@ -639,5 +639,65 @@
     <!-- Particles containers -->
     <div id="hero" class="particles-network absolute inset-0 pointer-events-none"></div>
     <div id="benefits" class="particles-network absolute inset-0 pointer-events-none"></div>
+    
+    <!-- Crypto Price Ticker -->
+    <div class="fixed bottom-0 left-0 w-full bg-ninja-dark border-t border-ninja-gray/30 overflow-hidden z-50">
+        <div class="ticker-wrapper">
+            <div class="ticker" id="crypto-ticker">
+                <!-- Crypto prices will be added here dynamically -->
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+                <div class="ticker-item skeleton"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ticker data fetching script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch crypto prices for ticker
+            fetchCryptoPrices();
+            
+            // Set interval to update prices every minute
+            setInterval(fetchCryptoPrices, 60000);
+        });
+        
+        function fetchCryptoPrices() {
+            fetch('/api/crypto-prices')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        return;
+                    }
+                    
+                    const tickerContainer = document.getElementById('crypto-ticker');
+                    tickerContainer.innerHTML = '';
+                    
+                    data.forEach(coin => {
+                        const tickerItem = document.createElement('div');
+                        tickerItem.className = 'ticker-item';
+                        
+                        tickerItem.innerHTML = `
+                            <span class="font-medium">${coin.symbol}</span>
+                            <span class="price">${coin.price}</span>
+                            <span class="${coin.change_class} flex items-center">
+                                <i data-feather="${coin.change_icon}" class="h-3 w-3 mr-1"></i>
+                                ${coin.percent_change_24h}
+                            </span>
+                        `;
+                        
+                        tickerContainer.appendChild(tickerItem);
+                    });
+                    
+                    // Re-initialize feather icons
+                    feather.replace();
+                })
+                .catch(error => {
+                    console.error('Error fetching crypto prices:', error);
+                });
+        }
+    </script>
 </body>
 </html>
