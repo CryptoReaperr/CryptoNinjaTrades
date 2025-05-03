@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Also animate child elements
       gsap.to(card.querySelector('h3'), {
-        color: '#00FF88',
+        color: '#375F7C',
         duration: 0.3
       });
     });

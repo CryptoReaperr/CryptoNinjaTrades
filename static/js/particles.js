@@ -12,8 +12,8 @@ class ParticleNetwork {
     
     this.options = Object.assign({
       particleCount: 50,
-      particleColor: '#00FF88',
-      lineColor: '#00FF88',
+      particleColor: '#375F7C',
+      lineColor: '#4A6378',
       particleRadius: 2,
       lineWidth: 0.5,
       maxDistance: 150,
@@ -98,12 +98,12 @@ class ParticleNetwork {
   }
   
   _getRandomColor() {
-    // Generate colors with a subtle, elegant theme
+    // Generate colors with a subtle, Batman-style blue-grey theme
     const colors = [
-      '#2E2E2E', // dark gray
-      '#3A3A3A', // medium gray
-      '#4A4A4A', // light gray
-      '#1A1A1A', // very dark gray
+      '#2F414F', // dark blue-grey
+      '#375F7C', // medium blue-grey
+      '#4A6378', // steel blue-grey
+      '#567890', // light blue-grey
     ];
     
     return colors[Math.floor(Math.random() * colors.length)];
@@ -179,7 +179,7 @@ class ParticleNetwork {
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = `rgba(70, 70, 70, ${opacity * 0.3})`;
+          this.ctx.strokeStyle = `rgba(86, 120, 144, ${opacity * 0.3})`;
           this.ctx.lineWidth = this.options.lineWidth;
           this.ctx.stroke();
         }

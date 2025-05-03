@@ -8,8 +8,8 @@ class LiquidMesh {
   constructor(targetElement, options = {}) {
     this.container = targetElement;
     this.options = {
-      color: options.color || '#001a2e',
-      secondaryColor: options.secondaryColor || '#002844',
+      color: options.color || '#2F414F',
+      secondaryColor: options.secondaryColor || '#375F7C',
       density: options.density || (window.innerWidth < 768 ? 15 : 25),
       speed: options.speed || 0.015,
       amplitude: options.amplitude || 0.7,
