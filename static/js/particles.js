@@ -98,12 +98,12 @@ class ParticleNetwork {
   }
   
   _getRandomColor() {
-    // Generate colors with a neon/crypto theme
+    // Generate colors with a subtle, elegant theme
     const colors = [
-      '#00FF88', // neon green
-      '#00D4FF', // electric blue
-      '#9D4EDD', // purple
-      '#FFD700', // gold
+      '#2E2E2E', // dark gray
+      '#3A3A3A', // medium gray
+      '#4A4A4A', // light gray
+      '#1A1A1A', // very dark gray
     ];
     
     return colors[Math.floor(Math.random() * colors.length)];
@@ -179,7 +179,7 @@ class ParticleNetwork {
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = `rgba(0, 255, 136, ${opacity * 0.5})`;
+          this.ctx.strokeStyle = `rgba(70, 70, 70, ${opacity * 0.3})`;
           this.ctx.lineWidth = this.options.lineWidth;
           this.ctx.stroke();
         }
