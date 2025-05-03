@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Crypto Ninja Trades</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/next-level.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/immersive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ultra-responsive.css') }}">
+    
+    <!-- AOS Library for Scroll Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body class="bg-ninja-black text-white font-roboto custom-scrollbar overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades Logo" class="mx-auto w-24 h-24 mb-4 animate-pulse rounded-full">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="text-sm text-ninja-light/70 mt-2">Preparing secure access...</p>
+        </div>
+    </div>
+    
+    <!-- Background Particles -->
+    <div id="particles-container" class="fixed inset-0 z-0"></div>
+    
+    <!-- Liquid Mesh Background (low opacity) -->
+    <div id="liquid-mesh" class="fixed inset-0 z-0 opacity-30"></div>
+    
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Branding -->
+                <a href="/" class="flex items-center gap-3">
+                    <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
+                        <p class="text-xs text-ninja-light/80">Trade with Precision, Win with Confidence</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-6">
+                    <a href="/" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="/#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
+                    <a href="/#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
+                    <a href="/#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
+                    <a href="/academy" class="font-medium hover:text-neon-green transition-colors duration-300">Academy</a>
+                    <a href="/#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
+                    <a href="/login" class="font-medium text-neon-green transition-colors duration-300">Login</a>
+                </nav>
+                
+                <!-- Join Now Button (Desktop) -->
+                <a href="/#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                    Join Now
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30">
+            <div class="container mx-auto px-4 py-5">
+                <nav class="flex flex-col gap-4">
+                    <a href="/" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="/#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
+                    <a href="/#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
+                    <a href="/#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
+                    <a href="/academy" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Academy</a>
+                    <a href="/#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
+                    <a href="/login" class="font-medium text-neon-green transition-colors duration-300 py-2">Login</a>
+                    
+                    <!-- Join Now Button (Mobile) -->
+                    <a href="/#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
+                        Join Now
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="min-h-screen pt-28 flex items-center justify-center relative">
+        <div class="absolute inset-0 z-0">
+            <!-- Modern grid pattern -->
+            <div class="hero-grid-pattern"></div>
+            
+            <!-- Dynamic backdrop -->
+            <div class="hero-backdrop"></div>
+            
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ninja-black/60 to-ninja-black/95"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-md mx-auto">
+                <div class="glass-card frosted-glass p-8 rounded-xl border border-ninja-gray/30 text-center" data-aos="fade-up">
+                    <div class="mb-6">
+                        <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades" class="w-20 h-20 mx-auto rounded-full">
+                        <h2 class="text-2xl font-bold mt-4 mb-2">Member Login</h2>
+                        <p class="text-ninja-light/80 text-sm mb-6">Access your exclusive VIP membership area</p>
+                    </div>
+                    
+                    <!-- Telegram Login Button -->
+                    <div class="mb-6">
+                        <button id="telegram-login" class="w-full bg-[#0088cc] hover:bg-[#0099dd] text-white py-3 px-4 rounded-md font-medium transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.2647 2.2C21.745 1.55 20.8347 1.2 19.4147 1.2C17.8947 1.2 16.1547 1.6 14.3247 2.4C12.4947 3.2 10.7547 4.25 9.10469 5.55C7.45469 6.85 5.94469 8.3 4.57469 9.9C3.20469 11.5 2.10469 13.05 1.27469 14.55C0.444687 16.05 0.0446875 17.35 0.0446875 18.45C0.0446875 19.55 0.294687 20.45 0.794687 21.15C1.29469 21.85 2.04469 22.2 3.04469 22.2C3.54469 22.2 4.04469 22.1 4.54469 21.9C5.04469 21.7 5.54469 21.4 6.04469 21C6.54469 20.6 7.04469 20.05 7.54469 19.35C8.04469 18.65 8.54469 17.85 9.04469 16.95C9.14469 16.75 9.19469 16.55 9.19469 16.35C9.19469 16.15 9.09469 15.95 8.89469 15.75C8.69469 15.55 8.49469 15.4 8.29469 15.3C8.09469 15.2 7.89469 15.15 7.69469 15.15C7.29469 15.15 6.84469 15.3 6.34469 15.6C5.84469 15.9 5.34469 16.25 4.84469 16.65C4.34469 17.05 3.89469 17.45 3.49469 17.85C3.09469 18.25 2.84469 18.55 2.74469 18.75C2.64469 18.55 2.59469 18.25 2.59469 17.85C2.59469 17.25 2.84469 16.45 3.34469 15.45C3.84469 14.45 4.49469 13.4 5.29469 12.3C6.09469 11.2 6.99469 10.1 7.99469 9C8.99469 7.9 9.99469 6.9 10.9947 6C11.9947 5.1 12.9447 4.35 13.8447 3.75C14.7447 3.15 15.5447 2.85 16.2447 2.85C16.6447 2.85 16.9447 2.95 17.1447 3.15C17.3447 3.35 17.4447 3.6 17.4447 3.9C17.4447 4.2 17.3947 4.5 17.2947 4.8C17.1947 5.1 17.0947 5.35 16.9947 5.55C16.8947 5.75 16.7947 5.95 16.6947 6.15C16.5947 6.35 16.5447 6.5 16.5447 6.6C16.5447 6.8 16.6447 7 16.8447 7.2C17.0447 7.4 17.2447 7.55 17.4447 7.65C17.6447 7.75 17.8447 7.8 18.0447 7.8C18.2447 7.8 18.4447 7.75 18.6447 7.65C18.8447 7.55 19.0447 7.45 19.2447 7.35C19.4447 7.25 19.6447 7.15 19.8447 7.05C20.0447 6.95 20.2447 6.9 20.4447 6.9C20.6447 6.9 20.8947 7 21.1947 7.2C21.4947 7.4 21.6447 7.7 21.6447 8.1C21.6447 8.5 21.5447 8.9 21.3447 9.3C21.1447 9.7 20.9447 10.05 20.7447 10.35C20.5447 10.65 20.2947 10.95 19.9947 11.25C19.6947 11.55 19.3947 11.8 19.0947 12C18.9947 12.1 18.9447 12.25 18.9447 12.45C18.9447 12.55 18.9947 12.7 19.0947 12.9C19.1947 13.1 19.3447 13.3 19.5447 13.5C19.7447 13.7 19.9947 13.9 20.2947 14.1C20.5947 14.3 20.9447 14.45 21.3447 14.55C21.7447 14.65 22.1947 14.7 22.6947 14.7C23.1947 14.7 23.5447 15 23.7447 15.6C23.9447 16.2 23.4947 16.6 22.3947 16.8C21.9947 16.9 21.6447 16.95 21.3447 16.95C20.7447 16.95 20.1447 16.9 19.5447 16.8C18.9447 16.7 18.3447 16.55 17.7447 16.35C17.1447 16.15 16.5947 15.9 16.0947 15.6C15.5947 15.3 15.1447 14.95 14.7447 14.55C14.3447 14.15 14.0447 13.7 13.8447 13.2C13.6447 12.7 13.5447 12.15 13.5447 11.55C13.5447 10.95 13.6947 10.4 13.9947 9.9C14.0947 9.7 14.2447 9.5 14.4447 9.3C14.6447 9.1 14.8447 8.9 15.0447 8.7C15.2447 8.5 15.4447 8.3 15.6447 8.1C15.8447 7.9 15.9947 7.75 16.0947 7.65C16.2947 7.45 16.3947 7.3 16.3947 7.2C16.3947 7.1 16.3447 7.05 16.2447 7.05C16.0447 7.05 15.7447 7.15 15.3447 7.35C14.9447 7.55 14.5447 7.8 14.1447 8.1C13.7447 8.4 13.3947 8.7 13.0947 9C12.7947 9.3 12.6447 9.55 12.6447 9.75C12.6447 9.85 12.6947 9.95 12.7947 10.05C12.8947 10.15 12.9947 10.25 13.0947 10.35C13.1947 10.45 13.2947 10.55 13.3947 10.65C13.4947 10.75 13.5447 10.85 13.5447 10.95C13.5447 11.15 13.4447 11.35 13.2447 11.55C13.0447 11.75 12.8447 11.9 12.6447 12C12.4447 12.1 12.2447 12.15 12.0447 12.15C11.8447 12.15 11.6447 12.1 11.4447 12C11.2447 11.9 11.0447 11.75 10.8447 11.55C10.6447 11.35 10.5447 11.05 10.5447 10.65C10.5447 10.25 10.6447 9.85 10.8447 9.45C11.0447 9.05 11.2947 8.7 11.5947 8.4C11.8947 8.1 12.1947 7.8 12.4947 7.5C12.7947 7.2 13.0447 6.95 13.2447 6.75C13.6447 6.35 14.1947 5.85 14.8947 5.25C15.5947 4.65 16.2947 4.1 16.9947 3.6C17.6947 3.1 18.3447 2.7 18.9447 2.4C19.5447 2.1 19.9947 1.95 20.2947 1.95C20.9947 1.95 21.4947 2.05 21.7947 2.25C22.0947 2.45 22.2947 2.75 22.2947 3.15C22.2947 3.45 22.2447 3.75 22.1447 4.05C22.0447 4.35 21.9447 4.6 21.8447 4.8C21.7447 5 21.6447 5.2 21.5447 5.4C21.4447 5.6 21.3947 5.75 21.3947 5.85C21.3947 6.05 21.4947 6.25 21.6947 6.45C21.8947 6.65 22.0947 6.8 22.2947 6.9C22.4947 7 22.6947 7.05 22.8947 7.05C23.0947 7.05 23.2947 7 23.4947 6.9C23.6947 6.8 23.8947 6.7 24.0947 6.6C24.1947 7.3 24.1947 7.85 24.0947 8.25C23.9947 8.65 23.7947 8.95 23.4947 9.15C23.1947 9.35 22.8447 9.5 22.4447 9.6C22.0447 9.7 21.6447 9.8 21.2447 9.9C20.8447 10 20.4947 10.15 20.1947 10.35C19.8947 10.55 19.6947 10.85 19.5947 11.25C19.5947 11.35 19.6447 11.45 19.7447 11.55C19.8447 11.65 19.9447 11.75 20.0447 11.85C20.1447 11.95 20.2447 12.05 20.3447 12.15C20.4447 12.25 20.4947 12.35 20.4947 12.45C20.4947 12.65 20.3947 12.85 20.1947 13.05C19.9947 13.25 19.7947 13.4 19.5947 13.5C19.3947 13.6 19.1947 13.65 18.9947 13.65C18.7947 13.65 18.5947 13.6 18.3947 13.5C18.1947 13.4 17.9947 13.25 17.7947 13.05C17.5947 12.85 17.4947 12.55 17.4947 12.15C17.4947 11.75 17.5947 11.35 17.7947 10.95C17.9947 10.55 18.2447 10.2 18.5447 9.9C18.8447 9.6 19.1447 9.3 19.4447 9C19.7447 8.7 19.9947 8.45 20.1947 8.25C20.5947 7.85 21.1447 7.35 21.8447 6.75C22.5447 6.15 23.2447 5.6 23.9447 5.1C24.6447 4.6 25.2947 4.2 25.8947 3.9C26.4947 3.6 26.9447 3.45 27.2447 3.45C27.9447 3.45 28.4447 3.55 28.7447 3.75C29.0447 3.95 29.2447 4.25 29.2447 4.65C29.2447 4.95 29.1947 5.25 29.0947 5.55C28.9947 5.85 28.8947 6.1 28.7947 6.3C28.6947 6.5 28.5947 6.7 28.4947 6.9C28.3947 7.1 28.3447 7.25 28.3447 7.35C28.3447 7.55 28.4447 7.75 28.6447 7.95C28.8447 8.15 29.0447 8.3 29.2447 8.4C29.4447 8.5 29.6447 8.55 29.8447 8.55C30.0447 8.55 30.2447 8.5 30.4447 8.4C30.6447 8.3 30.8447 8.2 31.0447 8.1C31.2447 8 31.4447 7.9 31.6447 7.8C31.8447 7.7 32.0447 7.65 32.2447 7.65C32.4447 7.65 32.6947 7.75 32.9947 7.95C33.2947 8.15 33.4447 8.45 33.4447 8.85C33.4447 9.25 33.3447 9.65 33.1447 10.05C32.9447 10.45 32.7447 10.8 32.5447 11.1C32.3447 11.4 32.0947 11.7 31.7947 12C31.4947 12.3 31.1947 12.55 30.8947 12.75C30.7947 12.85 30.7447 13 30.7447 13.2C30.7447 13.3 30.7947 13.45 30.8947 13.65C30.9947 13.85 31.1447 14.05 31.3447 14.25C31.5447 14.45 31.7947 14.65 32.0947 14.85C32.3947 15.05 32.7447 15.2 33.1447 15.3" fill="white"/>
+                            </svg>
+                            Login with Telegram
+                        </button>
+                    </div>
+                    
+                    <!-- Separator -->
+                    <div class="relative my-8">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-ninja-gray/30"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="bg-ninja-dark px-4 text-sm text-ninja-light/60">Or continue with</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Login Form -->
+                    <form class="space-y-4">
+                        <div class="text-left">
+                            <label for="email" class="block text-sm font-medium mb-1 text-ninja-light/90">Email</label>
+                            <input type="email" id="email" class="w-full bg-ninja-black border border-ninja-gray/30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white">
+                        </div>
+                        <div class="text-left">
+                            <div class="flex items-center justify-between mb-1">
+                                <label for="password" class="block text-sm font-medium text-ninja-light/90">Password</label>
+                                <a href="#" class="text-xs text-blue-400 hover:text-blue-300">Forgot password?</a>
+                            </div>
+                            <input type="password" id="password" class="w-full bg-ninja-black border border-ninja-gray/30 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white">
+                        </div>
+                        <button type="submit" class="w-full bg-neon-green hover:bg-electric-blue text-ninja-black py-3 rounded-md font-bold transition-colors duration-300">
+                            Login
+                        </button>
+                    </form>
+                    
+                    <!-- Register Link -->
+                    <p class="mt-6 text-sm text-ninja-light/70">
+                        Don't have an account? <a href="/#plans" class="text-blue-400 hover:text-blue-300">Join VIP Club</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-ninja-black border-t border-ninja-gray/20 py-8 mt-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-8 h-8 rounded-full mr-2">
+                    <p class="text-ninja-light/60 text-sm">&copy; 2025 Crypto Ninja Trades. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="/terms" class="text-ninja-light/60 hover:text-neon-green text-sm">Terms</a>
+                    <a href="/privacy" class="text-ninja-light/60 hover:text-neon-green text-sm">Privacy</a>
+                    <a href="mailto:support@cryptoninjatrades.com" class="text-ninja-light/60 hover:text-neon-green text-sm">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+    
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.querySelector('.icon-open');
+        const iconClose = document.querySelector('.icon-close');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            });
+        });
+
+        // Telegram login button animation
+        const telegramBtn = document.getElementById('telegram-login');
+        if (telegramBtn) {
+            telegramBtn.addEventListener('mouseover', () => {
+                telegramBtn.classList.add('pulse-animation');
+            });
+            telegramBtn.addEventListener('mouseout', () => {
+                telegramBtn.classList.remove('pulse-animation');
+            });
+            telegramBtn.addEventListener('click', () => {
+                // Placeholder for Telegram login functionality
+                // In a production environment, this would integrate with Telegram's OAuth API
+                alert('Telegram login functionality would be implemented here.');
+            });
+        }
+        
+        // Form submission (placeholder)
+        const loginForm = document.querySelector('form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Placeholder for form submission logic
+                alert('Login functionality would be implemented here.');
+            });
+        }
+    </script>
+</body>
+</html>

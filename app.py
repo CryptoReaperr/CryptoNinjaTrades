@@ -21,5 +21,13 @@ def privacy():
 def terms():
     return render_template('terms.html')
 
+@app.route('/academy')
+def academy():
+    return render_template('academy.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
