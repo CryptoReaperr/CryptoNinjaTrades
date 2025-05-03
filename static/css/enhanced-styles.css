@@ -341,3 +341,22 @@
     color-scheme: dark;
   }
 }
+
+/* ===== HEADER LOGO FIX ===== */
+.logo-link {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.logo-link:hover,
+.logo-link:hover img,
+.logo-link:hover div,
+.logo-link:hover h1,
+.logo-link:hover p,
+.logo-link:hover span {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}

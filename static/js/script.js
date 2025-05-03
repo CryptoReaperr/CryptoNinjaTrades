@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create Batman-style smoke effects
   createSmokeEffects();
   
+  // Ensure logo in header doesn't disappear on hover
+  const logoLink = document.querySelector('.logo-link');
+  if (logoLink) {
+    // Remove any transform effects that might be applied by other scripts
+    logoLink.addEventListener('mouseenter', (e) => {
+      e.stopPropagation();
+      logoLink.style.opacity = '1';
+      logoLink.style.visibility = 'visible';
+    });
+  }
+  
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');

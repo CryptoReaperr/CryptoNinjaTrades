@@ -13,7 +13,29 @@ document.addEventListener('DOMContentLoaded', function() {
   initDataVisualization();
   initInteractiveButtons();
   initResponsiveEnhancements();
+  
+  // Ensure logo-link never gets affected by animations
+  preserveLogoVisibility();
 });
+
+/**
+ * Make sure the header logo always stays visible
+ */
+function preserveLogoVisibility() {
+  const logoLink = document.querySelector('.logo-link');
+  if (logoLink) {
+    // Force the logo to stay visible at all times
+    logoLink.style.opacity = '1';
+    logoLink.style.visibility = 'visible';
+    
+    // Ensure all children elements are also visible
+    const children = logoLink.querySelectorAll('*');
+    children.forEach(child => {
+      child.style.opacity = '1';
+      child.style.visibility = 'visible';
+    });
+  }
+}
 
 /**
  * Holographic text effect for key headings
