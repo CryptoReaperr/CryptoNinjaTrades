@@ -38,7 +38,7 @@ function initHolographicElements() {
       
       // Apply light reflection effect
       element.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
-      element.style.filter = `hue-rotate(${xPercent}deg) drop-shadow(0 0 ${Math.max(2, xPercent/10)}px rgba(0, 255, 136, 0.${Math.min(9, Math.floor(xPercent/10))}))`;  
+      element.style.filter = `hue-rotate(${xPercent}deg) drop-shadow(0 0 ${Math.max(2, xPercent/10)}px rgba(0, 68, 102, 0.${Math.min(9, Math.floor(xPercent/10))}))`;  
     });
     
     element.addEventListener('mouseleave', () => {
