@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Create Batman-style smoke effects
+  createSmokeEffects();
+  
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -111,3 +114,87 @@ document.addEventListener('DOMContentLoaded', function() {
   // Run on scroll
   window.addEventListener('scroll', animateOnScroll);
 });
+
+// Batman-style smoke effect function
+function createSmokeEffects() {
+  // Add smoke containers to key sections
+  const heroSection = document.getElementById('hero');
+  const featuresSection = document.getElementById('features');
+  const testimonialsSection = document.getElementById('testimonials');
+  
+  // Add smoke container to hero section
+  if (heroSection) {
+    const smokeContainer = document.createElement('div');
+    smokeContainer.className = 'smoke-container';
+    heroSection.appendChild(smokeContainer);
+    
+    // Generate 7 smoke elements with random positions and delays
+    for (let i = 0; i < 7; i++) {
+      createSmokeElement(smokeContainer);
+    }
+    
+    // Continue generating smoke at intervals
+    setInterval(() => {
+      createSmokeElement(smokeContainer);
+    }, 8000);
+  }
+  
+  // Add smoke effect to other sections
+  [featuresSection, testimonialsSection].forEach(section => {
+    if (section) {
+      const smokeContainer = document.createElement('div');
+      smokeContainer.className = 'smoke-container';
+      section.appendChild(smokeContainer);
+      
+      // Generate 3-5 smoke elements for other sections
+      const smokeCount = Math.floor(Math.random() * 3) + 3;
+      for (let i = 0; i < smokeCount; i++) {
+        createSmokeElement(smokeContainer);
+      }
+      
+      // Continue generating smoke at intervals
+      setInterval(() => {
+        if (Math.random() > 0.5) { // 50% chance to create new smoke
+          createSmokeElement(smokeContainer);
+        }
+      }, 12000);
+    }
+  });
+}
+
+// Create individual smoke element with randomized properties
+function createSmokeElement(container) {
+  const smoke = document.createElement('div');
+  smoke.className = 'smoke';
+  
+  // Random position within container
+  const xPos = Math.random() * 100;
+  const yPos = Math.random() * 50 + 50; // Start in bottom half
+  
+  // Random size (150px to 250px)
+  const size = Math.random() * 100 + 150;
+  
+  // Random animation delay
+  const delay = Math.random() * 5;
+  
+  // Apply randomized styles
+  smoke.style.width = `${size}px`;
+  smoke.style.height = `${size}px`;
+  smoke.style.left = `${xPos}%`;
+  smoke.style.bottom = `${yPos}px`;
+  smoke.style.animationDelay = `${delay}s`;
+  
+  // Subtle blue tint to match Batman-style
+  const opacity = Math.random() * 0.08 + 0.03; // Between 0.03 and 0.11
+  smoke.style.background = `rgba(15, 20, 35, ${opacity})`;
+  
+  // Add to container
+  container.appendChild(smoke);
+  
+  // Remove after animation completes
+  setTimeout(() => {
+    if (container.contains(smoke)) {
+      container.removeChild(smoke);
+    }
+  }, 15000 + (delay * 1000));
+}

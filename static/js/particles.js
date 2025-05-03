@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.getElementById('hero');
   if (heroSection) {
     new ParticleNetwork(heroSection, {
-      particleCount: window.innerWidth < 768 ? 30 : 60,
-      speed: 0.8,
+      particleCount: window.innerWidth < 768 ? 25 : 50,
+      speed: 0.3,
       maxDistance: window.innerWidth < 768 ? 100 : 160
     });
   }
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (benefitsSection) {
     new ParticleNetwork(benefitsSection, {
       particleCount: window.innerWidth < 768 ? 20 : 40,
-      speed: 0.5,
+      speed: 0.25,
       maxDistance: window.innerWidth < 768 ? 80 : 120,
       interactMode: 'repel'
     });

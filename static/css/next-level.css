@@ -417,7 +417,7 @@
 
 /* Animated background gradient */
 .animated-gradient-bg {
-  background: linear-gradient(-45deg, #0A0A0A, #1A1A1A, #002211, #001122);
+  background: linear-gradient(-45deg, #0A0A0A, #0A121A, #001524, #001A2E);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
 }
@@ -447,7 +447,7 @@
 
 .glitch-text::before {
   left: 2px;
-  text-shadow: 1px 0 var(--neon-green);
+  text-shadow: 1px 0 #004466;
   animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 
@@ -511,9 +511,9 @@
   padding: 2px;
   margin: 0 -2px;
   border-radius: 6px;
-  background: linear-gradient(-45deg, var(--neon-green), var(--electric-blue), var(--ninja-purple), var(--ninja-gold));
+  background: linear-gradient(-45deg, #003344, #001C2E, #004466, #001524);
   background-size: 400% 400%;
-  animation: gradientShift 5s ease infinite;
+  animation: gradientShift 8s ease infinite;
 }
 
 .section-highlight-inner {
@@ -550,4 +550,47 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Batman-style Smoke Effect */
+.smoke-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.smoke {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(30, 30, 35, 0.1);
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0;
+  transform: scale(0);
+  animation: smoke-float 15s ease-out infinite;
+}
+
+@keyframes smoke-float {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  10% {
+    opacity: 0.1;
+    transform: scale(0.5) translateY(0);
+  }
+  50% {
+    opacity: 0.05;
+    transform: scale(1.5) translateY(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) translateY(-100px);
+  }
 }
