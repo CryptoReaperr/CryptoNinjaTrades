@@ -1,0 +1,340 @@
+/**
+ * Enhanced styles for Crypto Ninja Trades website
+ * Modern 2025 design with cutting-edge effects
+ */
+
+/* ===== LOADING SCREEN ===== */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-icon {
+  margin-bottom: 20px;
+}
+
+.ninja-star-loader {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.7));
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: #00FF88;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.loader-text::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #00D4FF;
+  border-radius: 3px;
+}
+
+.loader-subtitle {
+  color: rgba(224, 224, 224, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Character animation */
+.char {
+  display: inline-block;
+}
+
+/* ===== ENHANCED CURSOR ===== */
+.cursor-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.7) 0%, rgba(0, 255, 136, 0) 70%);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  opacity: 0.8;
+}
+
+/* ===== DECORATIVE ELEMENTS ===== */
+.ninja-star {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.ninja-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
+  height: 1px;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ===== ENHANCED HERO SECTION ===== */
+.hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0) 50%);
+  z-index: 1;
+}
+
+.hero-logo {
+  filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5));
+  max-width: 250px;
+  margin: 0 auto 2rem;
+}
+
+.hero-grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(10, 10, 10, 0.97) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.97) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* ===== ENHANCED TEXT EFFECTS ===== */
+.gradient-text {
+  background: linear-gradient(90deg, #00FF88, #00D4FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #00FF88, #00D4FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: blur(8px);
+  opacity: 0.7;
+}
+
+.cyber-box {
+  position: relative;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 4px;
+  padding: 1.5rem;
+  background: rgba(10, 10, 10, 0.8);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cyber-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(10, 10, 10, 0) 50%);
+  z-index: -1;
+}
+
+.cyber-box::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0) 30%);
+  z-index: -1;
+}
+
+/* ===== ENHANCED CARD EFFECTS ===== */
+.glass-card {
+  background: rgba(26, 26, 26, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+  transform: translateY(-5px);
+}
+
+/* ===== PRICING TABLE ENHANCEMENTS ===== */
+.pricing-badge {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  background: #00FF88;
+  color: #0A0A0A;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 0 0 8px 8px;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.plan-card:hover .pricing-badge {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.price-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.price-highlight::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: rgba(0, 255, 136, 0.2);
+  z-index: -1;
+  transform: skewX(-15deg);
+}
+
+/* ===== BUTTON ENHANCEMENTS ===== */
+.neon-button {
+  position: relative;
+  padding: 12px 24px;
+  background: transparent;
+  color: #00FF88;
+  border: 2px solid #00FF88;
+  border-radius: 4px;
+  font-weight: bold;
+  overflow: hidden;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #00FF88;
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.neon-button:hover {
+  color: #0A0A0A;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.neon-button:hover::before {
+  width: 100%;
+}
+
+/* Liquid button effect */
+.liquid-button {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.liquid-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: rgba(0, 255, 136, 0.8);
+  border-radius: 50%;
+  transform: translate(-150%, -150%) scale(0);
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.liquid-button:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ===== MODAL ENHANCEMENTS ===== */
+.cyber-modal {
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.cyber-modal::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(135deg, #00FF88, #00D4FF);
+  border-radius: 9px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 180px;
+  }
+  
+  .ninja-star {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ===== DARK MODE OPTIMIZATIONS ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

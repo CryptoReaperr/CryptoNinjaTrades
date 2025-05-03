@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Ninja star/shuriken -->
+  <path fill="#00FF88" d="M32 8L40 24L56 32L40 40L32 56L24 40L8 32L24 24L32 8Z" />
+  
+  <!-- Center detail -->
+  <circle fill="#0A0A0A" cx="32" cy="32" r="6" />
+  
+  <!-- Blade details -->
+  <path fill="#00D4FF" d="M32 14L36 24L36 24L32 22L28 24L32 14Z" />
+  <path fill="#00D4FF" d="M50 32L40 36L40 36L42 32L40 28L50 32Z" />
+  <path fill="#00D4FF" d="M32 50L28 40L28 40L32 42L36 40L32 50Z" />
+  <path fill="#00D4FF" d="M14 32L24 28L24 28L22 32L24 36L14 32Z" />
+</svg>
