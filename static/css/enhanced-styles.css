@@ -17,6 +17,7 @@
     overflow: hidden;
     width: 60px;
     height: 28px;
+    z-index: 20;
 }
 
 .theme-toggle-switch {

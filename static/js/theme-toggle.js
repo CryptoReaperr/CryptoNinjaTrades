@@ -5,8 +5,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Theme toggle script loaded');
-  // Initialize theme toggle
-  initThemeToggle();
+  // Initialize theme toggle with a small delay to ensure DOM is fully processed
+  setTimeout(() => {
+    initThemeToggle();
+  }, 100);
 });
 
 /**
@@ -41,7 +43,8 @@ function initThemeToggle() {
   }
   
   // Toggle between theme modes
-  themeToggle.addEventListener('click', function() {
+  themeToggle.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent any default action
     console.log('Theme toggle clicked');
     this.classList.toggle('active');
     
