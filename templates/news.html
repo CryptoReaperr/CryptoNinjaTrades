@@ -539,21 +539,16 @@
     
     <!-- News Page Specific Scripts -->
     <script>
+        // Initialize variables
+        let newsData = [];
+        
         // Initialize Feather Icons
         feather.replace();
         
-        // Hide loading screen
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.style.opacity = '0';
-                    loadingScreen.style.pointerEvents = 'none';
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }
-            }, 1000);
+        // Initialize page functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('News page DOM loaded');
+            initNewsFeed();
         });
         
         // Initialize AOS animation library
@@ -562,27 +557,39 @@
             once: true
         });
         
-        // Toggle mobile menu
-        // Get the mobile menu button
+        // Toggle mobile menu - with error handling
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle icon if they exist
+                    const iconOpen = mobileMenuBtn.querySelector('.icon-open');
+                    const iconClose = mobileMenuBtn.querySelector('.icon-close');
+                    
+                    if (iconOpen && iconClose) {
+                        iconOpen.classList.toggle('hidden');
+                        iconClose.classList.toggle('hidden');
+                    }
+                }
             });
         }
         
-        // News Feed functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        // Main news feed initialization
+        function initNewsFeed() {
+            // Set up source filter functionality first
+            setupSourceFilters();
+            
             // Fetch news data
             fetchNews();
             
             // Fetch crypto prices for ticker
             fetchCryptoPrices();
-            
-            // Setup source filter functionality
-            setupSourceFilters();
-        });
+        }
         
+        // Set up news source filtering
         function setupSourceFilters() {
             const filterBadges = document.querySelectorAll('.source-filter-badge');
             
@@ -603,8 +610,16 @@
             });
         }
         
+        // Filter news by source
         function filterNewsBySource(source) {
             const newsCards = document.querySelectorAll('.news-card');
+            
+            if (newsCards.length === 0) {
+                // If no news cards are rendered yet, save the filter and apply later
+                // when the news are loaded
+                window.selectedNewsSource = source;
+                return;
+            }
             
             newsCards.forEach(card => {
                 if (source === 'all') {
@@ -615,18 +630,21 @@
                         card.style.animationDelay = '0s';
                     }, 50);
                 } else {
-                    const cardSource = card.querySelector('.source-badge').textContent;
-                    
-                    if (cardSource.toLowerCase() === source.toLowerCase()) {
-                        // Show cards that match the source
-                        card.classList.remove('filtered');
-                        // Add animation delay for staggered reveal
-                        setTimeout(() => {
-                            card.style.animationDelay = '0s';
-                        }, 50);
-                    } else {
-                        // Hide cards that don't match the source
-                        card.classList.add('filtered');
+                    const cardSource = card.querySelector('.source-badge');
+                    if (cardSource) {
+                        const sourceText = cardSource.textContent;
+                        
+                        if (sourceText.toLowerCase() === source.toLowerCase()) {
+                            // Show cards that match the source
+                            card.classList.remove('filtered');
+                            // Add animation delay for staggered reveal
+                            setTimeout(() => {
+                                card.style.animationDelay = '0s';
+                            }, 50);
+                        } else {
+                            // Hide cards that don't match the source
+                            card.classList.add('filtered');
+                        }
                     }
                 }
             });
@@ -662,91 +680,183 @@
             }
         }
         
+        // Fetch news from API
         function fetchNews() {
+            console.log('Fetching news...');
+            const newsContainer = document.getElementById('news-container');
+            const loadingContainer = document.getElementById('loading-container');
+            
+            if (!newsContainer) {
+                console.error('News container not found');
+                return;
+            }
+            
+            if (!loadingContainer) {
+                console.error('Loading container not found');
+                // Create loading indicator if it doesn't exist
+                const loadingElement = document.createElement('div');
+                loadingElement.id = 'loading-container';
+                loadingElement.className = 'col-span-full news-loading';
+                loadingElement.innerHTML = `
+                    <div class="loading-spinner"></div>
+                    <h3>Loading latest crypto news...</h3>
+                `;
+                newsContainer.appendChild(loadingElement);
+            }
+            
             fetch('/api/news-feed')
-                .then(response => response.json())
-                .then(data => {
-                    // Hide loading container
-                    document.getElementById('loading-container').style.display = 'none';
-                    
-                    // Display news items
-                    const newsContainer = document.getElementById('news-container');
-                    
-                    if (data.length === 0) {
-                        newsContainer.innerHTML = `
-                            <div class="col-span-full text-center py-12">
-                                <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
-                                <h3 class="text-xl font-semibold mb-2">No News Available</h3>
-                                <p class="text-gray-400">Sorry, we couldn't load the latest news. Please try again later.</p>
-                            </div>
-                        `;
-                        feather.replace();
-                        return;
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-                    
-                    data.forEach((item, index) => {
-                        const newsCard = document.createElement('div');
-                        newsCard.className = 'news-card rounded-lg overflow-hidden shadow-lg';
-                        newsCard.setAttribute('data-aos', 'fade-up');
-                        newsCard.setAttribute('data-aos-delay', (index * 100).toString());
-                        
-                        // Create image URL placeholder in case image doesn't exist
-                        const imageUrl = item.image_url || `https://via.placeholder.com/600x400?text=No+Image`;
-                        
-                        newsCard.innerHTML = `
-                            <div class="relative">
-                                <div class="h-48 bg-cover bg-center" style="background-image: url('${imageUrl}')"></div>
-                                <div class="absolute top-2 left-2">
-                                    <span class="source-badge text-xs font-medium text-white">${item.source}</span>
-                                </div>
-                                <div class="absolute top-2 right-2">
-                                    <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">${item.published}</span>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">${item.title}</h3>
-                                <p class="text-gray-400 text-sm mb-4 line-clamp-3">${item.description}</p>
-                                <a href="${item.link}" target="_blank" class="text-blue-400 hover:text-blue-300 transition flex items-center text-sm font-medium">
-                                    Read more
-                                    <i data-feather="external-link" class="ml-1 h-4 w-4"></i>
-                                </a>
-                            </div>
-                        `;
-                        
-                        newsContainer.appendChild(newsCard);
-                    });
-                    
-                    // Re-initialize feather icons
-                    feather.replace();
-                    
-                    // Refresh AOS animations
-                    AOS.refresh();
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(`Received ${data.length} news items`);
+                    newsData = data;
+                    renderNewsItems(data);
                 })
                 .catch(error => {
                     console.error('Error fetching news:', error);
-                    document.getElementById('loading-container').style.display = 'none';
-                    
-                    const newsContainer = document.getElementById('news-container');
-                    newsContainer.innerHTML = `
-                        <div class="col-span-full text-center py-12">
-                            <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
-                            <h3 class="text-xl font-semibold mb-2">Error Loading News</h3>
-                            <p class="text-gray-400">Sorry, we ran into a problem while fetching the latest news. Please try again later.</p>
-                        </div>
-                    `;
-                    feather.replace();
+                    showErrorMessage();
                 });
         }
         
+        // Render news items in the container
+        function renderNewsItems(data) {
+            // Get containers
+            const newsContainer = document.getElementById('news-container');
+            const loadingContainer = document.getElementById('loading-container');
+            
+            // Hide loading container
+            if (loadingContainer) {
+                loadingContainer.style.display = 'none';
+            }
+            
+            // Clear existing news cards
+            const existingCards = newsContainer.querySelectorAll('.news-card, .no-results');
+            existingCards.forEach(card => card.remove());
+            
+            // Display error if no data
+            if (!data || data.length === 0) {
+                showNoNewsAvailable();
+                return;
+            }
+            
+            // Render each news item
+            data.forEach((item, index) => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'news-card rounded-lg overflow-hidden shadow-lg';
+                newsCard.setAttribute('data-aos', 'fade-up');
+                newsCard.setAttribute('data-aos-delay', (index * 100).toString());
+                
+                // Create image URL placeholder in case image doesn't exist
+                const imageUrl = item.image_url || `https://via.placeholder.com/600x400?text=No+Image`;
+                
+                newsCard.innerHTML = `
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('${imageUrl}')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">${item.source}</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">${item.published}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">${item.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">${item.description}</p>
+                        <a href="${item.link}" target="_blank" class="text-blue-400 hover:text-blue-300 transition flex items-center text-sm font-medium">
+                            Read more
+                            <i data-feather="external-link" class="ml-1 h-4 w-4"></i>
+                        </a>
+                    </div>
+                `;
+                
+                newsContainer.appendChild(newsCard);
+            });
+            
+            // Re-initialize feather icons
+            feather.replace();
+            
+            // Refresh AOS animations
+            AOS.refresh();
+            
+            // Apply any saved filter
+            if (window.selectedNewsSource) {
+                const sourceEl = document.querySelector(`.source-filter-badge[data-source="${window.selectedNewsSource}"]`);
+                if (sourceEl) {
+                    sourceEl.click();
+                }
+            }
+        }
+        
+        // Show error when news can't be loaded
+        function showErrorMessage() {
+            const newsContainer = document.getElementById('news-container');
+            const loadingContainer = document.getElementById('loading-container');
+            
+            if (loadingContainer) {
+                loadingContainer.style.display = 'none';
+            }
+            
+            if (newsContainer) {
+                newsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Error Loading News</h3>
+                        <p class="text-gray-400">Sorry, we ran into a problem while fetching the latest news. Please try again later.</p>
+                        <button id="retry-news-btn" class="mt-4 px-4 py-2 bg-neon-green text-ninja-black rounded-md hover:bg-electric-blue transition-colors duration-300">
+                            Try Again
+                        </button>
+                    </div>
+                `;
+                feather.replace();
+                
+                // Add retry button functionality
+                const retryBtn = document.getElementById('retry-news-btn');
+                if (retryBtn) {
+                    retryBtn.addEventListener('click', fetchNews);
+                }
+            }
+        }
+        
+        // Show message when no news are available
+        function showNoNewsAvailable() {
+            const newsContainer = document.getElementById('news-container');
+            
+            if (newsContainer) {
+                newsContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i data-feather="alert-circle" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">No News Available</h3>
+                        <p class="text-gray-400">Sorry, we couldn't load the latest news. Please try again later.</p>
+                    </div>
+                `;
+                feather.replace();
+            }
+        }
+        
+        // Fetch crypto prices for ticker
         function fetchCryptoPrices() {
             fetch('/api/crypto-prices')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    if (data.length === 0) {
+                    if (!data || data.length === 0) {
                         return;
                     }
                     
                     const tickerContainer = document.getElementById('crypto-ticker');
+                    if (!tickerContainer) {
+                        console.error('Ticker container not found');
+                        return;
+                    }
+                    
                     tickerContainer.innerHTML = '';
                     
                     data.forEach(coin => {
