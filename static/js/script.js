@@ -9,62 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error initializing feather icons:', error);
     }
     
-    // Animation Toggle Button
-    const animationToggle = document.getElementById('animation-toggle');
-    if (animationToggle) {
-        console.log('Animation toggle found, initializing...');
-        
-        // Set default animation mode
-        if (!document.body.classList.contains('animations-basic') && !document.body.classList.contains('animations-advanced')) {
-            document.body.classList.add('animations-basic');
-            console.log('Initial animation mode set to basic');
-        }
-        
-        // Check if there's a saved preference
-        const savedAnimationMode = localStorage.getItem('animationMode');
-        console.log('Saved animation mode:', savedAnimationMode);
-        
-        if (savedAnimationMode === 'advanced') {
-            document.body.classList.add('animations-advanced');
-            document.body.classList.remove('animations-basic');
-            animationToggle.classList.add('active');
-            console.log('Applied advanced animation mode');
-        } else {
-            document.body.classList.add('animations-basic');
-            document.body.classList.remove('animations-advanced');
-            animationToggle.classList.remove('active');
-            console.log('Applied basic animation mode');
-        }
-        
-        // Toggle between animation modes
-        animationToggle.addEventListener('click', function() {
-            console.log('Animation toggle clicked');
-            this.classList.toggle('active');
-            
-            if (this.classList.contains('active')) {
-                // Advanced animations mode
-                document.body.classList.remove('animations-basic');
-                document.body.classList.add('animations-advanced');
-                localStorage.setItem('animationMode', 'advanced');
-                console.log('Switched to advanced animation mode');
-                
-                // Call any advanced animation functions if needed
-                if (typeof applyAdvancedAnimations === 'function') {
-                    applyAdvancedAnimations();
-                }
-            } else {
-                // Basic animations mode
-                document.body.classList.remove('animations-advanced');
-                document.body.classList.add('animations-basic');
-                localStorage.setItem('animationMode', 'basic');
-                console.log('Switched to basic animation mode');
-                
-                // Call any basic animation functions if needed
-                if (typeof applyBasicAnimations === 'function') {
-                    applyBasicAnimations();
-                }
-            }
-        });
+    // Set default animation mode to basic (we now use separate theme toggle)
+    if (!document.body.classList.contains('animations-basic') && !document.body.classList.contains('animations-advanced')) {
+        document.body.classList.add('animations-basic');
+        console.log('Initial animation mode set to basic');
     }
   // Create Batman-style smoke effects
   createSmokeEffects();

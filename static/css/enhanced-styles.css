@@ -3,8 +3,8 @@
  * Modern 2025 design with cutting-edge effects
  */
 
-/* ===== ANIMATION TOGGLE BUTTON ===== */
-.animation-toggle {
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle {
     display: flex;
     align-items: center;
     background: rgba(55, 95, 124, 0.2);
@@ -19,7 +19,7 @@
     height: 28px;
 }
 
-.animation-toggle-switch {
+.theme-toggle-switch {
     width: 20px;
     height: 20px;
     background: #E0E0E0;
@@ -35,12 +35,12 @@
     z-index: 1;
 }
 
-.animation-toggle.active .animation-toggle-switch {
+.theme-toggle.active .theme-toggle-switch {
     left: calc(100% - 24px);
-    background: #567890;
+    background: #F5F5F5;
 }
 
-.animation-toggle-label {
+.theme-toggle-label {
     display: flex;
     width: 58px;
     padding: 4px 6px;
@@ -49,21 +49,21 @@
     font-weight: 600;
 }
 
-.animation-mode-basic,
-.animation-mode-advanced {
+.theme-mode-dark,
+.theme-mode-light {
     z-index: 0;
     opacity: 0.7;
     transition: opacity 0.3s ease;
     padding: 0 4px;
 }
 
-.animation-toggle.active .animation-mode-advanced,
-.animation-toggle:not(.active) .animation-mode-basic {
+.theme-toggle.active .theme-mode-light,
+.theme-toggle:not(.active) .theme-mode-dark {
     opacity: 1;
 }
 
 /* Adding an indicator light */
-.animation-toggle::after {
+.theme-toggle::after {
     content: '';
     position: absolute;
     top: 5px;
@@ -77,7 +77,7 @@
     transition: all 0.3s ease;
 }
 
-.animation-toggle.active::after {
+.theme-toggle.active::after {
     background: #567890;
     opacity: 1;
     box-shadow: 0 0 5px #567890;
@@ -479,4 +479,91 @@ html {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
+}
+
+/* ===== LIGHT/DARK THEME STYLES ===== */
+/* Light theme (default is dark) */
+body.light-theme {
+  background-color: #f0f4f8;
+  color: #2c3e50;
+}
+
+/* Header - light theme */
+body.light-theme header {
+  background-color: rgba(240, 244, 248, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme header a {
+  color: #2c3e50;
+}
+
+body.light-theme header a:hover {
+  color: #375F7C;
+}
+
+/* Background elements - light theme */
+body.light-theme .bg-ninja-black {
+  background-color: #f0f4f8;
+}
+
+body.light-theme .bg-ninja-dark {
+  background-color: #e5e9f0;
+}
+
+body.light-theme .text-ninja-light {
+  color: #2c3e50;
+}
+
+/* Cards and boxes - light theme */
+body.light-theme .cyber-box,
+body.light-theme .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .glass-card {
+  backdrop-filter: blur(10px);
+}
+
+body.light-theme .cyber-box::before {
+  background: linear-gradient(135deg, rgba(55, 95, 124, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+/* Card borders - light theme */
+body.light-theme .border-ninja-gray/30 {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Footer - light theme */
+body.light-theme footer {
+  background-color: #e5e9f0;
+  color: #2c3e50;
+}
+
+/* Mobile menu - light theme */
+body.light-theme #mobile-menu {
+  background-color: rgba(240, 244, 248, 0.95);
+}
+
+/* Gradient backgrounds - light theme */
+body.light-theme .ninja-gradient {
+  background: linear-gradient(135deg, #f0f4f8 0%, #e5e9f0 100%);
+}
+
+/* Dark overlay gradient - light theme */
+body.light-theme .bg-gradient-to-b.from-ninja-black\/60.to-ninja-black\/95 {
+  background: linear-gradient(to bottom, rgba(240, 244, 248, 0.6), rgba(240, 244, 248, 0.95));
+}
+
+/* Grid pattern - light theme */
+body.light-theme .hero-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+/* Hero backdrop - light theme */
+body.light-theme .hero-backdrop {
+  background: radial-gradient(circle at 50% 50%, rgba(55, 95, 124, 0.05) 0%, rgba(240, 244, 248, 0) 50%);
 }
