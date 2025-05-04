@@ -12,13 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        'ninja-black': '#111827',
-                        'ninja-dark': '#1e293b',
-                        'ninja-gray': '#64748b',
-                        'ninja-light': '#94a3b8',
-                        'neon-green': '#00ffaa',
-                        'ninja-red': '#ff4757',
-                        'electric-blue': '#00c8ff',
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
                     },
                     fontFamily: {
                         'montserrat': ["Montserrat", "sans-serif"],
@@ -46,7 +48,12 @@
     <!-- Custom Styles for Trends Page -->
     <style>
         body {
-            background-image: linear-gradient(to bottom, #0f172a, #1a2234, #1e293b);
+            background-color: #0A0A0A;
+            background-image: 
+                radial-gradient(circle at 25% 5%, rgba(47, 65, 79, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 25%, rgba(55, 95, 124, 0.05) 0%, transparent 15%),
+                radial-gradient(circle at 15% 75%, rgba(74, 99, 120, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 75% 95%, rgba(86, 120, 144, 0.08) 0%, transparent 15%);
             background-attachment: fixed;
             position: relative;
             font-family: 'Montserrat', sans-serif;
@@ -549,6 +556,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animation-modes.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll-header.js') }}"></script>
     <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
