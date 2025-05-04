@@ -490,18 +490,48 @@
     </section>
     
     <!-- Footer -->
-    <footer class="bg-ninja-black border-t border-ninja-gray/20 py-8 mt-20">
+    <footer class="py-12 bg-ninja-dark border-t border-ninja-gray/30 mt-20">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-8 h-8 rounded-full mr-2">
-                    <p class="text-ninja-light/60 text-sm">&copy; 2025 Crypto Ninja Trades. All rights reserved.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Logo and Copyright -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center gap-3 justify-center md:justify-start">
+                        <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full glow-border">
+                        <h2 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h2>
+                    </div>
+                    <p class="text-sm text-ninja-light/70 mt-2">
+                        © 2025 Crypto Ninja Trades. All Rights Reserved.
+                    </p>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="/terms" class="text-ninja-light/60 hover:text-neon-green text-sm">Terms</a>
-                    <a href="/privacy" class="text-ninja-light/60 hover:text-neon-green text-sm">Privacy</a>
-                    <a href="mailto:support@cryptoninjatrades.com" class="text-ninja-light/60 hover:text-neon-green text-sm">Support</a>
+                
+                <!-- Footer Links -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 text-center md:text-left">
+                    <div>
+                        <h3 class="text-sm font-bold text-white mb-3">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="/privacy" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Privacy Policy</a></li>
+                            <li><a href="/terms" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-sm font-bold text-white mb-3">Connect</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://t.me/cryptoninjatrades" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Telegram</a></li>
+                            <li><a href="https://x.com/ninjatradesBTC" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">X (Twitter)</a></li>
+                            <li><a href="https://discord.gg/EZtXMRnBBa" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Discord</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="mailto:support@cryptoninjatrades.com" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                    support@cryptoninjatrades.com
+                </a>
+                <p class="text-xs text-ninja-light/50 mt-4">
+                    Trading cryptocurrencies involves risk. Past performance is not indicative of future results. Only invest what you can afford to lose.
+                </p>
             </div>
         </div>
     </footer>
