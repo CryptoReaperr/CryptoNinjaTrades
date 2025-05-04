@@ -29,7 +29,15 @@ function initScrollHeader() {
   let lastScrollY = window.scrollY;
   let scrollTimer = null;
   
+  // Add fixed header class when scrolling down
   window.addEventListener('scroll', function() {
+    // Apply fixed header when scrolled beyond a certain point
+    if (window.scrollY > 100) {
+      header.classList.add('fixed-header');
+    } else {
+      header.classList.remove('fixed-header');
+    }
+    
     // Clear existing timer
     if (scrollTimer) clearTimeout(scrollTimer);
     
@@ -40,37 +48,27 @@ function initScrollHeader() {
     
     // Only respond to significant scroll changes
     if (delta > 5) {
-      if (direction === 'down' && currentScrollY > 50) {
-        // Calculate how far to hide based on scroll speed
-        const headerHeight = header.offsetHeight;
-        const hideAmount = Math.min(delta * 0.5, headerHeight);
-        animateHeader(header, -hideAmount, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
-        console.log(`Scrolling down: hiding ${hideAmount}px of header`);
-      } else if (direction === 'up') {
-        // Calculate how much to show based on scroll speed
-        const showAmount = Math.min(delta * 0.5, Math.abs(getTranslateY(header)));
-        animateHeader(header, getTranslateY(header) + showAmount, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
-        console.log(`Scrolling up: showing ${showAmount}px of header`);
-      }
-      
       // At top of page, always fully show header
       if (currentScrollY < 10) {
         animateHeader(header, 0, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
         console.log('At top: fully showing header');
+      } else if (direction === 'up') {
+        // Always show header when scrolling up
+        animateHeader(header, 0, 'cubic-bezier(0.215, 0.61, 0.355, 1)', 0.3);
+        console.log('Scrolling up: showing header');
       }
       
       lastScrollY = currentScrollY;
     }
     
-    // Reset after scrolling stops
+    // Reset after scrolling stops - always keep header visible
     scrollTimer = setTimeout(function() {
-      // If near top, show header completely
+      // If near top, show header completely without fixed position
       if (window.scrollY < 10) {
         animateHeader(header, 0, 'ease-out');
-      } 
-      // If scrolled down and not moving, hide header completely
-      else if (window.scrollY > 100) {
-        animateHeader(header, -header.offsetHeight, 'ease-out');
+      } else {
+        // Always keep header visible when scrolled down
+        animateHeader(header, 0, 'ease-out');
       }
     }, 150);
   }, { passive: true });
@@ -92,10 +90,9 @@ function initScrollHeader() {
         animateHeader(header, newTransform, 'linear');
         console.log(`Rewind animation (scrolling down): ${newTransform}`);
       } else if (window.scrollY > 50) {
-        // Normal scrolling down behavior - hide header proportionally
-        const newTransform = Math.max(currentTransform - (deltaY * 0.1), -headerHeight);
-        animateHeader(header, newTransform, 'linear');
-        console.log(`Wheel down: ${deltaY}, new transform: ${newTransform}`);
+        // Keep header visible even when scrolling down
+        animateHeader(header, 0, 'linear');
+        console.log('Keeping header visible while scrolling down');
       }
     } else if (deltaY < 0) {
       if (atPageTop) {
@@ -110,16 +107,22 @@ function initScrollHeader() {
           animateHeader(header, 0, 'cubic-bezier(0.175, 0.885, 0.32, 1.275)', 0.5); // Bounce effect
         }, 100);
       } else {
-        // Normal scrolling up behavior
-        const newTransform = Math.min(currentTransform - (deltaY * 0.1), 0);
-        animateHeader(header, newTransform, 'linear');
-        console.log(`Wheel up: ${deltaY}, new transform: ${newTransform}`);
+        // Normal scrolling up behavior - always show header
+        animateHeader(header, 0, 'linear');
+        console.log('Showing header when scrolling up');
       }
     }
     
     // If we're at the top of the page but the header isn't at default position, reset it
     if (atPageTop && !event.deltaY && currentTransform !== 0) {
       animateHeader(header, 0, 'ease-out', 0.3);
+    }
+    
+    // Apply fixed position styles when scrolled down
+    if (window.scrollY > 100) {
+      header.classList.add('fixed-header');
+    } else {
+      header.classList.remove('fixed-header');
     }
   }
   
