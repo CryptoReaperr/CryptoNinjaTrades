@@ -1,15 +1,40 @@
 import os
 import logging
-from flask import Flask, render_template, jsonify
-from services.crypto_api import crypto_api
-from services.news_feed import news_feed
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session
+from flask_login import login_user, logout_user, login_required, current_user
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
+# Import config, extensions, and models
+from config import Config
+from extensions import db, login_manager
+from models import User
+from services.crypto_api import crypto_api
+from services.news_feed import news_feed
+from services.telegram_auth import telegram_auth
+
 # Create Flask app
-app = Flask(__name__)
-app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key")
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+    
+    # Initialize extensions
+    db.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+    
+    # Create database tables if they don't exist
+    with app.app_context():
+        db.create_all()
+    
+    return app
+
+app = create_app()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route('/')
 def index():
@@ -29,7 +54,48 @@ def academy():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    # Add Telegram login URL to the template context
+    telegram_login_url = telegram_auth.get_auth_url(request.host_url + 'auth/telegram/callback')
+    return render_template('login.html', telegram_login_url=telegram_login_url)
+    
+# Telegram Auth routes
+@app.route('/auth/telegram/callback')
+def telegram_callback():
+    # Get query string and parse auth data
+    query_string = request.query_string.decode('utf-8')
+    auth_data = telegram_auth.parse_auth_data(query_string)
+    
+    if not auth_data:
+        flash('Failed to authenticate with Telegram. Please try again.', 'danger')
+        return redirect(url_for('login'))
+    
+    # Verify data
+    if not telegram_auth.verify_telegram_data(auth_data):
+        flash('Invalid authentication data from Telegram.', 'danger')
+        return redirect(url_for('login'))
+    
+    # Get or create user
+    user = User.get_or_create_from_telegram(auth_data)
+    
+    # Log user in
+    login_user(user)
+    flash(f'Welcome, {user.telegram_first_name}!', 'success')
+    
+    # Redirect to dashboard or requested page
+    next_page = request.args.get('next')
+    return redirect(next_page or url_for('dashboard'))
+    
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('index'))
+    
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
 
 @app.route('/news')
 def news():
