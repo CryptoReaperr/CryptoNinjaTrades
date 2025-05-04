@@ -8,7 +8,7 @@ Your hosting server needs to have:
 
 - Python 3.9 or newer
 - Support for Flask applications
-- PostgreSQL database or similar (if you plan to use user authentication features)
+- No database installation required (SQLite is used by default)
 
 ## 2. Quick Deployment Via FTP
 
@@ -58,14 +58,14 @@ Create a file named `.env` in the root directory with these settings:
 
 ```
 SESSION_SECRET=your_random_secret_key_here
-DATABASE_URL=your_database_connection_string
 TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+# Optional: DATABASE_URL=your_database_connection_string
 ```
 
 Replace the placeholder values with your actual information:
 - `your_random_secret_key_here`: A random string for session security
-- `your_database_connection_string`: Your PostgreSQL connection URL
 - `your_telegram_bot_token`: Your Telegram bot token for authentication
+- (Optional) `your_database_connection_string`: Only needed if you want to use PostgreSQL instead of the default SQLite
 
 ## 4. Running the Application
 

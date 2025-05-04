@@ -42,26 +42,36 @@ function initThemeToggle() {
     console.log('Applied dark theme on init');
   }
   
-  // Toggle between theme modes
-  themeToggle.addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent any default action
-    console.log('Theme toggle clicked');
-    this.classList.toggle('active');
-    
-    if (this.classList.contains('active')) {
-      // Light theme mode
-      document.body.classList.add('light-theme');
-      localStorage.setItem('themeMode', 'light');
-      toggleThemeIcons(true);
-      refreshParticles();
-      console.log('Switched to light theme');
-    } else {
-      // Dark theme mode
-      document.body.classList.remove('light-theme');
-      localStorage.setItem('themeMode', 'dark');
-      toggleThemeIcons(false);
-      refreshParticles();
-      console.log('Switched to dark theme');
+  // Apply click handler to all elements inside the toggle
+  const toggleElements = [themeToggle, themeToggle.querySelector('.theme-toggle-switch'), themeToggle.querySelector('.theme-toggle-label')];
+  
+  // Add click handlers to all elements
+  toggleElements.forEach(element => {
+    if (element) {
+      element.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent any default action
+        e.stopPropagation(); // Stop event bubbling
+        console.log('Theme toggle or child clicked');
+        
+        // Toggle the active class on the main toggle element
+        themeToggle.classList.toggle('active');
+        
+        if (themeToggle.classList.contains('active')) {
+          // Light theme mode
+          document.body.classList.add('light-theme');
+          localStorage.setItem('themeMode', 'light');
+          toggleThemeIcons(true);
+          refreshParticles();
+          console.log('Switched to light theme');
+        } else {
+          // Dark theme mode
+          document.body.classList.remove('light-theme');
+          localStorage.setItem('themeMode', 'dark');
+          toggleThemeIcons(false);
+          refreshParticles();
+          console.log('Switched to dark theme');
+        }
+      });
     }
   });
 }

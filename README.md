@@ -35,7 +35,7 @@ This website offers a complete platform for crypto trading enthusiasts:
 
 ### Backend
 - Flask-based web application with gunicorn server
-- PostgreSQL database integration
+- SQLite database for easy deployment (no database server required)
 - Telegram authentication system
 - Real-time crypto price data API integration
 - News feeds from cryptocurrency sources
