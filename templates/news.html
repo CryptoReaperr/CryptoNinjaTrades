@@ -7,6 +7,29 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
@@ -312,7 +335,7 @@
             <div class="loading-bar">
                 <div class="loading-progress"></div>
             </div>
-            <p class="text-sm text-ninja-light/70 mt-2">Gathering crypto intelligence...</p>
+            <p class="text-sm text-ninja-light/70 mt-2">Loading news feed...</p>
         </div>
     </div>
     
@@ -323,8 +346,17 @@
     <div id="liquid-mesh" class="fixed inset-0 z-0 opacity-30"></div>
     <div class="liquid-mesh"></div>
     <div class="scanlines"></div>
+    
     <!-- Toast notification for copied text -->
     <div id="copy-toast" class="copy-toast">Copied!</div>
+    
+    <!-- Animation Toggle -->
+    <div id="animation-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Animation Mode">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+            <i data-feather="zap" class="w-5 h-5 text-neon-green absolute animation-mode-advanced"></i>
+            <i data-feather="zap-off" class="w-5 h-5 text-ninja-light/50 absolute animation-mode-basic hidden"></i>
+        </div>
+    </div>
     <!-- Header -->
     <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
         <div class="container mx-auto px-4 py-3">
@@ -509,7 +541,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animation-modes.js') }}"></script>
     <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll-header.js') }}"></script>
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
     <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
