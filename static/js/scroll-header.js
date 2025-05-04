@@ -11,88 +11,102 @@ document.addEventListener('DOMContentLoaded', function() {
 function initScrollHeader() {
   const header = document.querySelector('header');
   if (!header) {
-    console.log('Header element not found');
+    console.error('Header element not found');
     return;
   }
   
-  let lastScrollTop = 0;
-  let scrollThreshold = 10; // Minimum amount to scroll before triggering
-  let ticking = false;
-  let headerHeight = header.offsetHeight;
-  
-  // Initially show header
+  // Remove any existing transition to prevent conflicts
+  header.style.transition = 'none';
   header.style.transform = 'translateY(0)';
-  header.style.transition = 'transform 0.3s ease';
   
-  console.log('Header scroll animations initialized');
+  // Use wheel event for direct response to mouse wheel/trackpad
+  // This gives a more immediate, interactive feel
+  window.addEventListener('wheel', function(event) {
+    handleWheelScroll(event, header);
+  }, { passive: false });
   
-  // Using scroll progress for smooth animation
+  // For mobile/touch devices, track scroll position changes
+  let lastScrollY = window.scrollY;
+  let scrollTimer = null;
+  
   window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        // Get scroll progress to control header visibility
-        const scrollProgress = Math.min(window.scrollY / (window.innerHeight * 0.5), 1);
-        
-        // When close to the top of the page, ensure header is visible
-        if (window.scrollY < 50) {
-          header.style.transform = 'translateY(0)';
-        }
-        // Otherwise, make the header transform based on scroll direction and progress
-        else {
-          handleHeaderScroll(header, lastScrollTop, headerHeight, scrollProgress);
-        }
-        
-        ticking = false;
-      });
-      ticking = true;
+    // Clear existing timer
+    if (scrollTimer) clearTimeout(scrollTimer);
+    
+    // Handle scroll direction
+    const currentScrollY = window.scrollY;
+    const direction = currentScrollY > lastScrollY ? 'down' : 'up';
+    const delta = Math.abs(currentScrollY - lastScrollY);
+    
+    // Only respond to significant scroll changes
+    if (delta > 5) {
+      if (direction === 'down' && currentScrollY > 50) {
+        // Calculate how far to hide based on scroll speed
+        const headerHeight = header.offsetHeight;
+        const hideAmount = Math.min(delta * 0.5, headerHeight);
+        animateHeader(header, -hideAmount, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
+        console.log(`Scrolling down: hiding ${hideAmount}px of header`);
+      } else if (direction === 'up') {
+        // Calculate how much to show based on scroll speed
+        const showAmount = Math.min(delta * 0.5, Math.abs(getTranslateY(header)));
+        animateHeader(header, getTranslateY(header) + showAmount, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
+        console.log(`Scrolling up: showing ${showAmount}px of header`);
+      }
+      
+      // At top of page, always fully show header
+      if (currentScrollY < 10) {
+        animateHeader(header, 0, 'cubic-bezier(0.215, 0.61, 0.355, 1)');
+        console.log('At top: fully showing header');
+      }
+      
+      lastScrollY = currentScrollY;
     }
+    
+    // Reset after scrolling stops
+    scrollTimer = setTimeout(function() {
+      // If near top, show header completely
+      if (window.scrollY < 10) {
+        animateHeader(header, 0, 'ease-out');
+      } 
+      // If scrolled down and not moving, hide header completely
+      else if (window.scrollY > 100) {
+        animateHeader(header, -header.offsetHeight, 'ease-out');
+      }
+    }, 150);
   }, { passive: true });
   
-  // Store the scroll position for direction calculation
-  window.addEventListener('scroll', function() {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    // Update lastScrollTop only if change is significant
-    if (Math.abs(lastScrollTop - currentScrollTop) > scrollThreshold) {
-      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  function handleWheelScroll(event, header) {
+    // Determine direct response to wheel movement
+    const deltaY = event.deltaY;
+    const headerHeight = header.offsetHeight;
+    const currentTransform = getTranslateY(header);
+    
+    // Apply immediate visual feedback based on wheel direction
+    if (deltaY > 0 && window.scrollY > 50) {
+      // Scrolling down - hide header proportionally to wheel movement
+      const newTransform = Math.max(currentTransform - (deltaY * 0.1), -headerHeight);
+      animateHeader(header, newTransform, 'linear');
+      console.log(`Wheel down: ${deltaY}, new transform: ${newTransform}`);
+    } else if (deltaY < 0) {
+      // Scrolling up - show header proportionally to wheel movement
+      const newTransform = Math.min(currentTransform - (deltaY * 0.1), 0);
+      animateHeader(header, newTransform, 'linear');
+      console.log(`Wheel up: ${deltaY}, new transform: ${newTransform}`);
     }
-  }, { passive: true }); // Passive listener for better performance
-  
-  // Make sure the header appears when at the top of the page
-  if (window.pageYOffset === 0) {
-    header.style.transform = 'translateY(0)';
-    header.classList.remove('header-hidden');
+    
+    // Always fully visible at top of page
+    if (window.scrollY < 10) {
+      animateHeader(header, 0, 'linear');
+    }
   }
   
-  // Add smooth progress-based animation for header
-  function handleHeaderScroll(header, lastScrollTop, headerHeight, scrollProgress) {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollDirection = currentScrollTop > lastScrollTop ? 'down' : 'up';
+  function animateHeader(header, transformValue, easing = 'ease') {
+    // Apply animation with custom easing
+    header.style.transition = `transform 0.2s ${easing}`;
+    header.style.transform = `translateY(${transformValue}px)`;
     
-    // At top of page, ensure header is fully visible
-    if (currentScrollTop <= 0) {
-      header.style.transform = 'translateY(0)';
-      return;
-    }
-    
-    // Calculate transform based on scroll direction and progress
-    if (scrollDirection === 'down') {
-      // When scrolling down, gradually hide the header
-      const hideProgress = Math.min(scrollProgress * 1.5, 1); // Accelerate hiding
-      const transformValue = -headerHeight * hideProgress;
-      header.style.transform = `translateY(${transformValue}px)`;
-    } else {
-      // When scrolling up, gradually show the header
-      // Get current hidden position
-      const currentTransform = getTranslateY(header);
-      // Move towards visible (0) by a percentage based on scroll speed
-      const scrollSpeed = Math.abs(currentScrollTop - lastScrollTop);
-      const showStep = Math.min(scrollSpeed / 10, headerHeight / 2); // Control reveal speed
-      const newTransform = Math.min(currentTransform + showStep, 0);
-      header.style.transform = `translateY(${newTransform}px)`;
-    }
-    
-    // Update class based on visibility threshold
-    if (getTranslateY(header) < -headerHeight/2) {
+    // Update header visibility class
+    if (transformValue < -header.offsetHeight/2) {
       header.classList.add('header-hidden');
     } else {
       header.classList.remove('header-hidden');
@@ -111,4 +125,6 @@ function initScrollHeader() {
     }
     return 0;
   }
+  
+  console.log('Enhanced header scroll animations initialized');
 }
