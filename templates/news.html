@@ -350,12 +350,13 @@
     <!-- Toast notification for copied text -->
     <div id="copy-toast" class="copy-toast">Copied!</div>
     
-    <!-- Animation Toggle -->
-    <div id="animation-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Animation Mode">
-        <div class="relative w-10 h-10 flex items-center justify-center">
-            <i data-feather="zap" class="w-5 h-5 text-neon-green absolute animation-mode-advanced"></i>
-            <i data-feather="zap-off" class="w-5 h-5 text-ninja-light/50 absolute animation-mode-basic hidden"></i>
+    <!-- Theme Toggle -->
+    <div id="theme-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Light/Dark Mode">
+        <div class="theme-toggle-switch w-10 h-10 flex items-center justify-center relative overflow-hidden">
+            <i data-feather="moon" class="w-5 h-5 text-neon-green absolute dark-icon"></i>
+            <i data-feather="sun" class="w-5 h-5 text-amber-400 absolute light-icon hidden"></i>
         </div>
+        <span class="theme-toggle-label sr-only">Toggle Theme</span>
     </div>
     <!-- Header -->
     <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
@@ -531,6 +532,7 @@
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
     <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
     
     <!-- Cursor trail effect -->
     <div class="cursor-trail"></div>
@@ -561,9 +563,13 @@
         });
         
         // Toggle mobile menu
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+        // Get the mobile menu button
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+        }
         
         // News Feed functionality
         document.addEventListener('DOMContentLoaded', function() {
