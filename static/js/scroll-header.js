@@ -81,28 +81,51 @@ function initScrollHeader() {
     const headerHeight = header.offsetHeight;
     const currentTransform = getTranslateY(header);
     
+    // Check if we're at the top of the page with the header fully visible
+    const atPageTop = window.scrollY < 10;
+    
     // Apply immediate visual feedback based on wheel direction
-    if (deltaY > 0 && window.scrollY > 50) {
-      // Scrolling down - hide header proportionally to wheel movement
-      const newTransform = Math.max(currentTransform - (deltaY * 0.1), -headerHeight);
-      animateHeader(header, newTransform, 'linear');
-      console.log(`Wheel down: ${deltaY}, new transform: ${newTransform}`);
+    if (deltaY > 0) {
+      if (atPageTop && currentTransform < 0) {
+        // At top but header is showing the "rewind" effect - continue the animation
+        const newTransform = Math.min(currentTransform + (Math.abs(deltaY) * 0.1), 0);
+        animateHeader(header, newTransform, 'linear');
+        console.log(`Rewind animation (scrolling down): ${newTransform}`);
+      } else if (window.scrollY > 50) {
+        // Normal scrolling down behavior - hide header proportionally
+        const newTransform = Math.max(currentTransform - (deltaY * 0.1), -headerHeight);
+        animateHeader(header, newTransform, 'linear');
+        console.log(`Wheel down: ${deltaY}, new transform: ${newTransform}`);
+      }
     } else if (deltaY < 0) {
-      // Scrolling up - show header proportionally to wheel movement
-      const newTransform = Math.min(currentTransform - (deltaY * 0.1), 0);
-      animateHeader(header, newTransform, 'linear');
-      console.log(`Wheel up: ${deltaY}, new transform: ${newTransform}`);
+      if (atPageTop) {
+        // At top of page and scrolling up - show "overscroll" effect
+        // Push the header down (negative translateY value moves up, positive moves down)
+        const overscrollAmount = Math.min(Math.abs(deltaY) * 0.05, 20);  // Limit max push to 20px
+        animateHeader(header, overscrollAmount, 'ease-out');
+        console.log(`Overscroll effect: ${overscrollAmount}px`);
+        
+        // Bounce back after a short delay
+        setTimeout(() => {
+          animateHeader(header, 0, 'cubic-bezier(0.175, 0.885, 0.32, 1.275)', 0.5); // Bounce effect
+        }, 100);
+      } else {
+        // Normal scrolling up behavior
+        const newTransform = Math.min(currentTransform - (deltaY * 0.1), 0);
+        animateHeader(header, newTransform, 'linear');
+        console.log(`Wheel up: ${deltaY}, new transform: ${newTransform}`);
+      }
     }
     
-    // Always fully visible at top of page
-    if (window.scrollY < 10) {
-      animateHeader(header, 0, 'linear');
+    // If we're at the top of the page but the header isn't at default position, reset it
+    if (atPageTop && !event.deltaY && currentTransform !== 0) {
+      animateHeader(header, 0, 'ease-out', 0.3);
     }
   }
   
-  function animateHeader(header, transformValue, easing = 'ease') {
-    // Apply animation with custom easing
-    header.style.transition = `transform 0.2s ${easing}`;
+  function animateHeader(header, transformValue, easing = 'ease', duration = 0.2) {
+    // Apply animation with custom easing and duration
+    header.style.transition = `transform ${duration}s ${easing}`;
     header.style.transform = `translateY(${transformValue}px)`;
     
     // Update header visibility class
