@@ -24,8 +24,10 @@
                         'ninja-dark': '#1A1A1A',
                         'ninja-gray': '#333333',
                         'ninja-light': '#E0E0E0',
-                        'neon-green': '#00FF88',
-                        'electric-blue': '#00D4FF',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
                         'ninja-red': '#FF3333'
                     },
                     fontFamily: {
@@ -51,7 +53,35 @@
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-<body class="bg-ninja-black text-ninja-light font-inter">
+<body class="bg-ninja-black text-ninja-light font-inter font-crisp custom-scrollbar overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades Logo" class="mx-auto w-24 h-24 mb-4 animate-pulse rounded-full">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="text-sm text-ninja-light/70 mt-2">Loading your dashboard...</p>
+        </div>
+    </div>
+    
+    <!-- Background Particles -->
+    <div id="particles-container" class="fixed inset-0 z-0"></div>
+    
+    <!-- Liquid Mesh Background (low opacity) -->
+    <div id="liquid-mesh" class="fixed inset-0 z-0 opacity-30"></div>
+    <div class="liquid-mesh"></div>
+    <div class="scanlines"></div>
+    <!-- Toast notification for copied text -->
+    <div id="copy-toast" class="copy-toast">Copied!</div>
+    
+    <!-- Animation Toggle -->
+    <div id="animation-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Animation Mode">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+            <i data-feather="zap" class="w-5 h-5 text-neon-green absolute animation-mode-advanced"></i>
+            <i data-feather="zap-off" class="w-5 h-5 text-ninja-light/50 absolute animation-mode-basic hidden"></i>
+        </div>
+    </div>
     <!-- Header -->
     <header class="bg-ninja-black/90 backdrop-blur-md border-b border-ninja-gray/30 sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3">
@@ -526,6 +556,41 @@
                     console.error('Error fetching crypto prices:', error);
                 });
         }
+    </script>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animation-modes.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll-header.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+    
+    <!-- Initialize Feather Icons and animations -->
+    <script>
+        feather.replace();
+        
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Hide loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    loadingScreen.style.pointerEvents = 'none';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
