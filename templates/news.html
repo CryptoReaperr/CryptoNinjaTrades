@@ -304,7 +304,27 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-ninja-black text-ninja-light font-inter font-crisp custom-scrollbar overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades Logo" class="mx-auto w-24 h-24 mb-4 animate-pulse rounded-full">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="text-sm text-ninja-light/70 mt-2">Gathering crypto intelligence...</p>
+        </div>
+    </div>
+    
+    <!-- Background Particles -->
+    <div id="particles-container" class="fixed inset-0 z-0"></div>
+    
+    <!-- Liquid Mesh Background (low opacity) -->
+    <div id="liquid-mesh" class="fixed inset-0 z-0 opacity-30"></div>
+    <div class="liquid-mesh"></div>
+    <div class="scanlines"></div>
+    <!-- Toast notification for copied text -->
+    <div id="copy-toast" class="copy-toast">Copied!</div>
     <!-- Header -->
     <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
         <div class="container mx-auto px-4 py-3">
@@ -489,6 +509,12 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+    
+    <!-- Cursor trail effect -->
+    <div class="cursor-trail"></div>
     
     <!-- News Page Specific Scripts -->
     <script>
