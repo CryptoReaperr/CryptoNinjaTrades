@@ -2,6 +2,20 @@
  * Loading screen and preloader for the Crypto Ninja Trades website
  */
 
+// Split text helper function
+function splitTextForLoading(element) {
+  const text = element.textContent;
+  element.textContent = '';
+  
+  for (let i = 0; i < text.length; i++) {
+    const char = document.createElement('span');
+    char.className = 'char';
+    char.textContent = text[i];
+    element.appendChild(char);
+  }
+  return element;
+}
+
 // Create and append the loading screen to the document
 function createLoadingScreen() {
   const loader = document.createElement('div');
@@ -24,6 +38,12 @@ function createLoadingScreen() {
   
   // Append to body at the beginning
   document.body.insertBefore(loader, document.body.firstChild);
+  
+  // Split text after inserting into DOM
+  const loaderText = loader.querySelector('.loader-text');
+  if (loaderText) {
+    splitTextForLoading(loaderText);
+  }
   
   // Animate the elements
   animateLoader();

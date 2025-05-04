@@ -3,7 +3,27 @@
  * For Crypto Ninja Trades - 2025
  */
 
+// Split text helper function
+function splitText(selector) {
+  const elements = document.querySelectorAll(selector);
+  
+  elements.forEach(element => {
+    const text = element.textContent;
+    element.textContent = '';
+    
+    for (let i = 0; i < text.length; i++) {
+      const char = document.createElement('span');
+      char.className = 'char';
+      char.textContent = text[i];
+      element.appendChild(char);
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Split text for GSAP animations
+  splitText('.split-text');
+  
   // Initialize AOS animations with custom settings for login page
   AOS.init({
     duration: 800,
