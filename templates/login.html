@@ -263,6 +263,40 @@
             margin-left: 10px;
         }
         
+        /* Flash message styles */
+        .flash-message {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .flash-message.success {
+            background-color: rgba(0, 255, 136, 0.15);
+            border-left: 3px solid #00FF88;
+            color: #00FF88;
+        }
+        
+        .flash-message.danger {
+            background-color: rgba(255, 51, 51, 0.15);
+            border-left: 3px solid #FF3333;
+            color: #FF3333;
+        }
+        
+        .flash-message.info {
+            background-color: rgba(0, 212, 255, 0.15);
+            border-left: 3px solid #00D4FF;
+            color: #00D4FF;
+        }
+        
+        .flash-message.warning {
+            background-color: rgba(255, 207, 51, 0.15);
+            border-left: 3px solid #FFCF33;
+            color: #FFCF33;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* Logo animation */
         @keyframes float {
             0% {
@@ -390,6 +424,16 @@
                         <img src="{{ url_for('static', filename='images/official-logo.png') }}" alt="Crypto Ninja Trades" class="w-24 h-24 mx-auto rounded-full floating-logo">
                         <h2 class="text-2xl font-bold mt-4 mb-2 font-montserrat tracking-wide">MEMBER LOGIN</h2>
                         <p class="text-ninja-light/80 text-sm mb-6">Access your exclusive VIP membership area</p>
+                        
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                              <div class="flash-message {{ category }} mb-4 p-3 rounded-md text-sm">
+                                {{ message }}
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
                     </div>
                     
                     <!-- Telegram Login Button -->
@@ -524,7 +568,7 @@
         });
 
         // Telegram login button animation
-        const telegramBtn = document.getElementById('telegram-login');
+        const telegramBtn = document.querySelector('.telegram-button');
         if (telegramBtn) {
             telegramBtn.addEventListener('mouseover', () => {
                 telegramBtn.classList.add('pulse-animation');
@@ -532,11 +576,7 @@
             telegramBtn.addEventListener('mouseout', () => {
                 telegramBtn.classList.remove('pulse-animation');
             });
-            telegramBtn.addEventListener('click', () => {
-                // Placeholder for Telegram login functionality
-                // In a production environment, this would integrate with Telegram's OAuth API
-                alert('Telegram login functionality would be implemented here.');
-            });
+            // No need for click listener as the anchor tag href handles the redirect
         }
         
         // Form submission (placeholder)
