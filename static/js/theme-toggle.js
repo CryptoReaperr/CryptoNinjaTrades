@@ -31,6 +31,7 @@ function initThemeToggle() {
     document.body.classList.add('light-theme');
     themeToggle.classList.add('active');
     toggleThemeIcons(true);
+    // We don't need to call refreshParticles() here as particles are initialized after this script runs
     console.log('Applied light theme on init');
   } else {
     document.body.classList.remove('light-theme');
@@ -49,12 +50,14 @@ function initThemeToggle() {
       document.body.classList.add('light-theme');
       localStorage.setItem('themeMode', 'light');
       toggleThemeIcons(true);
+      refreshParticles();
       console.log('Switched to light theme');
     } else {
       // Dark theme mode
       document.body.classList.remove('light-theme');
       localStorage.setItem('themeMode', 'dark');
       toggleThemeIcons(false);
+      refreshParticles();
       console.log('Switched to dark theme');
     }
   });
@@ -75,5 +78,36 @@ function toggleThemeIcons(isLight) {
       darkIcon.classList.remove('hidden');
       lightIcon.classList.add('hidden');
     }
+  }
+}
+
+/**
+ * Refresh particles network when theme changes
+ */
+function refreshParticles() {
+  // Remove existing particle canvases
+  document.querySelectorAll('.particles-network canvas').forEach(canvas => {
+    canvas.remove();
+  });
+  
+  // Re-initialize particles with new colors
+  const heroSection = document.getElementById('hero');
+  if (heroSection) {
+    new ParticleNetwork(heroSection, {
+      particleCount: window.innerWidth < 768 ? 25 : 50,
+      speed: 0.2,
+      maxDistance: window.innerWidth < 768 ? 100 : 160
+    });
+  }
+  
+  // Also re-initialize particles in benefits section
+  const benefitsSection = document.getElementById('benefits');
+  if (benefitsSection) {
+    new ParticleNetwork(benefitsSection, {
+      particleCount: window.innerWidth < 768 ? 20 : 40,
+      speed: 0.15,
+      maxDistance: window.innerWidth < 768 ? 80 : 120,
+      interactMode: 'repel'
+    });
   }
 }

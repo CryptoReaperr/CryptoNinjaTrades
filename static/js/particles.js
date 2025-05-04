@@ -98,15 +98,26 @@ class ParticleNetwork {
   }
   
   _getRandomColor() {
-    // Generate colors with a subtle, Batman-style blue-grey theme
-    const colors = [
-      '#2F414F', // dark blue-grey
-      '#375F7C', // medium blue-grey
-      '#4A6378', // steel blue-grey
-      '#567890', // light blue-grey
-    ];
-    
-    return colors[Math.floor(Math.random() * colors.length)];
+    // Check if using light or dark theme
+    if (document.body.classList.contains('light-theme')) {
+      // Generate colors with a lighter blue-grey theme for light mode
+      const colors = [
+        'rgba(47, 65, 79, 0.7)', // dark blue-grey with transparency
+        'rgba(55, 95, 124, 0.7)', // medium blue-grey with transparency
+        'rgba(74, 99, 120, 0.7)', // steel blue-grey with transparency
+        'rgba(86, 120, 144, 0.7)', // light blue-grey with transparency
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    } else {
+      // Generate colors with a subtle, Batman-style blue-grey theme for dark mode
+      const colors = [
+        '#2F414F', // dark blue-grey
+        '#375F7C', // medium blue-grey
+        '#4A6378', // steel blue-grey
+        '#567890', // light blue-grey
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
   }
   
   _animateParticles() {

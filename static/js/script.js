@@ -213,9 +213,16 @@ function createSmokeElement(container) {
   smoke.style.bottom = `${yPos}px`;
   smoke.style.animationDelay = `${delay}s`;
   
-  // Subtle blue tint to match Batman-style
-  const opacity = Math.random() * 0.08 + 0.03; // Between 0.03 and 0.11
-  smoke.style.background = `rgba(15, 20, 35, ${opacity})`;
+  // Check if using light or dark theme
+  if (document.body.classList.contains('light-theme')) {
+    // Subtle blue tint for light theme
+    const opacity = Math.random() * 0.08 + 0.03; // Between 0.03 and 0.11
+    smoke.style.background = `rgba(55, 95, 124, ${opacity})`;
+  } else {
+    // Subtle blue tint for dark theme
+    const opacity = Math.random() * 0.08 + 0.03; // Between 0.03 and 0.11
+    smoke.style.background = `rgba(15, 20, 35, ${opacity})`;
+  }
   
   // Add to container
   container.appendChild(smoke);
