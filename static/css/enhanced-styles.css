@@ -15,6 +15,8 @@
     transition: all 0.3s ease;
     margin-left: 15px;
     overflow: hidden;
+    width: 60px;
+    height: 28px;
 }
 
 .animation-toggle-switch {
@@ -23,7 +25,8 @@
     background: #E0E0E0;
     border-radius: 50%;
     position: absolute;
-    left: 2px;
+    left: 4px;
+    top: 4px;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     display: flex;
     align-items: center;
@@ -33,7 +36,7 @@
 }
 
 .animation-toggle.active .animation-toggle-switch {
-    left: calc(100% - 22px);
+    left: calc(100% - 24px);
     background: #567890;
 }
 
@@ -51,11 +54,33 @@
     z-index: 0;
     opacity: 0.7;
     transition: opacity 0.3s ease;
+    padding: 0 4px;
 }
 
 .animation-toggle.active .animation-mode-advanced,
 .animation-toggle:not(.active) .animation-mode-basic {
     opacity: 1;
+}
+
+/* Adding an indicator light */
+.animation-toggle::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #375F7C;
+    opacity: 0.5;
+    box-shadow: 0 0 3px #375F7C;
+    transition: all 0.3s ease;
+}
+
+.animation-toggle.active::after {
+    background: #567890;
+    opacity: 1;
+    box-shadow: 0 0 5px #567890;
 }
 
 /* Animation States */

@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Animation modes script loaded');
   // Initialize animation modes
   initAnimationModes();
 });
@@ -14,31 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
 function initAnimationModes() {
   // Get animation toggle button
   const animationToggle = document.getElementById('animation-toggle');
-  if (!animationToggle) return;
-
-  // Check for saved preference
-  const savedMode = localStorage.getItem('animationMode') || 'basic';
-  setAnimationMode(savedMode);
-  
-  // Update toggle button state
-  if (savedMode === 'advanced') {
-    animationToggle.classList.add('active');
-  } else {
-    animationToggle.classList.remove('active');
+  if (!animationToggle) {
+    console.log('Animation toggle not found');
+    return;
   }
   
-  // Handle toggle button click
-  animationToggle.addEventListener('click', function() {
-    this.classList.toggle('active');
-    
-    if (this.classList.contains('active')) {
-      setAnimationMode('advanced');
-      localStorage.setItem('animationMode', 'advanced');
-    } else {
-      setAnimationMode('basic');
-      localStorage.setItem('animationMode', 'basic');
-    }
-  });
+  console.log('Animation modes: Initializing from animation-modes.js');
+
+  // Initialize animations based on current body class
+  if (document.body.classList.contains('animations-advanced')) {
+    applyAdvancedAnimations();
+    console.log('Applied advanced animations on init');
+  } else {
+    applyBasicAnimations();
+    console.log('Applied basic animations on init');
+  }
 }
 
 /**
@@ -46,6 +37,7 @@ function initAnimationModes() {
  */
 function setAnimationMode(mode) {
   const body = document.body;
+  console.log(`Setting animation mode to: ${mode}`);
   
   // Remove all mode classes
   body.classList.remove('animations-basic', 'animations-advanced');
@@ -64,6 +56,7 @@ function setAnimationMode(mode) {
  * Basic animation mode - simple and minimal
  */
 function applyBasicAnimations() {
+  console.log('Applying basic animations');
   // Clear any advanced animations that might be running
   gsap.killTweensOf('.hero-logo');
   gsap.killTweensOf('.holographic-heading');
@@ -99,6 +92,7 @@ function applyBasicAnimations() {
  * Advanced animation mode - dynamic and futuristic
  */
 function applyAdvancedAnimations() {
+  console.log('Applying advanced animations');
   // Hero Logo Animation
   gsap.to('.hero-logo', {
     y: 15,
