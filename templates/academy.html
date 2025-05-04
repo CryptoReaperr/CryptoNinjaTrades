@@ -393,6 +393,14 @@
         <i data-feather="arrow-up" class="w-5 h-5"></i>
     </button>
     
+    <!-- Animation Toggle -->
+    <div id="animation-toggle" class="fixed bottom-6 left-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Animation Mode">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+            <i data-feather="zap" class="w-5 h-5 text-neon-green absolute animation-mode-advanced"></i>
+            <i data-feather="zap-off" class="w-5 h-5 text-ninja-light/50 absolute animation-mode-basic hidden"></i>
+        </div>
+    </div>
+    
     <!-- Header -->
     <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
         <div class="container mx-auto px-4 py-3">
@@ -1340,6 +1348,8 @@
     <!-- Custom Scripts -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animation-modes.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll-header.js') }}"></script>
     <script src="{{ url_for('static', filename='js/advanced-animations.js') }}"></script>
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/liquid-mesh.js') }}"></script>
