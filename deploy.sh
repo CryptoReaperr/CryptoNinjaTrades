@@ -34,6 +34,12 @@ echo "put models.py" >> "$TMP_FILE"
 echo "put README.md" >> "$TMP_FILE"
 echo "put DEPLOY_GUIDE.md" >> "$TMP_FILE"
 
+# Upload SQLite database if it exists
+if [ -f "crypto_ninja.db" ]; then
+    echo "put crypto_ninja.db" >> "$TMP_FILE"
+    echo "Note: Existing SQLite database will be uploaded."
+fi
+
 # Upload services directory
 echo "cd services" >> "$TMP_FILE"
 echo "lcd services" >> "$TMP_FILE"
@@ -84,6 +90,8 @@ echo ""
 echo "========================================="
 echo "Upload complete! Don't forget to create a .env file on your server with:"
 echo "SESSION_SECRET=your_random_secret_key_here"
-echo "DATABASE_URL=your_database_connection_string"
 echo "TELEGRAM_BOT_TOKEN=your_telegram_bot_token"
+echo ""
+echo "Note: SQLite database is used by default - no DATABASE_URL needed"
+echo "(Only add DATABASE_URL if you want to use PostgreSQL instead of SQLite)"
 echo "========================================="
