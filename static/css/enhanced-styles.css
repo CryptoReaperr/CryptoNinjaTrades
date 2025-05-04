@@ -3,6 +3,79 @@
  * Modern 2025 design with cutting-edge effects
  */
 
+/* ===== ANIMATION TOGGLE BUTTON ===== */
+.animation-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(55, 95, 124, 0.2);
+    border-radius: 15px;
+    padding: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    overflow: hidden;
+}
+
+.animation-toggle-switch {
+    width: 20px;
+    height: 20px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.animation-toggle.active .animation-toggle-switch {
+    left: calc(100% - 22px);
+    background: #567890;
+}
+
+.animation-toggle-label {
+    display: flex;
+    width: 58px;
+    padding: 4px 6px;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.animation-mode-basic,
+.animation-mode-advanced {
+    z-index: 0;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.animation-toggle.active .animation-mode-advanced,
+.animation-toggle:not(.active) .animation-mode-basic {
+    opacity: 1;
+}
+
+/* Animation States */
+body.animations-basic .advanced-effect,
+body.animations-basic .floating-elements,
+body.animations-basic .section-highlight,
+body.animations-basic .shine-effect {
+    display: none !important;
+}
+
+body.animations-advanced .liquid-button {
+    animation: liquid-button-animation 8s ease-in-out infinite;
+    background-size: 400% 400%;
+}
+
+body.animations-advanced .neon-button {
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(55, 95, 124, 0.8), 0 0 20px rgba(55, 95, 124, 0.5), 0 0 30px rgba(55, 95, 124, 0.3);
+}
+
 /* ===== LOADING SCREEN ===== */
 .page-loader {
   position: fixed;

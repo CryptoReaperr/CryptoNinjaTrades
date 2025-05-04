@@ -1,4 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Animation Toggle Button
+    const animationToggle = document.getElementById('animation-toggle');
+    if (animationToggle) {
+        // Check if there's a saved preference
+        const savedAnimationMode = localStorage.getItem('animationMode');
+        if (savedAnimationMode === 'advanced') {
+            document.body.classList.add('animations-advanced');
+            document.body.classList.remove('animations-basic');
+            animationToggle.classList.add('active');
+        } else {
+            document.body.classList.add('animations-basic');
+            document.body.classList.remove('animations-advanced');
+            animationToggle.classList.remove('active');
+        }
+        
+        // Toggle between animation modes
+        animationToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            
+            if (this.classList.contains('active')) {
+                // Advanced animations mode
+                document.body.classList.remove('animations-basic');
+                document.body.classList.add('animations-advanced');
+                localStorage.setItem('animationMode', 'advanced');
+            } else {
+                // Basic animations mode
+                document.body.classList.remove('animations-advanced');
+                document.body.classList.add('animations-basic');
+                localStorage.setItem('animationMode', 'basic');
+            }
+        });
+    }
   // Create Batman-style smoke effects
   createSmokeEffects();
   
