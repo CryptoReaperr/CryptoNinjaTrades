@@ -522,6 +522,20 @@
         // Initialize Feather Icons
         feather.replace();
         
+        // Hide loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    loadingScreen.style.pointerEvents = 'none';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
+        
         // Initialize AOS animation library
         AOS.init({
             duration: 800,
