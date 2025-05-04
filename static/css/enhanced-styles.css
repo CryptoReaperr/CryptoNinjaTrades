@@ -440,6 +440,28 @@ body.animations-advanced .neon-button {
   }
 }
 
+/* ===== HEADER SCROLL ANIMATIONS ===== */
+header {
+  transform: translateY(0);
+  will-change: transform;
+  transition: transform 0.3s;
+}
+
+header.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Smoother scrolling for all devices */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* ===== HEADER LOGO FIX ===== */
 .logo-link {
   opacity: 1 !important;
