@@ -889,7 +889,7 @@
         setInterval(fetchCryptoPrices, 60000);
     </script>
     <!-- Directly injected cookie consent banner -->
-    <div class="cookie-consent" id="static-cookie-banner">
+    <div class="cookie-consent" id="static-cookie-banner" style="display: block !important; z-index: 999999 !important;">
         <div class="cookie-consent-text">
             <h3>Cookie Consent</h3>
             <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.</p>
@@ -915,6 +915,8 @@
             } else {
                 console.log('No saved consent found, showing banner');
                 banner.style.display = 'flex';
+                // Force banner to be visible with inline styles
+                banner.setAttribute('style', 'display: flex !important; opacity: 1 !important; visibility: visible !important; z-index: 999999 !important;');
             }
             
             // Set up event handlers
