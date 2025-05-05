@@ -16,33 +16,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle page loading animation
   const loader = document.getElementById('page-loader');
   if (loader) {
-    // Timeline for loader animation
-    const loaderTimeline = gsap.timeline();
-    
-    // Add loader animation
-    loaderTimeline
-      .to('.loader-icon', {
-        rotation: 360,
-        repeat: 2,
-        duration: 1.5,
-        ease: 'power2.inOut'
-      })
-      .to('.loader-text .char', {
-        opacity: 1,
-        y: 0,
-        stagger: 0.05,
-        duration: 0.5,
-        ease: 'back.out(1.7)'
-      }, '-=1')
-      .to(loader, {
-        opacity: 0,
-        pointerEvents: 'none',
-        duration: 0.8,
-        onComplete: () => {
-          // Start entrance animations after loader disappears
-          startEntranceAnimations();
-        }
-      }, '+=0.5');
+    try {
+      // Timeline for loader animation
+      const loaderTimeline = gsap.timeline();
+      
+      // Add loader animation
+      loaderTimeline
+        .to('.loader-icon', {
+          rotation: 360,
+          repeat: 1, // Reduced repeats for quicker loading
+          duration: 1,
+          ease: 'power2.inOut'
+        })
+        .to('.loader-text .char', {
+          opacity: 1,
+          y: 0,
+          stagger: 0.05,
+          duration: 0.5,
+          ease: 'back.out(1.7)'
+        }, '-=1')
+        .to(loader, {
+          opacity: 0,
+          pointerEvents: 'none',
+          duration: 0.8,
+          onComplete: () => {
+            // Start entrance animations after loader disappears
+            loader.remove(); // Actually remove from DOM
+            startEntranceAnimations();
+          }
+        }, '+=0.5');
+    } catch (e) {
+      // If GSAP fails, manually remove the loader
+      console.error('GSAP animation error:', e);
+      loader.style.display = 'none';
+      loader.remove();
+      startEntranceAnimations();
+    }
   } else {
     // If no loader, start entrance animations immediately
     startEntranceAnimations();

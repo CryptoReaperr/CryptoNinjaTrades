@@ -10,6 +10,24 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
+    <!-- Failsafe loader removal script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Force remove loader after 4 seconds no matter what
+            setTimeout(function() {
+                var loader = document.getElementById('page-loader');
+                if (loader) {
+                    loader.style.display = 'none';
+                    setTimeout(function() {
+                        if (loader.parentNode) {
+                            loader.parentNode.removeChild(loader);
+                        }
+                    }, 100);
+                }
+            }, 4000);
+        });
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="apple-touch-icon" href="images/official-logo.png">

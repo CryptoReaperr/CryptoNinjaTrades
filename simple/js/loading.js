@@ -70,10 +70,14 @@ function hideLoader() {
   const loader = document.getElementById('page-loader');
   if (loader) {
     // GSAP will handle the fade out in the animations.js file
-    // This is just a fallback if GSAP isn't loaded yet
+    // This is just a fallback if GSAP isn't loaded yet or doesn't execute correctly
     setTimeout(() => {
       loader.style.opacity = '0';
       loader.style.pointerEvents = 'none';
+      // After hiding loader, also try to remove it from DOM after a small delay
+      setTimeout(() => {
+        loader.remove();
+      }, 1000);
     }, 2000);
   }
 }
