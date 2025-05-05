@@ -8,19 +8,20 @@ console.log('Loading cookie-banner.js script');
 
 // Wait for the page to be fully loaded, including all resources 
 // This ensures the cookie banner appears after the loading screen
-window.addEventListener('load', function() {
-    console.log('Window load event triggered');
-    // Delay initialization slightly to ensure page is fully rendered
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded in cookie-banner.js');
+    // Wait 5 seconds before showing the banner to ensure loading screen completes
+    console.log('Waiting for 5 seconds before initializing cookie banner...');
     setTimeout(function() {
-        console.log('Running delayed cookie banner initialization');
-        // Initialize cookie banner after the page has fully loaded
+        console.log('Timeout completed, now initializing cookie banner');
+        // Initialize cookie banner after a delay
         initCookieBanner();
         
         // Listen for event to open cookie settings from other places
         document.addEventListener('openCookieSettings', function() {
             openCookieSettings();
         });
-    }, 300); // Small delay to ensure loading animation completes
+    }, 5000); // 5 second delay to ensure loading animation completes
 });
 
 function initCookieBanner() {
@@ -71,6 +72,11 @@ function showCookieBanner() {
     banner.id = 'cookie-banner';
     console.log('Banner element created:', banner);
     
+    // Set up for animation
+    banner.style.position = 'fixed';
+    banner.style.bottom = '-100px'; // Start off-screen for animation
+    banner.style.transition = 'bottom 0.5s ease-in-out'; // Add transition for animation
+    
     // Check if we're in light or dark mode
     const isLightMode = document.body.classList.contains('theme-light');
     
@@ -98,8 +104,14 @@ function showCookieBanner() {
     banner.style.display = 'flex';
     banner.style.opacity = '1';
     banner.style.visibility = 'visible';
-    banner.style.zIndex = '999999';
+    banner.style.zIndex = '9999999';
     console.log('Banner forced to display:flex and opacity:1');
+    
+    // Give a brief pause before starting the animation
+    setTimeout(function() {
+        console.log('Starting banner animation');
+        banner.style.bottom = '0'; // Animate to visible position
+    }, 100);
     
     // Set up event handlers
     document.getElementById('static-cookie-accept').addEventListener('click', function() {
