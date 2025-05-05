@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Ninja Trades - Exclusive VIP Club for Futures Trading</title>
+    <meta name="description" content="Join Crypto Ninja Trades VIP Club for expert crypto futures trading signals, education, and mentorship. 80%+ signal success rate!">
+    <meta name="keywords" content="crypto trading signals, futures trading, crypto education, trading mentorship">
+    <meta name="theme-color" content="#001A2E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/official-logo.png">
+    
+    <!-- Google Fonts - High Performance Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    screens: {
+                        '3xl': '1920px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 5s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    transitionProperty: {
+                        'border': 'border-color, border-width, border-opacity',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- AOS - Animate On Scroll -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      // Ensure GSAP is properly initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+          console.log('GSAP initialized properly');
+          gsap.registerPlugin(ScrollTrigger);
+        } else {
+          console.error('GSAP not loaded properly');
+        }
+      });
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <link rel="stylesheet" href="css/next-level.css">
+    <link rel="stylesheet" href="css/ultra-responsive.css">
+    <link rel="stylesheet" href="css/immersive.css">
+    <link rel="stylesheet" href="css/ticker.css">
+    
+    <!-- Preloader Script -->
+    <script src="js/loading.js"></script>
+</head>
+
+<body class="bg-ninja-black text-ninja-light font-inter font-crisp">
+    <!-- Advanced background effects -->
+    <div class="liquid-mesh"></div>
+    <div class="scanlines"></div>
+    <!-- Toast notification for copied text -->
+    <div id="copy-toast" class="copy-toast">Copied!</div>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top bg-neon-green text-ninja-black p-3 rounded-full shadow-lg hover:bg-electric-blue transition-all duration-300">
+        <i data-feather="arrow-up" class="w-5 h-5"></i>
+    </button>
+    
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Branding -->
+                <a href="#hero" class="flex items-center gap-3 logo-link relative z-20">
+                    <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
+                        <p class="text-xs text-ninja-light/80">Trade with Precision, Win with Confidence</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-6">
+                    <a href="#hero" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
+                    <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
+                    <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
+                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300">News</a>
+                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="#faq" class="font-medium hover:text-neon-green transition-colors duration-300">FAQ</a>
+                    <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
+                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
+                </nav>
+                
+                <!-- Theme Toggle Button -->
+                <div class="hidden md:flex items-center">
+                    <div id="theme-toggle" class="theme-toggle">
+                        <div class="theme-toggle-switch">
+                            <i data-feather="moon" class="w-3 h-3 text-ninja-black dark-icon"></i>
+                            <i data-feather="sun" class="w-3 h-3 text-ninja-black light-icon hidden"></i>
+                        </div>
+                        <div class="theme-toggle-label">
+                            <span class="theme-mode-dark text-xs">Dark</span>
+                            <span class="theme-mode-light text-xs">Light</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Join Now Button (Desktop) -->
+                    <a href="#plans" class="ml-4 bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 z-20">
+                        Join Now
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30">
+            <div class="container mx-auto px-4 py-5">
+                <nav class="flex flex-col gap-4">
+                    <a href="#hero" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
+                    <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
+                    <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
+                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="#faq" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">FAQ</a>
+                    <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
+                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
+                    
+                    <!-- Join Now Button (Mobile) -->
+                    <a href="#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
+                        Join Now
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen pt-28 pb-20 flex items-center">
+        <!-- Background elements -->
+        <div class="absolute inset-0 z-0">
+            <!-- Modern grid pattern -->
+            <div class="hero-grid-pattern"></div>
+            
+            <!-- Dynamic backdrop -->
+            <div class="hero-backdrop"></div>
+            
+            <!-- Ninja star decorations -->
+            <img src="images/ninja-star.svg" alt="" class="ninja-star absolute top-1/4 left-1/4 opacity-20" style="width: 40px; height: 40px;">
+            <img src="images/ninja-star.svg" alt="" class="ninja-star absolute top-2/3 right-1/5 opacity-15" style="width: 30px; height: 30px;">
+            <img src="images/ninja-star.svg" alt="" class="ninja-star absolute bottom-1/4 left-1/3 opacity-10" style="width: 25px; height: 25px;">
+            
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ninja-black/60 to-ninja-black/95"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col items-center justify-center text-center mb-12">
+                <!-- Large hero logo -->
+                <img src="images/official-logo.png" alt="Crypto Ninja Trades" class="hero-logo w-48 md:w-64 rounded-full mb-8 ninja-animate">
+                
+                <h1 class="holographic-heading text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold mb-4 ninja-animate" data-text="CRYPTO NINJA TRADES">
+                    CRYPTO NINJA TRADES
+                </h1>
+                <h2 class="text-xl md:text-2xl text-ninja-light/90 mb-8 ninja-animate">
+                    Join our <span class="text-neon-green font-bold">EXCLUSIVE VIP Club</span> for expert futures trading signals, education, and mentorship.
+                </h2>
+                <div class="flex flex-col sm:flex-row gap-4 ninja-animate">
+                    <a href="#plans" class="bg-neon-green text-ninja-black px-8 py-4 rounded-md font-bold text-lg text-center hover:bg-electric-blue transition-colors duration-300">
+                        Join Now
+                    </a>
+                    <a href="#benefits" class="border-2 border-neon-green text-neon-green px-8 py-4 rounded-md font-bold text-lg hover:bg-neon-green/10 transition-colors duration-300 text-center">
+                        Learn More
+                    </a>
+                </div>
+                <div class="mt-10 py-4 px-6 glass-card frosted-glass inline-flex items-center ninja-animate hero-stat">
+                    <i data-feather="users" class="text-electric-blue w-5 h-5 mr-3"></i>
+                    <span class="counter-value font-bold text-xl" data-target="60">0</span>
+                    <span class="ml-2">+ members already thriving in our community!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 bg-ninja-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-12 animate-on-scroll">
+                What You Get in the <span class="text-neon-green">VIP Club</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-neon-green mb-4">
+                        <i data-feather="trending-up" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Weekly Trading Signals</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Get access to our carefully curated trading signals with an impressive +80% success rate since January 2023.
+                    </p>
+                    <div class="inline-block bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">
+                        80%+ Success Rate
+                    </div>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-electric-blue mb-4">
+                        <i data-feather="book-open" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Educational Posts</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Comprehensive educational content on Crypto Futures Trading, including crucial tips that can transform your trading approach.
+                    </p>
+                    <div class="inline-block bg-electric-blue/20 text-electric-blue px-3 py-1 rounded-full text-sm">
+                        Premium Content
+                    </div>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-ninja-purple mb-4">
+                        <i data-feather="users" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Community Access</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Join our exclusive Telegram community where members share insights, discuss strategies, and support each other's trading journey.
+                    </p>
+                    <div class="inline-block bg-ninja-purple/20 text-ninja-purple px-3 py-1 rounded-full text-sm">
+                        Private Group
+                    </div>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="bg-ninja-black p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="text-ninja-gold mb-4">
+                        <i data-feather="message-circle" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Direct Mentorship</h3>
+                    <p class="text-ninja-light/80 mb-4">
+                        Get direct answers to your trading questions from experienced mentors who have a proven track record in the crypto markets.
+                    </p>
+                    <div class="inline-block bg-ninja-gold/20 text-ninja-gold px-3 py-1 rounded-full text-sm">
+                        Expert Guidance
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Benefits -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <!-- Extra Benefit 1 -->
+                <div class="flex items-start space-x-4 p-6 bg-ninja-black/50 rounded-lg animate-on-scroll">
+                    <i data-feather="zap" class="w-6 h-6 text-neon-green flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold mb-2">Early Entry Signals</h4>
+                        <p class="text-ninja-light/70 text-sm">Be among the first to receive our trading signals, giving you the edge in execution timing.</p>
+                    </div>
+                </div>
+                
+                <!-- Extra Benefit 2 -->
+                <div class="flex items-start space-x-4 p-6 bg-ninja-black/50 rounded-lg animate-on-scroll">
+                    <i data-feather="shield" class="w-6 h-6 text-electric-blue flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold mb-2">Risk Management Strategies</h4>
+                        <p class="text-ninja-light/70 text-sm">Learn professional risk management techniques to protect and grow your capital.</p>
+                    </div>
+                </div>
+                
+                <!-- Extra Benefit 3 -->
+                <div class="flex items-start space-x-4 p-6 bg-ninja-black/50 rounded-lg animate-on-scroll">
+                    <i data-feather="trending-up" class="w-6 h-6 text-ninja-purple flex-shrink-0 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold mb-2">Market Analysis</h4>
+                        <p class="text-ninja-light/70 text-sm">Weekly technical and fundamental analysis reports on major cryptocurrencies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Requirements Section -->
+    <section id="requirements" class="py-20 bg-ninja-black relative overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 z-0">
+            <!-- Grid pattern -->
+            <div class="requirements-grid-pattern"></div>
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ninja-black/95 to-ninja-black/90"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-6 animate-on-scroll">
+                <span class="text-neon-green">Requirements</span> to Join
+            </h2>
+            <p class="text-center text-ninja-light/80 max-w-2xl mx-auto mb-16 animate-on-scroll">
+                To ensure the success of our community members, we have a few requirements. These are not meant to exclude, but to ensure you're prepared to make the most of our trading signals.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Requirement 1 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 flex flex-col items-center text-center animate-on-scroll">
+                    <div class="w-16 h-16 rounded-full bg-neon-green/20 flex items-center justify-center mb-6">
+                        <i data-feather="dollar-sign" class="w-8 h-8 text-neon-green"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Minimum Capital</h3>
+                    <p class="text-ninja-light/80">
+                        We recommend a minimum of $1000 USD to properly execute our signals with adequate position sizing.
+                    </p>
+                </div>
+                
+                <!-- Requirement 2 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 flex flex-col items-center text-center animate-on-scroll">
+                    <div class="w-16 h-16 rounded-full bg-electric-blue/20 flex items-center justify-center mb-6">
+                        <i data-feather="smartphone" class="w-8 h-8 text-electric-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Telegram Account</h3>
+                    <p class="text-ninja-light/80">
+                        All our signals and educational content are delivered through our private Telegram channel.
+                    </p>
+                </div>
+                
+                <!-- Requirement 3 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 flex flex-col items-center text-center animate-on-scroll">
+                    <div class="w-16 h-16 rounded-full bg-ninja-purple/20 flex items-center justify-center mb-6">
+                        <i data-feather="briefcase" class="w-8 h-8 text-ninja-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Exchange Account</h3>
+                    <p class="text-ninja-light/80">
+                        You'll need an account on a supported crypto exchange that offers futures trading (Binance, Bybit, etc.).
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Additional Requirements Text -->
+            <div class="mt-16 max-w-3xl mx-auto text-center animate-on-scroll">
+                <h3 class="text-2xl font-bold mb-4">Optional but <span class="text-neon-green">Highly Recommended</span></h3>
+                <p class="text-ninja-light/80 mb-6">
+                    While not strictly required, these will significantly improve your trading results:
+                </p>
+                <ul class="text-left space-y-4 max-w-xl mx-auto">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-neon-green flex-shrink-0 mt-1 mr-3"></i>
+                        <span>Basic understanding of futures trading concepts (leverage, liquidation, funding rates)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-neon-green flex-shrink-0 mt-1 mr-3"></i>
+                        <span>Ability to check signals and execute trades within 30 minutes of posting</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-neon-green flex-shrink-0 mt-1 mr-3"></i>
+                        <span>Willingness to follow risk management guidelines (position sizing, stop losses)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-neon-green flex-shrink-0 mt-1 mr-3"></i>
+                        <span>Commitment to continuous learning and improvement of your trading skills</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 bg-ninja-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-6 animate-on-scroll">
+                Choose Your <span class="text-neon-green">Membership</span> Plan
+            </h2>
+            <p class="text-center text-ninja-light/80 max-w-2xl mx-auto mb-16 animate-on-scroll">
+                Select the membership option that best fits your trading goals. All plans include our core benefits with different durations to accommodate your needs.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Monthly Plan -->
+                <div class="plan-card bg-ninja-black rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-2xl font-bold mb-2">Monthly</h3>
+                        <p class="text-ninja-light/70 text-sm mb-4">Perfect for trying out our service</p>
+                        <div class="flex items-end gap-1">
+                            <span class="text-4xl font-bold">$199</span>
+                            <span class="text-ninja-light/70 mb-1">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Weekly Trading Signals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Educational Content</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Community Access</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Direct Mentorship</span>
+                            </li>
+                            <li class="flex items-start opacity-50">
+                                <i data-feather="x" class="w-5 h-5 text-ninja-red flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Premium Webinars</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 rounded-md bg-neon-green text-ninja-black font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Subscribe Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quarterly Plan (Best Value) -->
+                <div class="plan-card bg-ninja-black rounded-xl overflow-hidden border-2 border-neon-green shadow-[0_0_20px_rgba(55,95,124,0.3)] relative animate-on-scroll popular-plan">
+                    <!-- Popular Tag -->
+                    <div class="absolute top-0 right-0 bg-neon-green text-ninja-black font-bold px-4 py-1 text-sm transform translate-x-[30%] translate-y-[-0%] rotate-45">
+                        POPULAR
+                    </div>
+                    
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-2xl font-bold mb-2">Quarterly</h3>
+                        <p class="text-ninja-light/70 text-sm mb-4">Our most popular option</p>
+                        <div class="flex items-end gap-1">
+                            <span class="text-4xl font-bold">$499</span>
+                            <span class="text-ninja-light/70 mb-1">/3 months</span>
+                        </div>
+                        <div class="bg-neon-green/20 text-neon-green text-sm px-3 py-1 rounded-full inline-block mt-2">
+                            Save $98
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Weekly Trading Signals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Educational Content</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Community Access</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Direct Mentorship</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Premium Webinars</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 rounded-md bg-neon-green text-ninja-black font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Subscribe Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Yearly Plan -->
+                <div class="plan-card bg-ninja-black rounded-xl overflow-hidden border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="p-6 border-b border-ninja-gray/30">
+                        <h3 class="text-2xl font-bold mb-2">Yearly</h3>
+                        <p class="text-ninja-light/70 text-sm mb-4">Best long-term value</p>
+                        <div class="flex items-end gap-1">
+                            <span class="text-4xl font-bold">$1,499</span>
+                            <span class="text-ninja-light/70 mb-1">/year</span>
+                        </div>
+                        <div class="bg-neon-green/20 text-neon-green text-sm px-3 py-1 rounded-full inline-block mt-2">
+                            Save $889
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4 mb-6">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Weekly Trading Signals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Educational Content</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Community Access</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Direct Mentorship</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>Premium Webinars</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5 mr-3"></i>
+                                <span>1-on-1 Strategy Session</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-3 rounded-md bg-neon-green text-ninja-black font-bold hover:bg-electric-blue transition-colors duration-300">
+                            Subscribe Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Money-Back Guarantee -->
+            <div class="mt-16 text-center animate-on-scroll">
+                <div class="inline-flex items-center justify-center bg-ninja-black/50 py-3 px-6 rounded-full border border-ninja-gray/30">
+                    <i data-feather="shield" class="text-neon-green w-5 h-5 mr-2"></i>
+                    <span class="text-sm font-medium">All plans come with a 7-day money-back guarantee. No questions asked.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-ninja-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-6 animate-on-scroll">
+                Frequently Asked <span class="text-neon-green">Questions</span>
+            </h2>
+            <p class="text-center text-ninja-light/80 max-w-2xl mx-auto mb-16 animate-on-scroll">
+                Get answers to the most common questions about our trading signals service.
+            </p>
+            
+            <!-- FAQ Accordion -->
+            <div class="max-w-3xl mx-auto space-y-4 faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">How many signals do you provide each week?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            We typically provide 5-10 trading signals per week, depending on market conditions. We prioritize quality over quantity, so during volatile or uncertain market periods, we may send fewer but higher-confidence signals.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">What is the average duration of your trades?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            Our trading strategy includes a mix of timeframes. Most trades range from a few hours to a few days, with occasional longer-term positions that may last 1-2 weeks. We clearly indicate the expected timeframe with each signal.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">What's your recommended position size and leverage?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            We recommend using 2-5% of your total capital per trade, with leverage between 3x-5x for beginners and up to 10x for experienced traders. This conservative approach helps manage risk while still offering good profit potential. Our educational resources cover position sizing in depth.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">Do you provide entry, take-profit, and stop-loss levels?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            Yes, every signal includes specific entry price/range, multiple take-profit targets, and a clear stop-loss level. We also provide updates if market conditions change, including adjustments to targets or stop-loss positions.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">Which exchanges are compatible with your signals?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            Our signals work with all major crypto futures exchanges, including Binance, Bybit, OKX, and others. We focus on the most liquid trading pairs which are available on virtually all platforms. If you're unsure about your exchange compatibility, contact us before subscribing.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 animate-on-scroll">
+                    <div class="faq-question p-5 flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold">Can beginners follow your trading signals?</h3>
+                        <i data-feather="plus" class="faq-icon w-5 h-5 text-neon-green"></i>
+                    </div>
+                    <div class="faq-answer p-5 pt-0 border-t border-ninja-gray/30 hidden">
+                        <p class="text-ninja-light/80">
+                            Yes, we design our signals to be accessible to traders of all levels. For beginners, we recommend starting with our educational content first to understand basic futures concepts. Our signals include detailed explanations and we're always available to answer questions in the community chat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Section -->
+    <section id="payment" class="py-20 bg-ninja-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-6 animate-on-scroll">
+                <span class="text-neon-green">Payment</span> Methods
+            </h2>
+            <p class="text-center text-ninja-light/80 max-w-2xl mx-auto mb-16 animate-on-scroll">
+                We accept various payment methods to make joining our VIP Club as convenient as possible.
+            </p>
+            
+            <!-- Payment Methods Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-on-scroll">
+                <!-- USDT Payment Card -->
+                <div class="flex flex-col items-center text-center bg-ninja-black p-6 rounded-xl border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-full bg-ninja-dark flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#26A17B"/>
+                            <path d="M12.6661 11.5918V9.38818H16.2766V7.0166H7.7549V9.38818H11.3654V11.5918C8.31569 11.7663 6 12.4242 6 13.2159C6 14.0076 8.31569 14.6655 11.3654 14.84V19.1468H12.6661V14.84C15.7158 14.6655 18.0315 14.0076 18.0315 13.2159C18.0315 12.4242 15.7158 11.7663 12.6661 11.5918ZM12.6661 14.4041V14.4066C12.6367 14.4066 12.5553 14.4101 12.0126 14.4101C11.5767 14.4101 11.4283 14.4076 11.3684 14.4066V14.4041C8.84431 14.2577 6.97123 13.7265 6.97123 13.0923C6.97123 12.458 8.84431 11.9269 11.3684 11.7805V13.9486C11.4308 13.9507 11.5885 13.9552 12.0151 13.9552C12.517 13.9552 12.6574 13.9497 12.6661 13.9486V11.7805C15.1901 11.9269 17.0632 12.458 17.0632 13.0923C17.0632 13.7265 15.1906 14.2577 12.6661 14.4041Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">USDT TRC20</h3>
+                    <p class="text-ninja-light/70 text-sm">Tether on Tron Network</p>
+                </div>
+                
+                <!-- Bitcoin Payment Card -->
+                <div class="flex flex-col items-center text-center bg-ninja-black p-6 rounded-xl border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-full bg-ninja-dark flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.6384 14.9029C22.2368 20.5164 16.5348 23.9511 10.9207 22.5493C5.30814 21.1478 1.87362 15.446 3.27539 9.83227C4.6769 4.21887 10.3785 0.784359 15.9924 2.18613C21.6055 3.58732 25.0404 9.28949 23.6384 14.9029Z" fill="#F7931A"/>
+                            <path d="M17.2908 10.5453C17.5011 8.96245 16.2998 8.09401 14.6536 7.53212L15.1449 5.4951L13.9575 5.20172L13.4799 7.19137C13.1428 7.10521 12.7969 7.02284 12.4532 6.94104L12.9348 4.93581L11.7482 4.64243L11.2565 6.67911C10.9768 6.61318 10.7024 6.54782 10.4361 6.47988L10.437 6.47665L8.79089 6.06979L8.47849 7.34154C8.47849 7.34154 9.34782 7.53055 9.3306 7.54018C9.83364 7.6631 9.93157 8.00267 9.91934 8.27443L9.35704 10.6082C9.39641 10.6183 9.4477 10.6331 9.50332 10.6564C9.45672 10.645 9.40792 10.6328 9.35762 10.6208L8.57886 13.8683C8.51265 14.0257 8.33615 14.2561 7.98337 14.1761C7.99471 14.1893 7.13441 13.9746 7.13441 13.9746L6.55469 15.339L8.11267 15.7293C8.42253 15.8091 8.72454 15.892 9.02213 15.9702L8.52536 18.04L9.71156 18.3333L10.2033 16.2955C10.5529 16.3918 10.8926 16.4811 11.2248 16.5651L10.7349 18.5937L11.9223 18.8871L12.419 16.8193C14.6272 17.2289 16.2772 17.0775 17.0219 15.0675C17.6165 13.4331 17.007 12.4802 15.7748 11.8601C16.6784 11.6428 17.1298 11.0631 17.2908 10.5453ZM14.438 14.2418C14.0229 15.8763 11.3482 14.9777 10.4919 14.7617L11.1521 12.0175C12.0084 12.2343 14.8747 12.5246 14.438 14.2418ZM14.8533 10.5255C14.4739 11.9908 12.2252 11.2192 11.5162 11.0359L12.111 8.55838C12.8201 8.74167 15.2519 8.99607 14.8533 10.5255Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">Bitcoin</h3>
+                    <p class="text-ninja-light/70 text-sm">BTC Network</p>
+                </div>
+                
+                <!-- Ethereum Payment Card -->
+                <div class="flex flex-col items-center text-center bg-ninja-black p-6 rounded-xl border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-full bg-ninja-dark flex items-center justify-center mb-4">
+                        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.6" d="M11.9978 4.16663V16.4999L18.2062 13.1249L11.9978 4.16663Z" fill="#627EEA"/>
+                            <path opacity="0.45" d="M11.9978 4.16663L5.7894 13.1249L11.9978 16.4999V4.16663Z" fill="#627EEA"/>
+                            <path opacity="0.8" d="M11.9978 17.9785V23.3333L18.2124 14.6071L11.9978 17.9785Z" fill="#627EEA"/>
+                            <path opacity="0.45" d="M11.9978 23.3333V17.9785L5.7894 14.6071L11.9978 23.3333Z" fill="#627EEA"/>
+                            <path d="M11.9978 16.5L18.2062 13.125L11.9978 10.5V16.5Z" fill="#627EEA"/>
+                            <path opacity="0.6" d="M5.7894 13.125L11.9978 16.5V10.5L5.7894 13.125Z" fill="#627EEA"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold mb-1">Ethereum</h3>
+                    <p class="text-ninja-light/70 text-sm">ERC20 Network</p>
+                </div>
+                
+                <!-- Credit Card Payment Card -->
+                <div class="flex flex-col items-center text-center bg-ninja-black p-6 rounded-xl border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300">
+                    <div class="w-16 h-16 rounded-full bg-ninja-dark flex items-center justify-center mb-4">
+                        <i data-feather="credit-card" class="w-8 h-8 text-neon-green"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">Credit Card</h3>
+                    <p class="text-ninja-light/70 text-sm">Visa & Mastercard</p>
+                </div>
+            </div>
+            
+            <!-- Payment Instruction Note -->
+            <div class="mt-12 text-center animate-on-scroll">
+                <p class="text-ninja-light/80 max-w-2xl mx-auto">
+                    After selecting a plan, you'll receive detailed payment instructions. For crypto payments, we provide a QR code and wallet address. For credit card payments, you'll be redirected to our secure payment processor.
+                </p>
+                <div class="mt-8 max-w-xl mx-auto bg-ninja-black p-5 rounded-lg border border-ninja-gray/30">
+                    <h4 class="font-bold mb-3 flex items-center justify-center">
+                        <i data-feather="shield" class="w-5 h-5 text-neon-green mr-2"></i>
+                        Secure Payment Process
+                    </h4>
+                    <p class="text-ninja-light/70 text-sm">
+                        All transactions are processed securely. We never store your payment information. Once your payment is confirmed, you'll receive instant access to our VIP Telegram channel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-ninja-black relative overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 z-0">
+            <!-- Grid pattern -->
+            <div class="testimonial-grid-pattern"></div>
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-ninja-black/90 to-ninja-black/95"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-6 animate-on-scroll">
+                What Our <span class="text-neon-green">Members</span> Say
+            </h2>
+            <p class="text-center text-ninja-light/80 max-w-2xl mx-auto mb-16 animate-on-scroll">
+                Don't take our word for it. Here's what traders in our community have achieved.
+            </p>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="mr-4 bg-neon-green/20 w-12 h-12 rounded-full flex items-center justify-center text-neon-green font-bold">
+                            JK
+                        </div>
+                        <div>
+                            <h4 class="font-bold">James K.</h4>
+                            <p class="text-ninja-light/70 text-sm">Member since March 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i data-feather="star" class="w-4 h-4 text-neon-green fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-neon-green fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-neon-green fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-neon-green fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-neon-green fill-current"></i>
+                    </div>
+                    <p class="text-ninja-light/80 mb-4">
+                        "I've been with Crypto Ninja Trades for over a year now and it's been a game-changer. Their signals have consistently hit targets with amazing accuracy. But what I value most is the education—I've learned to analyze trades myself rather than just following signals blindly."
+                    </p>
+                    <div class="inline-block bg-ninja-purple/20 text-ninja-purple px-3 py-1 rounded-full text-sm">
+                        118% portfolio growth
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="mr-4 bg-electric-blue/20 w-12 h-12 rounded-full flex items-center justify-center text-electric-blue font-bold">
+                            SM
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah M.</h4>
+                            <p class="text-ninja-light/70 text-sm">Member since June 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i data-feather="star" class="w-4 h-4 text-electric-blue fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-electric-blue fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-electric-blue fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-electric-blue fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-electric-blue fill-current"></i>
+                    </div>
+                    <p class="text-ninja-light/80 mb-4">
+                        "As someone new to futures trading, I was hesitant to join at first. But the team's patience in answering my questions and the detailed explanations with each signal helped me learn quickly. The risk management advice alone was worth the subscription price."
+                    </p>
+                    <div class="inline-block bg-ninja-purple/20 text-ninja-purple px-3 py-1 rounded-full text-sm">
+                        82% portfolio growth
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-ninja-dark p-8 rounded-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-all duration-300 animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="mr-4 bg-ninja-gold/20 w-12 h-12 rounded-full flex items-center justify-center text-ninja-gold font-bold">
+                            RT
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Robert T.</h4>
+                            <p class="text-ninja-light/70 text-sm">Member since January 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i data-feather="star" class="w-4 h-4 text-ninja-gold fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-ninja-gold fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-ninja-gold fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-ninja-gold fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 text-ninja-gold fill-current"></i>
+                    </div>
+                    <p class="text-ninja-light/80 mb-4">
+                        "What sets this group apart is the community aspect. It's not just about signals—members share insights, the admins are active and responsive, and there's a genuine desire to see everyone succeed. The professionalism and transparency are unmatched."
+                    </p>
+                    <div class="inline-block bg-ninja-purple/20 text-ninja-purple px-3 py-1 rounded-full text-sm">
+                        156% portfolio growth
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-ninja-dark py-12 border-t border-ninja-gray/30">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and About -->
+                <div class="md:col-span-1">
+                    <a href="#" class="flex items-center gap-3 mb-4">
+                        <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-10 h-10 rounded-full">
+                        <h3 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h3>
+                    </a>
+                    <p class="text-ninja-light/70 text-sm mb-6">
+                        Exclusive VIP community for serious crypto futures traders seeking consistent profits through expert signals and education.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="telegram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Home</a></li>
+                        <li><a href="#benefits" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Benefits</a></li>
+                        <li><a href="#plans" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#faq" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">FAQ</a></li>
+                        <li><a href="news.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Crypto News</a></li>
+                        <li><a href="trends.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Market Trends</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="academy.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Trading Academy</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Blog</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Trading Calculator</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Risk Management</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Technical Analysis</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="terms.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="cookie-policy.html" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Cookie Policy</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Refund Policy</a></li>
+                        <li><a href="#" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Separator -->
+            <div class="section-divider mt-8 mb-6"></div>
+            
+            <!-- Bottom row with copyright -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-ninja-light/60 text-sm">
+                <p>© 2025 Crypto Ninja Trades. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">
+                    <span class="text-neon-green">Disclaimer:</span> Trading cryptocurrency futures involves significant risk. Past performance is not indicative of future results.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Initialize Feather Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+        });
+    </script>
+    
+    <!-- AOS Init -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-out-cubic'
+            });
+            
+            // Mark elements for animation
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                element.setAttribute('data-aos', 'fade-up');
+                element.setAttribute('data-aos-delay', Math.floor(Math.random() * 200).toString());
+            });
+        });
+    </script>
+    
+    <!-- Custom JS Imports -->
+    <script src="js/script.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/liquid-mesh.js"></script>
+    <script src="js/scroll-header.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.querySelector('.icon-open');
+            const iconClose = document.querySelector('.icon-close');
+            
+            if(mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.faq-icon');
+                    const faqItem = question.closest('.faq-item');
+                    
+                    answer.classList.toggle('hidden');
+                    faqItem.classList.toggle('active-faq');
+                    
+                    if(answer.classList.contains('hidden')) {
+                        icon.setAttribute('data-feather', 'plus');
+                    } else {
+                        icon.setAttribute('data-feather', 'minus');
+                    }
+                    feather.replace();
+                });
+            });
+            
+            // Counters animation
+            const counterElements = document.querySelectorAll('.counter-value');
+            counterElements.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                const duration = 2000; // 2 seconds
+                const start = 0;
+                const startTime = performance.now();
+                
+                function updateCounter(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    const currentValue = Math.floor(progress * (target - start) + start);
+                    counter.textContent = currentValue;
+                    
+                    if(progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                }
+                
+                requestAnimationFrame(updateCounter);
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Initialize the liquid mesh background if available
+            if(typeof LiquidMesh !== 'undefined') {
+                const liquidMeshElement = document.querySelector('.liquid-mesh');
+                if(liquidMeshElement) {
+                    const mesh = new LiquidMesh(liquidMeshElement, {
+                        color: '#375F7C',
+                        backgroundColor: 'transparent',
+                        density: window.innerWidth > 768 ? 30 : 15
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
