@@ -314,7 +314,27 @@ class CookieConsentManager {
 }
 
 // Initialize the cookie consent manager when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+// Use a more robust initialization that waits for both DOMContentLoaded and window.load
+let cookieConsentInitialized = false;
+
+function initCookieConsent() {
+    if (cookieConsentInitialized) return;
+    cookieConsentInitialized = true;
+    
+    console.log('Initializing cookie consent manager');
     const cookieConsent = new CookieConsentManager();
     cookieConsent.init();
+}
+
+// Try to initialize on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initCookieConsent, 500); // Delay slightly to ensure all scripts are loaded
 });
+
+// Fallback - if DOMContentLoaded already fired, initialize on window load
+window.addEventListener('load', function() {
+    setTimeout(initCookieConsent, 1000); // Longer delay on window.load as a fallback
+});
+
+// Final fallback - force init after 2 seconds regardless
+setTimeout(initCookieConsent, 2000);

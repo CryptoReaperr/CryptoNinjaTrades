@@ -71,6 +71,17 @@
     <!-- GSAP for advanced animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      // Ensure GSAP is properly initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+          console.log('GSAP initialized properly');
+          gsap.registerPlugin(ScrollTrigger);
+        } else {
+          console.error('GSAP not loaded properly');
+        }
+      });
+    </script>
     
     <!-- Force Cookie Consent CSS to load -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cookie-consent.css') }}?v=1.0.0">
