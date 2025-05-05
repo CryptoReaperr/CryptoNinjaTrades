@@ -4,10 +4,15 @@
 
 console.log('Loading cookie-banner-test.js script');
 
-// Create and show the banner immediately when page loads
+// Create and show the banner with a delay to allow loading screen to complete
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOMContentLoaded in cookie-banner-test.js');
-    createTestBanner();
+    // Wait 5 seconds before showing the banner
+    console.log('Waiting 5 seconds before showing the banner...');
+    setTimeout(function() {
+        console.log('Timeout completed, creating banner');
+        createTestBanner();
+    }, 5000); // 5000ms = 5 seconds
 });
 
 function createTestBanner() {
@@ -19,7 +24,7 @@ function createTestBanner() {
     
     // Set explicit styles
     banner.style.position = 'fixed';
-    banner.style.bottom = '0';
+    banner.style.bottom = '-100px'; // Start off-screen for animation
     banner.style.left = '0';
     banner.style.right = '0';
     banner.style.display = 'flex';
@@ -32,6 +37,7 @@ function createTestBanner() {
     banner.style.boxShadow = '0 -5px 15px rgba(0, 0, 0, 0.2)';
     banner.style.zIndex = '9999999';
     banner.style.fontSize = '14px';
+    banner.style.transition = 'bottom 0.5s ease-in-out'; // Add transition for animation
     
     // Banner inner HTML
     banner.innerHTML = `
@@ -48,15 +54,27 @@ function createTestBanner() {
     document.body.appendChild(banner);
     console.log('Test banner has been appended');
     
+    // Give a brief pause before starting the animation
+    setTimeout(function() {
+        console.log('Starting banner animation');
+        banner.style.bottom = '0'; // Animate to visible position
+    }, 100);
+    
     // Set up event handlers
     document.getElementById('test-cookie-close').addEventListener('click', function() {
         console.log('Close button clicked');
-        // Instead of changing display style, completely remove the element
-        if (banner && banner.parentNode) {
-            banner.parentNode.removeChild(banner);
-            console.log('Banner has been completely removed from DOM');
-        } else {
-            console.error('Could not remove banner, parent node not found');
-        }
+        // Animate the banner out before removing it
+        banner.style.bottom = '-100px';
+        
+        // Wait for animation to complete before removing from DOM
+        setTimeout(function() {
+            // Remove the element after animation completes
+            if (banner && banner.parentNode) {
+                banner.parentNode.removeChild(banner);
+                console.log('Banner has been completely removed from DOM');
+            } else {
+                console.error('Could not remove banner, parent node not found');
+            }
+        }, 500); // Match the transition duration
     });
 }
