@@ -3,14 +3,19 @@
  * Professional implementation including server-side persistence
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize cookie banner after the page has fully loaded
-    initCookieBanner();
-
-    // Listen for event to open cookie settings from other places
-    document.addEventListener('openCookieSettings', function() {
-        openCookieSettings();
-    });
+// Wait for the page to be fully loaded, including all resources 
+// This ensures the cookie banner appears after the loading screen
+window.addEventListener('load', function() {
+    // Delay initialization slightly to ensure page is fully rendered
+    setTimeout(function() {
+        // Initialize cookie banner after the page has fully loaded
+        initCookieBanner();
+        
+        // Listen for event to open cookie settings from other places
+        document.addEventListener('openCookieSettings', function() {
+            openCookieSettings();
+        });
+    }, 300); // Small delay to ensure loading animation completes
 });
 
 function initCookieBanner() {
