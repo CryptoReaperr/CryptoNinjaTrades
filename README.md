@@ -4,13 +4,36 @@ A professional, ninja-themed website for Crypto Ninja Trades, delivering an enga
 
 ## 🚀 Quick Deployment Guide
 
-### 🔹 ONE-STEP DEPLOYMENT
-For the fastest deployment, simply:
+### 🔹 Deployment Options
 
-1. **Upload all files** from this project to your web server via FTP
-2. **Read the [DEPLOY_GUIDE.md](DEPLOY_GUIDE.md)** file for detailed instructions
+#### Option 1: FTP Deployment (Recommended for Beginners)
 
-> **Note:** Make sure your server supports Python and Flask applications!
+1. **Download the project** from this Replit to your computer by clicking on the three dots (⋮) in the Files panel and selecting "Download as zip"
+2. **Extract the downloaded zip file** to a folder on your computer
+3. **Upload all files** to your web hosting using the included script:
+   - Open a terminal/command prompt
+   - Navigate to the extracted project folder
+   - Run: `chmod +x deploy.sh` (on Mac/Linux) to make the script executable
+   - Run: `./deploy.sh` (on Mac/Linux) or `bash deploy.sh` (on Windows)
+   - Follow the prompts to enter your FTP server details
+4. **Create a .env file** on your server with your secret keys (see DEPLOY_GUIDE.md)
+
+#### Option 2: Using Git (For More Advanced Users)
+
+1. **Install Git** on your computer if you don't have it: [Download Git](https://git-scm.com/downloads)
+2. **Clone the repository** to your local computer:
+   - Open a terminal/command prompt
+   - Run: `git clone https://github.com/yourusername/crypto-ninja-trades.git`
+   - Note: Replace the URL with your actual Git repository URL
+3. **Upload to your web server** using either:
+   - FTP: Use FileZilla or other FTP client to upload all files to your server
+   - Git on server (if your hosting supports it):
+     - SSH into your server
+     - Navigate to your website directory
+     - Run: `git clone https://github.com/yourusername/crypto-ninja-trades.git .`
+
+> **Note:** Make sure your server supports Python 3.9+ and Flask applications!
+> For complete instructions, read the [DEPLOY_GUIDE.md](DEPLOY_GUIDE.md) file.
 
 ## ✨ Project Highlights
 

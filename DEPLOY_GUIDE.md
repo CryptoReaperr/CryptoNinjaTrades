@@ -1,6 +1,6 @@
 # Crypto Ninja Trades - Deployment Guide
 
-This guide provides simple instructions for deploying the Crypto Ninja Trades website to your hosting server via FTP.
+This guide provides simple instructions for deploying the Crypto Ninja Trades website to your hosting server via FTP or Git.
 
 ## 1. Requirements for Your Server
 
@@ -9,10 +9,13 @@ Your hosting server needs to have:
 - Python 3.9 or newer
 - Support for Flask applications
 - No database installation required (SQLite is used by default)
+- Web server (Apache or Nginx) with Python WSGI support
 
-## 2. Quick Deployment Via FTP
+## 2. Deployment Options
 
-### Option 1: Using Our One-Command FTP Script (Easiest)
+### A. Quick Deployment Via FTP
+
+#### Option 1: Using Our One-Command FTP Script (Easiest)
 
 We've included a simple shell script to help you upload all files to your server with minimal effort:
 
@@ -24,7 +27,7 @@ We've included a simple shell script to help you upload all files to your server
 
 > Note: This script requires the `ftp` command to be installed on your computer (available by default on most systems).
 
-### Option 2: Manual FTP Upload
+#### Option 2: Manual FTP Upload
 
 #### Files to Upload
 
@@ -51,6 +54,84 @@ Upload ALL files and folders from this project to your server, maintaining the s
    - 755 (rwxr-xr-x) for directories
    - 644 (rw-r--r--) for files
    - 755 (rwxr-xr-x) for any script files
+
+### B. Deployment Using Git
+
+If you're familiar with Git or want to use version control for easier updates, follow these steps:
+
+#### Option 1: Using GitHub/GitLab
+
+1. **Create a Git repository:**
+   - Sign up or log in to [GitHub](https://github.com/) or [GitLab](https://gitlab.com/)
+   - Create a new repository (keep it private for security)
+
+2. **Upload project to repository:**
+   ```bash
+   # Initialize Git in the project folder
+   git init
+   
+   # Add all files to Git
+   git add .
+   
+   # Commit the files
+   git commit -m "Initial commit"
+   
+   # Add your remote repository URL
+   git remote add origin https://github.com/yourusername/your-repo-name.git
+   
+   # Push to repository
+   git push -u origin main
+   ```
+
+3. **Deploy to your server (if it supports Git):**
+   - SSH into your server
+   - Navigate to your website directory
+   - Clone your repository:
+     ```bash
+     git clone https://github.com/yourusername/your-repo-name.git .
+     ```
+   - Set file permissions as mentioned in the FTP section
+
+#### Option 2: Direct Git Deployment
+
+If you're testing locally and want to deploy directly:
+
+1. **Install Git on both your computer and server**
+
+2. **On your computer, initialize Git and create a repository:**
+   ```bash
+   cd /path/to/project
+   git init
+   git add .
+   git commit -m "Initial commit"
+   ```
+
+3. **On your server, set up a bare Git repository:**
+   ```bash
+   ssh user@your-server
+   mkdir -p /path/to/git-repo.git
+   cd /path/to/git-repo.git
+   git init --bare
+   ```
+
+4. **Create a post-receive hook on your server:**
+   ```bash
+   cat > hooks/post-receive << 'EOL'
+   #!/bin/bash
+   GIT_WORK_TREE=/path/to/your/website git checkout -f
+   chmod -R 755 /path/to/your/website
+   find /path/to/your/website -type f -exec chmod 644 {} \;
+   find /path/to/your/website -name "*.sh" -exec chmod 755 {} \;
+   EOL
+   
+   chmod +x hooks/post-receive
+   ```
+
+5. **Back on your computer, add the remote and push:**
+   ```bash
+   git remote add production user@your-server:/path/to/git-repo.git
+   git push production main
+   ```
 
 ## 3. Environment Setup
 
@@ -95,6 +176,64 @@ If you encounter issues:
 3. Ensure your `.env` file has the correct environment variables
 4. Look for error logs in your hosting control panel
 
-## 6. Need Help?
+## 6. Configuring Your Domain Name
+
+To make your website accessible via your domain name:
+
+### Shared Hosting (cPanel, Plesk, etc.)
+
+1. **Point Domain to Hosting:**
+   - Log in to your domain registrar (GoDaddy, Namecheap, etc.)
+   - Update the nameservers to point to your hosting provider's nameservers
+   - Alternatively, set up an A record pointing to your hosting server's IP address
+
+2. **Configure Web Server:**
+   - In your hosting control panel, add your domain to the list of domains
+   - Set the document root to point to the directory where you uploaded the Crypto Ninja Trades files
+
+3. **Configure WSGI:**
+   - Set up a Python application in your hosting panel (as mentioned in section 4)
+   - Configure the web server to forward requests to your Flask application
+
+### VPS or Dedicated Server
+
+1. **DNS Configuration:**
+   - Set up an A record for your domain pointing to your server's IP address
+
+2. **Web Server Configuration:**
+   - Set up Nginx or Apache as a reverse proxy to your Flask application
+   
+   **Example Nginx configuration:**
+   ```nginx
+   server {
+       listen 80;
+       server_name yourdomain.com www.yourdomain.com;
+       
+       location / {
+           proxy_pass http://127.0.0.1:5000;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+       }
+   }
+   ```
+   
+   **Example Apache configuration:**
+   ```apache
+   <VirtualHost *:80>
+       ServerName yourdomain.com
+       ServerAlias www.yourdomain.com
+       
+       ProxyPass / http://127.0.0.1:5000/
+       ProxyPassReverse / http://127.0.0.1:5000/
+       
+       # Required modules: mod_proxy, mod_proxy_http
+   </VirtualHost>
+   ```
+
+3. **SSL Certificate (Recommended):**
+   - Install Certbot and run: `certbot --nginx -d yourdomain.com -d www.yourdomain.com`
+   - For Apache: `certbot --apache -d yourdomain.com -d www.yourdomain.com`
+
+## 7. Need Help?
 
 Contact support at support@cryptoninjatrades.com for assistance with deployment.
