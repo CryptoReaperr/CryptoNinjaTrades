@@ -93,7 +93,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ultra-responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/immersive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ticker.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/cookie-consent.css') }}">
     
     <!-- Preloader Script -->
     <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
@@ -983,8 +982,10 @@
         }
     </script>
     
-    <!-- Cookie consent script is already loaded via cookie-banner.js -->
-    <!-- Cookie Banner Script - Properly integrated to load after page content -->
-    <script src="{{ url_for('static', filename='js/cookie-banner.js') }}?v=1.0.0"></script>
+    <!-- Test Banner Script that always displays the cookie banner -->
+    <script src="{{ url_for('static', filename='js/cookie-banner-test.js') }}?v=1.0.0"></script>
+    
+    <!-- Original Cookie Banner Script (temporarily disabled for testing) -->
+    <!-- <script src="{{ url_for('static', filename='js/cookie-banner.js') }}?v=1.0.0"></script> -->
 </body>
 </html>
