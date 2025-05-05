@@ -667,14 +667,75 @@
             
             document.getElementById('static-cookie-refuse').addEventListener('click', function() {
                 console.log('Refuse all clicked');
+                // Create overlay with message
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+                
+                // Check if we're in light or dark mode
+                const isLightMode = document.body.classList.contains('theme-light');
+                
+                if (isLightMode) {
+                    overlay.style.backgroundColor = 'rgba(240, 240, 240, 0.98)';
+                    overlay.style.color = '#1A1A1A';
+                } else {
+                    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
+                    overlay.style.color = 'white';
+                }
+                
+                overlay.style.display = 'flex';
+                overlay.style.flexDirection = 'column';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                overlay.style.zIndex = '2147483647';
+                overlay.style.textAlign = 'center';
+                overlay.style.padding = '2rem';
+                overlay.style.transition = 'all 0.3s ease';
+                
+                const message = document.createElement('h2');
+                message.textContent = 'This site requires cookies to function';
+                message.style.fontSize = '1.75rem';
+                message.style.marginBottom = '1rem';
+                message.style.fontWeight = 'bold';
+                
+                const subtext = document.createElement('p');
+                subtext.textContent = 'Closing tab in a few seconds...';
+                subtext.style.fontSize = '1.25rem';
+                subtext.style.marginBottom = '2rem';
+                
+                const countdown = document.createElement('div');
+                countdown.style.fontSize = '3rem';
+                countdown.style.fontWeight = 'bold';
+                countdown.textContent = '6';
+                
+                overlay.appendChild(message);
+                overlay.appendChild(subtext);
+                overlay.appendChild(countdown);
+                document.body.appendChild(overlay);
+                
+                // Set countdown and close tab
+                let timeLeft = 6;
+                const timer = setInterval(() => {
+                    timeLeft--;
+                    countdown.textContent = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        window.close();
+                        // Fallback if window.close() doesn't work
+                        window.location.href = 'about:blank';
+                    }
+                }, 1000);
+                
+                // Store refusal
                 localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
                     necessary: true,
                     preferences: false,
                     statistics: false,
                     marketing: false
                 }));
-                banner.style.opacity = '0';
-                setTimeout(() => banner.style.display = 'none', 300);
             });
             
             document.getElementById('static-cookie-settings').addEventListener('click', function() {
