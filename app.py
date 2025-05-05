@@ -1,6 +1,8 @@
 import os
 import logging
-from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session
+import json
+from datetime import datetime, timedelta
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session, make_response
 from flask_login import login_user, logout_user, login_required, current_user
 
 # Configure logging
@@ -36,6 +38,54 @@ app = create_app()
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Cookie consent management
+@app.route('/api/cookie-consent', methods=['POST'])
+def set_cookie_consent():
+    try:
+        # Get consent data from request
+        consent_data = request.json
+        
+        # Create response
+        response = make_response(jsonify({'status': 'success', 'message': 'Cookie preferences saved'}))
+        
+        # Set cookie with consent data
+        # Max age: 180 days (in seconds)
+        max_age = 60 * 60 * 24 * 180
+        expires = datetime.now() + timedelta(days=180)
+        
+        # Set cookie with consent data
+        response.set_cookie(
+            'crypto_ninja_cookie_consent',
+            json.dumps(consent_data),
+            max_age=max_age, 
+            expires=expires,
+            secure=request.is_secure,
+            httponly=False,  # Allow JavaScript to read this cookie
+            samesite='Lax',
+            path='/'
+        )
+        
+        return response
+    except Exception as e:
+        logging.error(f"Error setting cookie consent: {e}")
+        return jsonify({'status': 'error', 'message': str(e)}), 400
+
+# Helper function to get the cookie consent status
+def get_cookie_consent():
+    try:
+        cookie = request.cookies.get('crypto_ninja_cookie_consent')
+        if cookie:
+            return json.loads(cookie)
+        return None
+    except Exception as e:
+        logging.error(f"Error retrieving cookie consent: {e}")
+        return None
+
+# Pass the cookie consent status to all templates
+@app.context_processor
+def inject_cookie_consent():
+    return {'cookie_consent': get_cookie_consent()}
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -43,6 +93,10 @@ def index():
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
+
+@app.route('/cookie-policy')
+def cookie_policy():
+    return render_template('cookie-policy.html')
 
 @app.route('/terms')
 def terms():

@@ -1020,20 +1020,43 @@
             // Set up event handlers
             document.getElementById('static-cookie-accept').addEventListener('click', function() {
                 console.log('Accept all clicked');
-                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                
+                // Create consent data
+                const consentData = {
                     necessary: true,
                     preferences: true,
                     statistics: true,
                     marketing: true
-                }));
+                };
                 
-                // Force banner to be hidden
-                banner.style.opacity = '0';
-                banner.style.visibility = 'hidden';
-                banner.style.display = 'none';
+                // Store in localStorage (as fallback)
+                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify(consentData));
                 
-                // Also try with setAttribute for more aggressive hiding
-                banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                // Use the server API to set a proper cookie
+                fetch('/api/cookie-consent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(consentData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Cookie consent saved:', data);
+                    
+                    // Force banner to be hidden
+                    banner.style.opacity = '0';
+                    banner.style.visibility = 'hidden';
+                    banner.style.display = 'none';
+                    banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                })
+                .catch(error => {
+                    console.error('Error saving cookie consent:', error);
+                    // Still hide the banner even if API call fails
+                    banner.style.opacity = '0';
+                    banner.style.visibility = 'hidden';
+                    banner.style.display = 'none';
+                });
             });
             
             document.getElementById('static-cookie-refuse').addEventListener('click', function() {
@@ -1121,13 +1144,32 @@
                     }
                 }, 1000);
                 
-                // Store refusal
-                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                // Create consent data with only necessary cookies
+                const consentData = {
                     necessary: true,
                     preferences: false,
                     statistics: false,
                     marketing: false
-                }));
+                };
+                
+                // Store in localStorage (as fallback)
+                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify(consentData));
+                
+                // Use the server API to set a proper cookie
+                fetch('/api/cookie-consent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(consentData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Cookie refusal saved:', data);
+                })
+                .catch(error => {
+                    console.error('Error saving cookie refusal:', error);
+                });
             });
             
             document.getElementById('static-cookie-settings').addEventListener('click', function() {
@@ -1458,51 +1500,122 @@
                 
                 savePrefsButton.addEventListener('click', function() {
                     console.log('Saving preferences:', cookieSettings);
+                    
+                    // Store in localStorage (as fallback)
                     localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify(cookieSettings));
                     
-                    // Force banner to be hidden
-                    banner.style.opacity = '0';
-                    banner.style.visibility = 'hidden';
-                    banner.style.display = 'none';
-                    banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
-                    
-                    document.body.removeChild(modal);
+                    // Use the server API to set a proper cookie
+                    fetch('/api/cookie-consent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(cookieSettings),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Cookie preferences saved:', data);
+                        
+                        // Force banner to be hidden
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                        
+                        document.body.removeChild(modal);
+                    })
+                    .catch(error => {
+                        console.error('Error saving cookie preferences:', error);
+                        // Still hide the banner even if API call fails
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        document.body.removeChild(modal);
+                    });
                 });
                 
                 acceptAllButton.addEventListener('click', function() {
                     console.log('Accept all clicked');
-                    localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                    const consentData = {
                         necessary: true,
                         preferences: true,
                         statistics: true,
                         marketing: true
-                    }));
+                    };
                     
-                    // Force banner to be hidden
-                    banner.style.opacity = '0';
-                    banner.style.visibility = 'hidden';
-                    banner.style.display = 'none';
-                    banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                    // Store in localStorage (as fallback)
+                    localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify(consentData));
                     
-                    document.body.removeChild(modal);
+                    // Use the server API to set a proper cookie
+                    fetch('/api/cookie-consent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(consentData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Accepted all cookies:', data);
+                        
+                        // Force banner to be hidden
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                        
+                        document.body.removeChild(modal);
+                    })
+                    .catch(error => {
+                        console.error('Error accepting all cookies:', error);
+                        // Still hide the banner even if API call fails
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        document.body.removeChild(modal);
+                    });
                 });
                 
                 refuseAllButton.addEventListener('click', function() {
                     console.log('Refuse non-essential clicked');
-                    localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                    const consentData = {
                         necessary: true,
                         preferences: false,
                         statistics: false,
                         marketing: false
-                    }));
+                    };
                     
-                    // Force banner to be hidden
-                    banner.style.opacity = '0';
-                    banner.style.visibility = 'hidden';
-                    banner.style.display = 'none';
-                    banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                    // Store in localStorage (as fallback)
+                    localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify(consentData));
                     
-                    document.body.removeChild(modal);
+                    // Use the server API to set a proper cookie
+                    fetch('/api/cookie-consent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(consentData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Refused non-essential cookies:', data);
+                        
+                        // Force banner to be hidden
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+                        
+                        document.body.removeChild(modal);
+                    })
+                    .catch(error => {
+                        console.error('Error refusing cookies:', error);
+                        // Still hide the banner even if API call fails
+                        banner.style.opacity = '0';
+                        banner.style.visibility = 'hidden';
+                        banner.style.display = 'none';
+                        document.body.removeChild(modal);
+                    });
                 });
             });
             });
