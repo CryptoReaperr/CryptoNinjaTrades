@@ -19,12 +19,16 @@ class CookieConsentManager {
      * Initialize the cookie consent manager
      */
     init() {
+        console.log('CookieConsentManager: init called');
         // Check if consent has already been given
         this.loadConsent();
         
         // If no consent found, show the banner
         if (!this.hasInitialConsent) {
+            console.log('CookieConsentManager: no initial consent, showing banner');
             this.injectBanner();
+        } else {
+            console.log('CookieConsentManager: consent already given, not showing banner');
         }
     }
 
@@ -142,42 +146,73 @@ class CookieConsentManager {
      * Create and inject the cookie consent banner
      */
     injectBanner() {
+        console.log('CookieConsentManager: injectBanner called');
         // Check if a banner already exists
         if (document.querySelector('.cookie-consent')) {
+            console.log('CookieConsentManager: banner already exists, not creating a new one');
             return;
         }
         
-        // Create banner element
-        const bannerElement = document.createElement('div');
-        bannerElement.className = 'cookie-consent';
-        
-        // Set banner content with privacy policy link
-        bannerElement.innerHTML = `
-            <div class="cookie-consent-text">
-                <h3>Cookie Consent</h3>
-                <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.</p>
-                <button class="cookie-settings">Customize preferences</button>
-            </div>
-            <div class="cookie-consent-actions">
-                <button class="cookie-refuse">Refuse All</button>
-                <button class="cookie-accept">Accept All</button>
-            </div>
-        `;
-        
-        // Add event listeners to buttons
-        const acceptButton = bannerElement.querySelector('.cookie-accept');
-        const refuseButton = bannerElement.querySelector('.cookie-refuse');
-        const settingsButton = bannerElement.querySelector('.cookie-settings');
-        
-        acceptButton.addEventListener('click', () => this.acceptAll());
-        refuseButton.addEventListener('click', () => this.refuseAll());
-        settingsButton.addEventListener('click', () => this.showSettingsModal());
-        
-        // Inject banner into the DOM
-        document.body.appendChild(bannerElement);
-        
-        // Also inject the settings modal (hidden by default)
-        this.injectSettingsModal();
+        try {
+            // Create banner element
+            const bannerElement = document.createElement('div');
+            bannerElement.className = 'cookie-consent';
+            
+            // Set banner content with privacy policy link
+            bannerElement.innerHTML = `
+                <div class="cookie-consent-text">
+                    <h3>Cookie Consent</h3>
+                    <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.</p>
+                    <button class="cookie-settings">Customize preferences</button>
+                </div>
+                <div class="cookie-consent-actions">
+                    <button class="cookie-refuse">Refuse All</button>
+                    <button class="cookie-accept">Accept All</button>
+                </div>
+            `;
+            
+            // Add event listeners to buttons
+            const acceptButton = bannerElement.querySelector('.cookie-accept');
+            const refuseButton = bannerElement.querySelector('.cookie-refuse');
+            const settingsButton = bannerElement.querySelector('.cookie-settings');
+            
+            if (acceptButton) {
+                acceptButton.addEventListener('click', () => this.acceptAll());
+            } else {
+                console.error('CookieConsentManager: Accept button not found in the banner');
+            }
+            
+            if (refuseButton) {
+                refuseButton.addEventListener('click', () => this.refuseAll());
+            } else {
+                console.error('CookieConsentManager: Refuse button not found in the banner');
+            }
+            
+            if (settingsButton) {
+                settingsButton.addEventListener('click', () => this.showSettingsModal());
+            } else {
+                console.error('CookieConsentManager: Settings button not found in the banner');
+            }
+            
+            // Inject banner into the DOM
+            if (document.body) {
+                document.body.appendChild(bannerElement);
+                console.log('CookieConsentManager: Banner injected into document body');
+                
+                // Ensure banner is visible (fix any CSS issues)
+                setTimeout(() => {
+                    bannerElement.style.opacity = '1';
+                    bannerElement.style.transform = 'translateY(0)';
+                }, 100);
+                
+                // Also inject the settings modal (hidden by default)
+                this.injectSettingsModal();
+            } else {
+                console.error('CookieConsentManager: document.body not available for banner injection');
+            }
+        } catch (error) {
+            console.error('CookieConsentManager: Error injecting banner:', error);
+        }
     }
 
     /**
