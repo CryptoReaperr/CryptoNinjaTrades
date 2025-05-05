@@ -3,57 +3,125 @@
  * Professional implementation including server-side persistence
  */
 
-// Debug cookie banner initialization
-console.log('Loading cookie-banner.js script');
+// Debug cookie banner initialization with more detailed logs
+console.log('%c[Cookie Banner] Loading cookie-banner.js script', 'color: #4CAF50; font-weight: bold;');
+
+// Force clear any existing consent to test banner
+try {
+    localStorage.removeItem('crypto_ninja_cookie_consent');
+    console.log('%c[Cookie Banner] Cleared local storage consent for testing', 'color: #4CAF50;');
+    
+    // Try to clear the cookie too
+    document.cookie = 'crypto_ninja_cookie_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    console.log('%c[Cookie Banner] Attempted to clear cookie consent', 'color: #4CAF50;');
+} catch (e) {
+    console.error('%c[Cookie Banner] Error clearing consent:', 'color: red;', e);
+}
+
+// Backup method: Force the cookie banner to appear after a delay
+// This ensures it will appear even if DOMContentLoaded events are missed
+function forceShowCookieBanner() {
+    console.log('%c[Cookie Banner] Forcing cookie banner to show via timeout', 'color: #4CAF50; font-weight: bold;');
+    setTimeout(function() {
+        console.log('%c[Cookie Banner] Direct timeout triggered, showing banner', 'color: #4CAF50; font-weight: bold;');
+        showCookieBanner();
+    }, 6000); // 6 second delay to ensure loading animation completes
+}
+
+// Call backup method
+forceShowCookieBanner();
 
 // Wait for the page to be fully loaded, including all resources 
 // This ensures the cookie banner appears after the loading screen
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOMContentLoaded in cookie-banner.js');
+    console.log('%c[Cookie Banner] DOMContentLoaded fired', 'color: #4CAF50; font-weight: bold;');
+    
+    // Also try adding a window.onload handler as backup
+    window.addEventListener('load', function() {
+        console.log('%c[Cookie Banner] Window load event also fired', 'color: #4CAF50; font-weight: bold;');
+    });
+    
     // Wait 5 seconds before showing the banner to ensure loading screen completes
-    console.log('Waiting for 5 seconds before initializing cookie banner...');
+    console.log('%c[Cookie Banner] Waiting for 5 seconds before initializing...', 'color: #4CAF50;');
+    
+    // Create a direct visible debug element
+    const debugElement = document.createElement('div');
+    debugElement.style.position = 'fixed';
+    debugElement.style.bottom = '5px';
+    debugElement.style.right = '5px';
+    debugElement.style.background = 'rgba(0,0,0,0.8)';
+    debugElement.style.color = '#4CAF50';
+    debugElement.style.padding = '5px';
+    debugElement.style.borderRadius = '3px';
+    debugElement.style.fontSize = '10px';
+    debugElement.style.zIndex = '999999999';
+    debugElement.textContent = 'Cookie banner init started';
+    document.body.appendChild(debugElement);
+    
     setTimeout(function() {
-        console.log('Timeout completed, now initializing cookie banner');
+        console.log('%c[Cookie Banner] Timeout completed, now initializing banner', 'color: #4CAF50; font-weight: bold;');
+        debugElement.textContent = 'Cookie timeout completed';
+        
         // Initialize cookie banner after a delay
         initCookieBanner();
         
         // Listen for event to open cookie settings from other places
         document.addEventListener('openCookieSettings', function() {
+            console.log('%c[Cookie Banner] openCookieSettings event received', 'color: #4CAF50;');
             openCookieSettings();
         });
     }, 5000); // 5 second delay to ensure loading animation completes
 });
 
 function initCookieBanner() {
-    console.log('initCookieBanner function running');
+    console.log('%c[Cookie Banner] initCookieBanner function running', 'color: #4CAF50; font-weight: bold;');
+    
+    // Update the debug element
+    const debugElement = document.getElementById('cookie-debug-element') || document.querySelector('div[style*="Cookie banner init started"]');
+    if (debugElement) {
+        debugElement.textContent = 'initCookieBanner running';
+    } else {
+        console.warn('%c[Cookie Banner] Could not find debug element', 'color: orange;');
+    }
+    
     // Check if consent is already given via cookie or localStorage
     const serverConsent = getCookieValue('crypto_ninja_cookie_consent');
-    console.log('Server consent:', serverConsent);
+    console.log('%c[Cookie Banner] Server consent:', 'color: #4CAF50;', serverConsent);
     let hasConsent = false;
     
     try {
         if (serverConsent) {
-            console.log('Server consent found, not showing banner');
+            console.log('%c[Cookie Banner] Server consent found, not showing banner', 'color: #4CAF50;');
             hasConsent = true;
         } else {
             // Fallback to localStorage if no cookie found
             const localConsent = localStorage.getItem('crypto_ninja_cookie_consent');
-            console.log('Local storage consent:', localConsent);
+            console.log('%c[Cookie Banner] Local storage consent:', 'color: #4CAF50;', localConsent);
             if (localConsent) {
-                console.log('Local consent found, not showing banner');
+                console.log('%c[Cookie Banner] Local consent found, not showing banner', 'color: #4CAF50;');
                 hasConsent = true;
             }
         }
     } catch (e) {
-        console.error('Error checking consent:', e);
+        console.error('%c[Cookie Banner] Error checking consent:', 'color: red;', e);
+        if (debugElement) {
+            debugElement.textContent = 'Error: ' + e.message;
+            debugElement.style.color = 'red';
+        }
     }
     
     // If no consent yet, show the banner
     if (!hasConsent) {
-        console.log('No consent found, showing banner');
+        console.log('%c[Cookie Banner] No consent found, showing banner', 'color: #4CAF50; font-weight: bold;');
+        if (debugElement) {
+            debugElement.textContent = 'Showing banner now...';
+        }
         showCookieBanner();
     } else {
-        console.log('Consent already given, not showing banner');
+        console.log('%c[Cookie Banner] Consent already given, not showing banner', 'color: #4CAF50;');
+        if (debugElement) {
+            debugElement.textContent = 'Consent already given';
+        }
     }
 }
 
@@ -65,7 +133,13 @@ function getCookieValue(name) {
 }
 
 function showCookieBanner() {
-    console.log('showCookieBanner function running');
+    console.log('%c[Cookie Banner] showCookieBanner function running', 'color: #4CAF50; font-weight: bold;');
+    
+    // Update debug element
+    const debugElement = document.getElementById('cookie-debug-element') || document.querySelector('div[style*="Cookie banner init started"]');
+    if (debugElement) {
+        debugElement.textContent = 'Creating cookie banner';
+    }
     // Create banner
     const banner = document.createElement('div');
     banner.className = 'cookie-consent';
@@ -708,24 +782,47 @@ function openCookieSettings(banner) {
 }
 
 function hideBanner(banner) {
-    console.log('hideBanner function called');
+    console.log('%c[Cookie Banner] hideBanner function called', 'color: #4CAF50; font-weight: bold;');
+    
+    // Update debug element
+    const debugElement = document.getElementById('cookie-debug-element') || document.querySelector('div[style*="Cookie banner init started"]');
+    if (debugElement) {
+        debugElement.textContent = 'Hiding banner with animation';
+    }
+    
     if (!banner) {
-        console.log('No banner provided to hideBanner function');
+        console.log('%c[Cookie Banner] No banner provided to hideBanner function', 'color: red;');
+        if (debugElement) {
+            debugElement.textContent = 'Error: No banner to hide';
+            debugElement.style.color = 'red';
+        }
         return;
     }
     
-    console.log('Animating banner out of view');
+    console.log('%c[Cookie Banner] Animating banner out of view', 'color: #4CAF50;');
     // Animate banner out of view first
     banner.style.bottom = '-100px';
     
     // Wait for animation to complete before removing from DOM
     setTimeout(function() {
-        console.log('Animation completed, now removing banner');
+        console.log('%c[Cookie Banner] Animation completed, now removing banner', 'color: #4CAF50;');
         // Then hide it completely
         banner.style.opacity = '0';
         banner.style.visibility = 'hidden';
         banner.style.display = 'none';
+        // Force styles with !important to override any potential conflicts
         banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important; bottom: -100px !important;');
-        console.log('Banner hidden successfully');
+        
+        if (debugElement) {
+            debugElement.textContent = 'Banner hidden successfully';
+            
+            // After a few seconds, remove the debug element too
+            setTimeout(() => {
+                debugElement.style.opacity = '0';
+                setTimeout(() => debugElement.remove(), 500);
+            }, 2000);
+        }
+        
+        console.log('%c[Cookie Banner] Banner hidden successfully', 'color: #4CAF50; font-weight: bold;');
     }, 500); // Match the transition duration (0.5s)
 }
