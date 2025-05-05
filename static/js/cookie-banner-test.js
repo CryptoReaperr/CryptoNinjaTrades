@@ -30,7 +30,7 @@ function createTestBanner() {
     banner.style.color = 'white';
     banner.style.borderTop = '1px solid #375F7C';
     banner.style.boxShadow = '0 -5px 15px rgba(0, 0, 0, 0.2)';
-    banner.style.zIndex = '999999';
+    banner.style.zIndex = '9999999';
     banner.style.fontSize = '14px';
     
     // Banner inner HTML
@@ -51,6 +51,12 @@ function createTestBanner() {
     // Set up event handlers
     document.getElementById('test-cookie-close').addEventListener('click', function() {
         console.log('Close button clicked');
-        banner.style.display = 'none';
+        // Instead of changing display style, completely remove the element
+        if (banner && banner.parentNode) {
+            banner.parentNode.removeChild(banner);
+            console.log('Banner has been completely removed from DOM');
+        } else {
+            console.error('Could not remove banner, parent node not found');
+        }
     });
 }
