@@ -3,11 +3,16 @@
  * Professional implementation including server-side persistence
  */
 
+// Debug cookie banner initialization
+console.log('Loading cookie-banner.js script');
+
 // Wait for the page to be fully loaded, including all resources 
 // This ensures the cookie banner appears after the loading screen
 window.addEventListener('load', function() {
+    console.log('Window load event triggered');
     // Delay initialization slightly to ensure page is fully rendered
     setTimeout(function() {
+        console.log('Running delayed cookie banner initialization');
         // Initialize cookie banner after the page has fully loaded
         initCookieBanner();
         
@@ -19,17 +24,22 @@ window.addEventListener('load', function() {
 });
 
 function initCookieBanner() {
+    console.log('initCookieBanner function running');
     // Check if consent is already given via cookie or localStorage
     const serverConsent = getCookieValue('crypto_ninja_cookie_consent');
+    console.log('Server consent:', serverConsent);
     let hasConsent = false;
     
     try {
         if (serverConsent) {
+            console.log('Server consent found, not showing banner');
             hasConsent = true;
         } else {
             // Fallback to localStorage if no cookie found
             const localConsent = localStorage.getItem('crypto_ninja_cookie_consent');
+            console.log('Local storage consent:', localConsent);
             if (localConsent) {
+                console.log('Local consent found, not showing banner');
                 hasConsent = true;
             }
         }
@@ -39,7 +49,10 @@ function initCookieBanner() {
     
     // If no consent yet, show the banner
     if (!hasConsent) {
+        console.log('No consent found, showing banner');
         showCookieBanner();
+    } else {
+        console.log('Consent already given, not showing banner');
     }
 }
 
@@ -51,10 +64,12 @@ function getCookieValue(name) {
 }
 
 function showCookieBanner() {
+    console.log('showCookieBanner function running');
     // Create banner
     const banner = document.createElement('div');
     banner.className = 'cookie-consent';
     banner.id = 'cookie-banner';
+    console.log('Banner element created:', banner);
     
     // Check if we're in light or dark mode
     const isLightMode = document.body.classList.contains('theme-light');
@@ -75,7 +90,16 @@ function showCookieBanner() {
         </div>
     `;
     
+    console.log('Appending banner to document body');
     document.body.appendChild(banner);
+    console.log('Banner has been appended to document body');
+    
+    // Force the banner to be visible
+    banner.style.display = 'flex';
+    banner.style.opacity = '1';
+    banner.style.visibility = 'visible';
+    banner.style.zIndex = '999999';
+    console.log('Banner forced to display:flex and opacity:1');
     
     // Set up event handlers
     document.getElementById('static-cookie-accept').addEventListener('click', function() {
@@ -672,10 +696,16 @@ function openCookieSettings(banner) {
 }
 
 function hideBanner(banner) {
-    if (!banner) return;
+    console.log('hideBanner function called');
+    if (!banner) {
+        console.log('No banner provided to hideBanner function');
+        return;
+    }
     
+    console.log('Hiding banner:', banner);
     banner.style.opacity = '0';
     banner.style.visibility = 'hidden';
     banner.style.display = 'none';
     banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
+    console.log('Banner hidden successfully');
 }
