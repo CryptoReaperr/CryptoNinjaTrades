@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 class CryptoAPI:
     def __init__(self):
-        self.api_key = os.environ.get("COINMARKETCAP_API")
+        self.api_key = os.environ.get("COINMARKETCAP_API_KEY")
         self.base_url = "https://pro-api.coinmarketcap.com/v1"
         self.cache = {}
         self.cache_time = None

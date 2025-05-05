@@ -36,7 +36,7 @@ async function initializeCryptoTicker() {
 async function fetchCoinMarketCapData() {
     try {
         // Try getting data from our server-side proxy first
-        const response = await fetch('/crypto/prices');
+        const response = await fetch('/api/crypto-prices');
         
         if (!response.ok) {
             // If server fails, try client-side with the API key in meta tag as fallback
