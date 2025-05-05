@@ -714,10 +714,18 @@ function hideBanner(banner) {
         return;
     }
     
-    console.log('Hiding banner:', banner);
-    banner.style.opacity = '0';
-    banner.style.visibility = 'hidden';
-    banner.style.display = 'none';
-    banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important;');
-    console.log('Banner hidden successfully');
+    console.log('Animating banner out of view');
+    // Animate banner out of view first
+    banner.style.bottom = '-100px';
+    
+    // Wait for animation to complete before removing from DOM
+    setTimeout(function() {
+        console.log('Animation completed, now removing banner');
+        // Then hide it completely
+        banner.style.opacity = '0';
+        banner.style.visibility = 'hidden';
+        banner.style.display = 'none';
+        banner.setAttribute('style', 'display: none !important; opacity: 0 !important; visibility: hidden !important; bottom: -100px !important;');
+        console.log('Banner hidden successfully');
+    }, 500); // Match the transition duration (0.5s)
 }
