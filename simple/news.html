@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto News - Crypto Ninja Trades</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/next-level.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <link rel="stylesheet" href="css/immersive.css">
+    <link rel="stylesheet" href="css/ultra-responsive.css">
+    <link rel="stylesheet" href="css/ticker.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    
+    <!-- Animation Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom Styles for News Page -->
+    <style>
+        /* News page specific styles - With enhanced 2025 design aesthetics */
+        body {
+            background-image: linear-gradient(to bottom, #0f172a, #1a2234, #1e293b);
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544v2.83L25.456 30l-1.414 1.414-28-28L0 0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2v2.83l21.627 21.628-1.414 1.414L0 13.657v2.828l17.8 17.8-1.414 1.414L0 19.1v2.83l14.142 14.14-1.414 1.415L0 24.544v2.83l10.314 10.314L8.9 39.1 0 30.172v2.828l7.544 7.544L6.13 41.97 0 35.83v2.83l3.657 3.657L2.242 43.73 0 41.5v2.83L0 60h60L60 0H0v5.373z' fill='%23375F7C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.8;
+            z-index: -1;
+        }
+        
+        .glitch-text {
+            position: relative;
+            color: #f8fafc;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(55, 95, 124, 0.5);
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #375F7C;
+            animation: glitch-effect 3s infinite alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: 1px 0 #567890;
+            animation: glitch-effect 2s infinite alternate-reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% { clip-path: inset(30% 0 68% 0); }
+            20% { clip-path: inset(63% 0 1% 0); }
+            40% { clip-path: inset(43% 0 47% 0); }
+            60% { clip-path: inset(25% 0 58% 0); }
+            80% { clip-path: inset(75% 0 8% 0); }
+            100% { clip-path: inset(93% 0 7% 0); }
+        }
+        
+        /* News card design with more premium feel */
+        .news-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(87, 120, 144, 0.3);
+            border-left: 3px solid #375F7C;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(55, 95, 124, 0.1), transparent 80%);
+            pointer-events: none;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-7px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(55, 95, 124, 0.3);
+            border-color: rgba(87, 120, 144, 0.6);
+            border-left-color: #4A6378;
+        }
+        
+        .source-badge {
+            background: linear-gradient(135deg, #375F7C, #4A6378);
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .date-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            font-style: italic;
+        }
+        
+        .news-title {
+            background: linear-gradient(90deg, #f8fafc, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Fancy loading with ninja star spinner */
+        .news-loading {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 99, 120, 0.2);
+        }
+        
+        .news-loading h3 {
+            margin-top: 20px;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            animation: rotate 3s linear infinite;
+        }
+        
+        .loading-spinner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23375F7C' width='24' height='24'%3E%3Cpath d='M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced card link */
+        .news-card a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            color: #60a5fa;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+            overflow: hidden;
+        }
+        
+        .news-card a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #60a5fa;
+            transform: translateX(-101%);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card a:hover {
+            color: #93c5fd;
+        }
+        
+        .news-card a:hover::after {
+            transform: translateX(0);
+        }
+        
+        /* Subtle grid pattern for hero section */
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(74, 99, 120, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(74, 99, 120, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        /* Source filter badges - unique interactive element */
+        .source-filter-badge {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(74, 99, 120, 0.4);
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .source-filter-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 99, 120, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .source-filter-badge:hover {
+            border-color: rgba(74, 99, 120, 0.8);
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        
+        .source-filter-badge:hover::before {
+            opacity: 1;
+        }
+        
+        .source-filter-badge.active {
+            background: linear-gradient(135deg, #375F7C, #4A6378);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 2px 10px rgba(55, 95, 124, 0.4);
+        }
+        
+        /* News card animation on load */
+        .news-card {
+            animation: card-appear 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        }
+        
+        @keyframes card-appear {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Hide filtered items */
+        .news-card.filtered {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-ninja-black text-ninja-light font-inter font-crisp custom-scrollbar overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="text-center">
+            <img src="images/official-logo.png" alt="Crypto Ninja Trades Logo" class="mx-auto w-24 h-24 mb-4 animate-pulse rounded-full">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="text-sm text-ninja-light/70 mt-2">Loading news feed...</p>
+        </div>
+    </div>
+    
+    <!-- Background Particles -->
+    <div id="particles-container" class="fixed inset-0 z-0"></div>
+    
+    <!-- Liquid Mesh Background (low opacity) -->
+    <div id="liquid-mesh" class="fixed inset-0 z-0 opacity-30"></div>
+    <div class="liquid-mesh"></div>
+    <div class="scanlines"></div>
+    
+    <!-- Toast notification for copied text -->
+    <div id="copy-toast" class="copy-toast">Copied!</div>
+    
+    <!-- Theme Toggle -->
+    <div id="theme-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Light/Dark Mode">
+        <div class="theme-toggle-switch w-10 h-10 flex items-center justify-center relative overflow-hidden">
+            <i data-feather="moon" class="w-5 h-5 text-neon-green absolute dark-icon"></i>
+            <i data-feather="sun" class="w-5 h-5 text-amber-400 absolute light-icon hidden"></i>
+        </div>
+        <span class="theme-toggle-label sr-only">Toggle Theme</span>
+    </div>
+    <!-- Header -->
+    <header class="fixed w-full top-0 bg-ninja-black/90 backdrop-blur-md z-50 border-b border-ninja-gray/30">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Branding -->
+                <a href="index.html" class="flex items-center gap-3 logo-link relative z-20">
+                    <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
+                        <p class="text-xs text-ninja-light/80">Trade with Precision, Win with Confidence</p>
+                    </div>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="index.html#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
+                    <a href="index.html#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
+                    <a href="index.html#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
+                    <a href="news.html" class="font-medium text-neon-green transition-colors duration-300">News</a>
+                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="index.html#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
+                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
+                </nav>
+                
+                <!-- Join Now Button (Desktop) -->
+                <a href="index.html#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 z-20">
+                    Join Now
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30">
+            <div class="container mx-auto px-4 py-5">
+                <nav class="flex flex-col gap-4">
+                    <a href="index.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="index.html#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
+                    <a href="index.html#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
+                    <a href="index.html#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
+                    <a href="news.html" class="font-medium text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="index.html#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
+                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
+                    
+                    <!-- Join Now Button (Mobile) -->
+                    <a href="index.html#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
+                        Join Now
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto pt-32 pb-20 px-6">
+        <!-- Hero Section -->
+        <section class="text-center mb-16 relative py-16">
+            <div class="hero-grid"></div>
+            <div class="absolute -top-8 -left-8 w-16 h-16 opacity-20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#375F7C" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+            </div>
+            <div class="absolute -bottom-6 -right-6 w-12 h-12 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#567890" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 glitch-text" data-aos="fade-down" data-text="Latest Crypto News">Latest Crypto News</h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Stay updated with the latest happenings in the crypto world. Our news feed aggregates breaking news from the most reliable sources in the industry.
+            </p>
+            
+            <!-- Unique Element: Source Filter Badges -->
+            <div class="flex flex-wrap justify-center mt-8 gap-3" data-aos="fade-up" data-aos-delay="300">
+                <button class="source-filter-badge active" data-source="all">All Sources</button>
+                <button class="source-filter-badge" data-source="Investing.com">Investing.com</button>
+                <button class="source-filter-badge" data-source="Crypto.news">Crypto.news</button>
+                <button class="source-filter-badge" data-source="Cryptonews.com">Cryptonews</button>
+                <button class="source-filter-badge" data-source="Cointelegraph.com">Cointelegraph</button>
+            </div>
+        </section>
+        
+        <!-- News Grid -->
+        <section class="mb-16">
+            <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Static news items for the simple HTML version -->
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1621761191319-c6fb62004040?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8Qml0Y29pbnxlbnwwfHx8fDE2OTA4OTM3NjJ8MA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Cointelegraph.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Bitcoin Surges Past $82,000 as Market Sentiment Turns Bullish</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Bitcoin has reached a new all-time high, surpassing $82,000 as institutional adoption continues to grow. Analysts attribute the surge to several factors including reduced selling pressure after the recent halving event.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MzJ8fEV0aGVyZXVtfGVufDB8fHx8MTY5MDg5MzgwMnww&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Investing.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">5 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Ethereum's Transaction Volume Soars Following Network Upgrade</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Ethereum's latest network upgrade has led to a significant increase in transaction volume and lower gas fees. The improvements have enhanced scalability, allowing for more efficient DeFi and NFT operations.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1639152201720-5e536d254d81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTV8fHhycHxlbnwwfHx8fDE2OTA4OTM4MzZ8MA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Crypto.news</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">SEC Approves First XRP ETF, Market Reacts with 18% Price Jump</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">In a surprise move, the U.S. Securities and Exchange Commission has approved the first XRP Exchange-Traded Fund. The decision comes after years of legal battles between Ripple and the regulatory body.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1621504450181-5fdb1eaeb4c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fEJpbmFuY2V8ZW58MHx8fHwxNjkwODkzODY4fDA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Cryptonews.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">2 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Binance Launches New AI-Powered Trading Assistant for Premium Users</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Binance, the world's largest cryptocurrency exchange, has announced a new AI-powered trading assistant exclusively for their premium users. The feature uses machine learning to provide personalized trading suggestions.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1654020233949-6d338c778087?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fFNvbGFuYXxlbnwwfHx8fDE2OTA4OTM5MTN8MA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Cointelegraph.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">3 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Solana's DeFi Ecosystem Reaches $14 Billion in Total Value Locked</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Solana's DeFi ecosystem has reached a milestone of $14 billion in Total Value Locked (TVL). The impressive growth reflects increased developer activity and adoption of the high-performance blockchain.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1624383207697-67cf10458acc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8Q2FyZGFub3xlbnwwfHx8fDE2OTA4OTM5NDd8MA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Investing.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">4 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Cardano Partners with Major African Nation for Digital Identity Solutions</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Cardano has announced a partnership with a major African nation to implement a blockchain-based digital identity system. The project aims to provide verifiable credentials to millions of citizens without current access to formal identification.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1627540118817-599aea0b6074?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8UG9sa2Fkb3R8ZW58MHx8fHwxNjkwODkzOTc3fDA&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Crypto.news</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">5 days ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Polkadot Ecosystem Expands with Five New Parachains Winning Auction Slots</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Five new projects have secured parachain slots on the Polkadot network after a competitive auction process. The expansion brings new DeFi, NFT, and interoperability solutions to the growing multi-chain ecosystem.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="news-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="700">
+                    <div class="relative">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1642006953663-06f0387f5652?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MXx8QXZhbGFuY2hlJTIwY3J5cHRvfGVufDB8fHx8MTY5MDg5NDAwOHww&ixlib=rb-4.0.3&q=80&w=1080')"></div>
+                        <div class="absolute top-2 left-2">
+                            <span class="source-badge text-xs font-medium text-white px-2 py-1 rounded-full bg-ninja-black/80 backdrop-blur-sm">Cryptonews.com</span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="date-text px-2 py-1 rounded-full bg-ninja-dark/80 backdrop-blur-sm">1 week ago</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="news-title text-lg font-semibold mb-3 line-clamp-2">Avalanche Sets New Transaction Speed Record in Latest Network Stress Test</h3>
+                        <p class="text-gray-400 mb-4 line-clamp-3">Avalanche has set a new record for transaction speed and throughput during its latest network stress test. The results demonstrate the platform's capability to handle mass adoption with minimal congestion.</p>
+                        <a href="#" class="flex items-center">
+                            Read more 
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-ninja-dark border-t border-ninja-gray/30">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Logo and Copyright -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center gap-3 justify-center md:justify-start">
+                        <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full glow-border">
+                        <h2 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h2>
+                    </div>
+                    <p class="text-sm text-ninja-light/70 mt-2">
+                        © 2025 Crypto Ninja Trades. All Rights Reserved.
+                    </p>
+                </div>
+                
+                <!-- Footer Links -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-sm font-bold mb-3">Navigation</h3>
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Home</a></li>
+                            <li><a href="news.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">News</a></li>
+                            <li><a href="trends.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Trends</a></li>
+                            <li><a href="academy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Academy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold mb-3">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="terms.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Terms of Service</a></li>
+                            <li><a href="privacy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Privacy Policy</a></li>
+                            <li><a href="cookie-policy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <h3 class="text-sm font-bold mb-3">Connect</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://t.me/cryptoninjatrades" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Telegram</a></li>
+                            <li><a href="https://x.com/ninjatradesBTC" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">X (Twitter)</a></li>
+                            <li><a href="https://discord.gg/EZtXMRnBBa" target="_blank" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">Discord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="mailto:support@cryptoninjatrades.com" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                    support@cryptoninjatrades.com
+                </a>
+                <p class="text-xs text-ninja-light/50 mt-4">
+                    Trading cryptocurrencies involves risk. Past performance is not indicative of future results. Only invest what you can afford to lose.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            // Initialize Feather Icons
+            feather.replace();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.querySelector('.icon-open');
+            const iconClose = document.querySelector('.icon-close');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+            
+            // Set up news source filtering
+            setupSourceFilters();
+        });
+        
+        // Set up news source filtering
+        function setupSourceFilters() {
+            const filterBadges = document.querySelectorAll('.source-filter-badge');
+            
+            filterBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    // Remove active class from all badges
+                    filterBadges.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked badge
+                    this.classList.add('active');
+                    
+                    // Get selected source
+                    const selectedSource = this.getAttribute('data-source');
+                    
+                    // Filter news cards
+                    filterNewsBySource(selectedSource);
+                });
+            });
+        }
+        
+        // Filter news by source
+        function filterNewsBySource(source) {
+            const newsCards = document.querySelectorAll('.news-card');
+            
+            newsCards.forEach(card => {
+                if (source === 'all') {
+                    // Show all cards
+                    card.classList.remove('filtered');
+                    // Add animation delay for staggered reveal
+                    setTimeout(() => {
+                        card.style.animationDelay = '0s';
+                    }, 50);
+                } else {
+                    const cardSource = card.querySelector('.source-badge');
+                    if (cardSource) {
+                        const sourceText = cardSource.textContent;
+                        
+                        if (sourceText.toLowerCase() === source.toLowerCase()) {
+                            // Show cards that match the source
+                            card.classList.remove('filtered');
+                            // Add animation delay for staggered reveal
+                            setTimeout(() => {
+                                card.style.animationDelay = '0s';
+                            }, 50);
+                        } else {
+                            // Hide cards that don't match the source
+                            card.classList.add('filtered');
+                        }
+                    }
+                }
+            });
+            
+            // Check if we have visible cards after filtering
+            const visibleCards = document.querySelectorAll('.news-card:not(.filtered)');
+            const newsContainer = document.getElementById('news-container');
+            
+            if (visibleCards.length === 0) {
+                // No results found
+                const existingNoResults = document.querySelector('.no-results');
+                if (!existingNoResults) {
+                    const noResultsElement = document.createElement('div');
+                    noResultsElement.className = 'col-span-full text-center py-12 no-results';
+                    noResultsElement.innerHTML = `
+                        <i data-feather="search" class="mx-auto h-12 w-12 text-gray-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">No News From This Source</h3>
+                        <p class="text-gray-400">Try selecting a different source or check back later for updates.</p>
+                    `;
+                    
+                    newsContainer.appendChild(noResultsElement);
+                    feather.replace();
+                }
+            } else {
+                // Remove any existing no-results element if we have cards to show
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="js/liquid-mesh.js"></script>
+    <script>
+        // Initialize liquid mesh if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof LiquidMesh !== 'undefined') {
+                const liquidMeshElement = document.querySelector('.liquid-mesh');
+                if (liquidMeshElement) {
+                    const mesh = new LiquidMesh(liquidMeshElement, {
+                        color: '#375F7C',
+                        backgroundColor: 'transparent',
+                        density: window.innerWidth > 768 ? 20 : 10
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <!-- Theme Toggle JS -->
+    <script src="js/theme-toggle.js"></script>
+    
+    <!-- Cookie consent script -->
+    <script src="js/cookie-consent.js"></script>
+</body>
+</html>
