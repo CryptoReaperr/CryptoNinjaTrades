@@ -882,5 +882,73 @@
             }
         });
     </script>
+    <!-- Directly injected cookie consent banner -->
+    <div class="cookie-consent" id="static-cookie-banner">
+        <div class="cookie-consent-text">
+            <h3>Cookie Consent</h3>
+            <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies.</p>
+            <button class="cookie-settings" id="static-cookie-settings">Customize preferences</button>
+        </div>
+        <div class="cookie-consent-actions">
+            <button class="cookie-refuse" id="static-cookie-refuse">Refuse All</button>
+            <button class="cookie-accept" id="static-cookie-accept">Accept All</button>
+        </div>
+    </div>
+
+    <!-- Small script to handle the static cookie banner -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Setting up static cookie banner handlers');
+            const banner = document.getElementById('static-cookie-banner');
+            
+            // Only show if no consent already saved
+            const savedConsent = localStorage.getItem('crypto_ninja_cookie_consent');
+            if (savedConsent) {
+                console.log('Found saved consent, hiding banner');
+                banner.style.display = 'none';
+            } else {
+                console.log('No saved consent found, showing banner');
+                banner.style.display = 'flex';
+            }
+            
+            // Set up event handlers
+            document.getElementById('static-cookie-accept').addEventListener('click', function() {
+                console.log('Accept all clicked');
+                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                    necessary: true,
+                    preferences: true,
+                    statistics: true,
+                    marketing: true
+                }));
+                banner.style.opacity = '0';
+                setTimeout(() => banner.style.display = 'none', 300);
+            });
+            
+            document.getElementById('static-cookie-refuse').addEventListener('click', function() {
+                console.log('Refuse all clicked');
+                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                    necessary: true,
+                    preferences: false,
+                    statistics: false,
+                    marketing: false
+                }));
+                banner.style.opacity = '0';
+                setTimeout(() => banner.style.display = 'none', 300);
+            });
+            
+            document.getElementById('static-cookie-settings').addEventListener('click', function() {
+                console.log('Settings clicked');
+                // For now just accept all on settings click as a fallback
+                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                    necessary: true,
+                    preferences: true,
+                    statistics: true,
+                    marketing: true
+                }));
+                banner.style.opacity = '0';
+                setTimeout(() => banner.style.display = 'none', 300);
+            });
+        });
+    </script>
 </body>
 </html>
