@@ -1,6 +1,7 @@
 import os
 import logging
 import json
+import requests
 from datetime import datetime, timedelta
 from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session, make_response, send_from_directory
 from flask_login import login_user, logout_user, login_required, current_user
@@ -170,6 +171,32 @@ def serve_simple_index():
     return send_from_directory('simple', 'index.html')
 
 # API Routes
+@app.route('/api/crypto-proxy', methods=['POST'])
+def crypto_proxy():
+    """Proxy for CoinMarketCap API to avoid CORS issues"""
+    try:
+        # Get request data
+        data = request.json
+        url = data.get('url')
+        api_key = data.get('apiKey')
+        
+        if not url or not api_key:
+            return jsonify({'error': 'Missing URL or API key'}), 400
+            
+        # Make the request to CoinMarketCap
+        headers = {
+            'X-CMC_PRO_API_KEY': api_key,
+            'Accept': 'application/json'
+        }
+        
+        response = requests.get(url, headers=headers)
+        
+        # Return the response
+        return jsonify(response.json())
+    except Exception as e:
+        logging.error(f"CoinMarketCap proxy error: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/crypto-prices')
 def crypto_prices():
     prices = crypto_api.get_latest_prices(limit=10)
