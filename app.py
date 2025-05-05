@@ -2,7 +2,7 @@ import os
 import logging
 import json
 from datetime import datetime, timedelta
-from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session, make_response
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, session, make_response, send_from_directory
 from flask_login import login_user, logout_user, login_required, current_user
 
 # Configure logging
@@ -158,6 +158,16 @@ def news():
 @app.route('/trends')
 def trends():
     return render_template('trends.html')
+
+# Static site routes (for the simple static version)
+@app.route('/simple/<path:filename>')
+def serve_simple_site(filename):
+    return send_from_directory('simple', filename)
+
+# Special route to serve simple/index.html when /simple/ is accessed
+@app.route('/simple/')
+def serve_simple_index():
+    return send_from_directory('simple', 'index.html')
 
 # API Routes
 @app.route('/api/crypto-prices')
