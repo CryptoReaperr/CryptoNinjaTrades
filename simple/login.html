@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Crypto Ninja Trades</title>
     
+    <!-- Failsafe loader removal script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Force remove loader after 4 seconds no matter what
+            setTimeout(function() {
+                // Check all possible loader IDs
+                ['page-loader', 'loading-screen'].forEach(function(id) {
+                    var loader = document.getElementById(id);
+                    if (loader) {
+                        loader.style.display = 'none';
+                        setTimeout(function() {
+                            if (loader.parentNode) {
+                                loader.parentNode.removeChild(loader);
+                            }
+                        }, 100);
+                    }
+                });
+            }, 4000);
+        });
+    </script>
+    
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
