@@ -956,22 +956,43 @@
                 overlay.style.padding = '2rem';
                 overlay.style.transition = 'all 0.3s ease';
                 
+                // Ninja logo
+                const logo = document.createElement('div');
+                logo.innerHTML = '<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 0C17.9086 0 0 17.9086 0 40C0 62.0914 17.9086 80 40 80C62.0914 80 80 62.0914 80 40C80 17.9086 62.0914 0 40 0Z" fill="#375F7C"/><path d="M58 30C58 36.6274 52.6274 42 46 42C39.3726 42 34 36.6274 34 30C34 23.3726 39.3726 18 46 18C52.6274 18 58 23.3726 58 30Z" fill="black"/><path d="M26 38C26 41.3137 23.3137 44 20 44C16.6863 44 14 41.3137 14 38C14 34.6863 16.6863 32 20 32C23.3137 32 26 34.6863 26 38Z" fill="black"/><path d="M20 52C20 52 24 60 40 60C56 60 60 52 60 52L20 52Z" fill="black"/></svg>';
+                logo.style.marginBottom = '2rem';
+                logo.style.opacity = '0.9';
+                if (isLightMode) {
+                    logo.querySelector('path').setAttribute('fill', '#1A1A1A');
+                }
+                
                 const message = document.createElement('h2');
                 message.textContent = 'This site requires cookies to function';
                 message.style.fontSize = '1.75rem';
                 message.style.marginBottom = '1rem';
                 message.style.fontWeight = 'bold';
+                message.style.fontFamily = "'Montserrat', sans-serif";
                 
                 const subtext = document.createElement('p');
                 subtext.textContent = 'Closing tab in a few seconds...';
                 subtext.style.fontSize = '1.25rem';
                 subtext.style.marginBottom = '2rem';
+                subtext.style.opacity = '0.8';
                 
                 const countdown = document.createElement('div');
-                countdown.style.fontSize = '3rem';
+                countdown.style.fontSize = '3.5rem';
                 countdown.style.fontWeight = 'bold';
+                countdown.style.width = '80px';
+                countdown.style.height = '80px';
+                countdown.style.borderRadius = '50%';
+                countdown.style.display = 'flex';
+                countdown.style.alignItems = 'center';
+                countdown.style.justifyContent = 'center';
+                countdown.style.background = isLightMode ? 'rgba(55, 95, 124, 0.1)' : 'rgba(55, 95, 124, 0.2)';
+                countdown.style.border = '2px solid #375F7C';
+                countdown.style.color = '#375F7C';
                 countdown.textContent = '6';
                 
+                overlay.appendChild(logo);
                 overlay.appendChild(message);
                 overlay.appendChild(subtext);
                 overlay.appendChild(countdown);

@@ -1126,15 +1126,155 @@
             
             document.getElementById('static-cookie-settings').addEventListener('click', function() {
                 console.log('Settings clicked');
-                // For now just accept all on settings click as a fallback
-                localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
-                    necessary: true,
-                    preferences: true,
-                    statistics: true,
-                    marketing: true
-                }));
-                banner.style.opacity = '0';
-                setTimeout(() => banner.style.display = 'none', 300);
+                
+                // Create settings modal
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.zIndex = '2147483647';
+                
+                // Modal content
+                const modalContent = document.createElement('div');
+                modalContent.style.width = '90%';
+                modalContent.style.maxWidth = '600px';
+                modalContent.style.maxHeight = '90vh';
+                modalContent.style.overflowY = 'auto';
+                modalContent.style.backgroundColor = document.body.classList.contains('theme-light') ? '#f0f0f0' : '#1a1a1a';
+                modalContent.style.color = document.body.classList.contains('theme-light') ? '#1a1a1a' : '#e0e0e0';
+                modalContent.style.borderRadius = '10px';
+                modalContent.style.padding = '2rem';
+                modalContent.style.position = 'relative';
+                modalContent.style.boxShadow = '0 20px 25px rgba(0, 0, 0, 0.3)';
+                modalContent.style.border = '1px solid rgba(55, 95, 124, 0.3)';
+                
+                // Close button
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '&times;';
+                closeBtn.style.position = 'absolute';
+                closeBtn.style.top = '15px';
+                closeBtn.style.right = '15px';
+                closeBtn.style.background = 'none';
+                closeBtn.style.border = 'none';
+                closeBtn.style.fontSize = '1.5rem';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.color = document.body.classList.contains('theme-light') ? '#1a1a1a' : '#e0e0e0';
+                
+                // Header
+                const header = document.createElement('div');
+                header.style.marginBottom = '1.5rem';
+                header.style.borderBottom = '1px solid rgba(55, 95, 124, 0.3)';
+                header.style.paddingBottom = '1rem';
+                
+                const title = document.createElement('h3');
+                title.textContent = 'Cookie Settings';
+                title.style.fontSize = '1.25rem';
+                title.style.fontWeight = '700';
+                
+                // Category: Necessary
+                const necessaryCategory = document.createElement('div');
+                necessaryCategory.style.marginBottom = '1.5rem';
+                necessaryCategory.style.paddingBottom = '1rem';
+                necessaryCategory.style.borderBottom = '1px solid rgba(55, 95, 124, 0.2)';
+                
+                const necessaryHeader = document.createElement('div');
+                necessaryHeader.style.display = 'flex';
+                necessaryHeader.style.justifyContent = 'space-between';
+                necessaryHeader.style.marginBottom = '0.5rem';
+                
+                const necessaryTitle = document.createElement('h4');
+                necessaryTitle.textContent = 'Essential Cookies';
+                necessaryTitle.style.fontWeight = '600';
+                necessaryTitle.style.fontSize = '1rem';
+                
+                const necessaryToggleContainer = document.createElement('div');
+                necessaryToggleContainer.style.opacity = '0.6';
+                
+                const necessaryToggle = document.createElement('div');
+                necessaryToggle.style.width = '50px';
+                necessaryToggle.style.height = '24px';
+                necessaryToggle.style.backgroundColor = '#375F7C';
+                necessaryToggle.style.borderRadius = '34px';
+                necessaryToggle.style.position = 'relative';
+                
+                const necessaryToggleKnob = document.createElement('div');
+                necessaryToggleKnob.style.position = 'absolute';
+                necessaryToggleKnob.style.height = '16px';
+                necessaryToggleKnob.style.width = '16px';
+                necessaryToggleKnob.style.borderRadius = '50%';
+                necessaryToggleKnob.style.backgroundColor = 'white';
+                necessaryToggleKnob.style.left = '30px'; // Checked position
+                necessaryToggleKnob.style.top = '4px';
+                necessaryToggleKnob.style.transition = '0.4s';
+                
+                const necessaryDesc = document.createElement('p');
+                necessaryDesc.textContent = 'These cookies are required for the website to function and cannot be disabled.';
+                necessaryDesc.style.color = document.body.classList.contains('theme-light') ? 'rgba(26, 26, 26, 0.7)' : 'rgba(224, 224, 224, 0.7)';
+                necessaryDesc.style.fontSize = '0.9rem';
+                necessaryDesc.style.marginBottom = '0.75rem';
+                
+                // Actions
+                const actions = document.createElement('div');
+                actions.style.display = 'flex';
+                actions.style.justifyContent = 'space-between';
+                actions.style.gap = '1rem';
+                actions.style.marginTop = '2rem';
+                
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Accept All';
+                saveButton.style.backgroundColor = '#375F7C';
+                saveButton.style.color = 'white';
+                saveButton.style.border = 'none';
+                saveButton.style.borderRadius = '6px';
+                saveButton.style.padding = '0.75rem 1.5rem';
+                saveButton.style.fontWeight = '600';
+                saveButton.style.cursor = 'pointer';
+                saveButton.style.flex = '1';
+                
+                // Assembly
+                necessaryToggle.appendChild(necessaryToggleKnob);
+                necessaryToggleContainer.appendChild(necessaryToggle);
+                necessaryHeader.appendChild(necessaryTitle);
+                necessaryHeader.appendChild(necessaryToggleContainer);
+                necessaryCategory.appendChild(necessaryHeader);
+                necessaryCategory.appendChild(necessaryDesc);
+                
+                header.appendChild(title);
+                
+                actions.appendChild(saveButton);
+                
+                modalContent.appendChild(closeBtn);
+                modalContent.appendChild(header);
+                modalContent.appendChild(necessaryCategory);
+                modalContent.appendChild(actions);
+                
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+                
+                // Event listeners
+                closeBtn.addEventListener('click', function() {
+                    // Close without saving
+                    document.body.removeChild(modal);
+                });
+                
+                saveButton.addEventListener('click', function() {
+                    console.log('Settings saved - accepting all');
+                    localStorage.setItem('crypto_ninja_cookie_consent', JSON.stringify({
+                        necessary: true,
+                        preferences: true,
+                        statistics: true,
+                        marketing: true
+                    }));
+                    banner.style.opacity = '0';
+                    setTimeout(() => banner.style.display = 'none', 300);
+                    document.body.removeChild(modal);
+                });
             });
         });
     </script>
