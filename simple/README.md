@@ -31,10 +31,12 @@ This is the static HTML version of the Crypto Ninja Trades website. This version
 2. Make sure to maintain the folder structure (css/, js/, images/)
 3. Set index.html as the default page
 
-Alternatively, you can use the included `copy_to_ftp.sh` script to create a zip archive:
+Alternatively, you can use the included `copy_to_ftp.sh` script to create a tar archive:
 ```
 sh copy_to_ftp.sh
 ```
+
+This will create a `crypto_ninja_trades_static.tar.gz` file that you can download and extract.
 
 ## Important Note
 This is a static version of the website. Features that typically require a backend (like user login, dynamic data fetching, etc.) are simulated or presented as static content.
