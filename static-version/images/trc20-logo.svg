@@ -1,7 +1,10 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="24" height="24" rx="12" fill="#EF0027"/>
-  <path d="M12 5L19 9.75V14.25L12 19L5 14.25V9.75L12 5Z" fill="white" fill-opacity="0.9"/>
-  <path d="M12.25 12.25L16 10.5V15.5L12.25 17V12.25Z" fill="#EF0027" fill-opacity="0.8"/>
-  <path d="M12.25 12.25L8.5 10.5V15.5L12.25 17V12.25Z" fill="#EF0027" fill-opacity="0.5"/>
-  <path d="M16 10.5H8.5L12.25 12.25L16 10.5Z" fill="#EF0027" fill-opacity="0.3"/>
+  <circle cx="12" cy="12" r="12" fill="#FF0013"/>
+  <path d="M18.9643 8.7572L17.0966 14.4437L15.6103 11.1437L18.9643 8.7572Z" fill="white"/>
+  <path d="M12.0003 4.5L19.5 9L12.0003 13.5L4.5 9L12.0003 4.5Z" fill="white"/>
+  <path d="M9.34608 14.9529L11.9993 19.5L14.6525 14.9529L11.9993 16.4882L9.34608 14.9529Z" fill="white"/>
+  <path d="M4.5 9L6.90375 14.4437L8.39025 11.1437L4.5 9Z" fill="white"/>
+  <path d="M11.9993 13.5L14.6525 14.9529L11.9993 16.4882L9.34608 14.9529L11.9993 13.5Z" fill="white"/>
+  <path d="M16.2413 10.3452L15.6105 11.1437L14.6525 14.9529L11.9993 13.5L11.9993 10.3452L16.2413 10.3452Z" fill="white"/>
+  <path d="M7.75875 10.3452L8.3895 11.1437L9.3475 14.9529L12.0007 13.5L12.0007 10.3452L7.75875 10.3452Z" fill="white"/>
 </svg>
