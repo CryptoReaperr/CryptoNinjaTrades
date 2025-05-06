@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>TRON TRC-20</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient">
+            <stop stop-color="#FF0B37" offset="0%"></stop>
+            <stop stop-color="#C10C2B" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="url(#linearGradient)" cx="256" cy="256" r="256"></circle>
+        <path d="M367.334,174.462 C296.178,104.482 181.554,127.338 181.554,127.338 L181.514,127.354 C181.118,127.414 135.058,133.322 143.462,214.334 C148.542,265.214 189.202,350.19 189.202,350.19 C189.202,350.19 189.822,352.838 191.866,352.326 C193.89,351.814 193.698,349.042 193.698,349.042 C193.698,349.042 185.254,254.35 240.366,233.55 L301.574,370.498 C301.574,370.498 303.47,374.09 306.15,372.67 C308.854,371.262 306.574,366.762 306.574,366.762 L255.59,235.286 C255.59,235.286 341.234,210.694 354.538,262.158 L323.35,347.566 C323.35,347.566 322.454,350.242 323.926,350.93 C325.398,351.618 326.694,348.662 326.694,348.662 L369.43,214.718 C369.43,214.718 384.742,192.662 367.334,174.462" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+    <text x="256" y="470" font-family="Arial, sans-serif" font-size="50" text-anchor="middle" fill="#FFFFFF" font-weight="bold">TRC-20</text>
+</svg>
