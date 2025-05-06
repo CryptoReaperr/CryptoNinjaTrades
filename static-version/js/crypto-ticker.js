@@ -1,6 +1,6 @@
 /**
  * Crypto Ticker for CryptoNinjaTrades
- * Uses CoinMarketCap API to fetch real-time crypto prices
+ * Uses CoinGecko API to fetch real-time crypto prices
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 async function initializeCryptoTicker() {
     try {
-        // First attempt to use the proxy API endpoint
-        const cryptoData = await fetchCoinMarketCapData();
+        // Fetch data from CoinGecko API
+        const cryptoData = await fetchCryptoData();
         updateTickerUI(cryptoData);
         
         // Set up auto-refresh every 2 minutes
         setInterval(async () => {
-            const refreshedData = await fetchCoinMarketCapData();
+            const refreshedData = await fetchCryptoData();
             updateTickerUI(refreshedData);
         }, 120000); // 2 minutes
         
@@ -31,80 +31,48 @@ async function initializeCryptoTicker() {
 }
 
 /**
- * Fetch cryptocurrency data from CoinMarketCap API via our Flask proxy
+ * Fetch cryptocurrency data from CoinGecko API (free, no API key required)
  */
-async function fetchCoinMarketCapData() {
+async function fetchCryptoData() {
     try {
-        // Try getting data from our server-side proxy first
-        const response = await fetch('/api/crypto-prices');
-        
-        if (!response.ok) {
-            // If server fails, try client-side with the API key in meta tag as fallback
-            return await fetchDirectFromCoinMarketCap();
-        }
-        
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching from proxy API:', error);
-        // Try direct API call as fallback
-        return await fetchDirectFromCoinMarketCap();
-    }
-}
-
-/**
- * Fetch cryptocurrency data directly from CoinMarketCap API
- * Uses API key from meta tag
- */
-async function fetchDirectFromCoinMarketCap() {
-    // Get API key from meta tag
-    const apiKeyMeta = document.querySelector('meta[name="coinmarketcap-api-key"]');
-    if (!apiKeyMeta || !apiKeyMeta.content) {
-        throw new Error('No CoinMarketCap API key found in meta tag');
-    }
-    
-    const apiKey = apiKeyMeta.content;
-    
-    try {
-        const response = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=10&convert=USD', {
-            method: 'GET',
-            headers: {
-                'X-CMC_PRO_API_KEY': apiKey
-            }
-        });
+        // Using CoinGecko's free API to get top 20 cryptocurrencies by market cap
+        const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h');
         
         if (!response.ok) {
             throw new Error(`API call failed with status: ${response.status}`);
         }
         
         const data = await response.json();
-        return processApiResponse(data);
+        return processCoinGeckoResponse(data);
     } catch (error) {
-        console.error('Error fetching directly from CoinMarketCap:', error);
+        console.error('Error fetching from CoinGecko API:', error);
         throw error;
     }
 }
 
 /**
- * Process the API response data into the format we need
+ * Process the CoinGecko API response data into the format we need
  */
-function processApiResponse(apiData) {
-    if (!apiData || !apiData.data || !Array.isArray(apiData.data)) {
+function processCoinGeckoResponse(apiData) {
+    if (!apiData || !Array.isArray(apiData)) {
         throw new Error('Invalid API response format');
     }
     
-    return apiData.data.map(crypto => {
-        const price = crypto.quote.USD.price;
-        const change24h = crypto.quote.USD.percent_change_24h;
+    return apiData.map(crypto => {
+        const price = crypto.current_price;
+        const change24h = crypto.price_change_percentage_24h;
         
         return {
-            symbol: crypto.symbol,
+            symbol: crypto.symbol.toUpperCase(),
             name: crypto.name,
             price: price,
             priceFormatted: formatPrice(price),
             change24h: change24h,
             change24hFormatted: formatPercentage(change24h),
-            isPositive: change24h >= 0
+            isPositive: change24h >= 0,
+            image: crypto.image,
+            marketCap: crypto.market_cap,
+            marketCapRank: crypto.market_cap_rank
         };
     });
 }
