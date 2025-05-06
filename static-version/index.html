@@ -1126,11 +1126,14 @@
                             <div class="relative z-10">
                                 <!-- USDT BEP-20 -->
                                 <div class="mb-8">
-                                    <div class="flex items-center gap-2 mb-3">
-                                        <img src="images/binance-logo.svg" alt="BNB Chain" class="w-5 h-5">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="flex items-center gap-1 bg-ninja-black/60 p-1 rounded-full">
+                                            <img src="images/usdt-logo.svg" alt="USDT" class="w-5 h-5">
+                                            <img src="images/bep20-logo.svg" alt="BEP-20" class="w-5 h-5 -ml-1">
+                                        </div>
                                         <p class="font-medium text-white">USDT (BEP-20)</p>
                                     </div>
-                                    <div class="flex items-center gap-2 mb-2 bg-ninja-black/60 p-3 rounded-lg border border-ninja-gray/20">
+                                    <div class="flex items-center gap-2 mb-2 bg-ninja-black/60 p-3 rounded-lg border border-ninja-gray/20 group/wallet">
                                         <div class="flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm text-ninja-light/90">
                                             0x15f1920cf99814C2b8b1A1FF86B4457548B813A6
                                         </div>
@@ -1138,16 +1141,22 @@
                                             <i data-feather="copy" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                                         </button>
                                     </div>
-                                    <p class="text-xs text-ninja-light/50 pl-2">BNB Smart Chain (BSC) Network</p>
+                                    <p class="text-xs text-ninja-light/50 pl-2 flex items-center gap-1">
+                                        <img src="images/binance-logo.svg" alt="Binance" class="w-3 h-3 inline-block">
+                                        BNB Smart Chain (BSC) Network
+                                    </p>
                                 </div>
                                 
                                 <!-- USDT TRC20 -->
                                 <div class="mb-4">
-                                    <div class="flex items-center gap-2 mb-3">
-                                        <img src="images/tron-logo.svg" alt="TRON" class="w-5 h-5">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="flex items-center gap-1 bg-ninja-black/60 p-1 rounded-full">
+                                            <img src="images/usdt-logo.svg" alt="USDT" class="w-5 h-5">
+                                            <img src="images/trc20-logo.svg" alt="TRC-20" class="w-5 h-5 -ml-1">
+                                        </div>
                                         <p class="font-medium text-white">USDT (TRC20)</p>
                                     </div>
-                                    <div class="flex items-center gap-2 mb-2 bg-ninja-black/60 p-3 rounded-lg border border-ninja-gray/20">
+                                    <div class="flex items-center gap-2 mb-2 bg-ninja-black/60 p-3 rounded-lg border border-ninja-gray/20 group/wallet">
                                         <div class="flex-1 overflow-x-auto whitespace-nowrap font-mono text-sm text-ninja-light/90">
                                             THbPUmoakqgjzH4f5f5SaGAURG5jZQeraH
                                         </div>
@@ -1155,7 +1164,10 @@
                                             <i data-feather="copy" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
                                         </button>
                                     </div>
-                                    <p class="text-xs text-ninja-light/50 pl-2">TRON Network</p>
+                                    <p class="text-xs text-ninja-light/50 pl-2 flex items-center gap-1">
+                                        <img src="images/tron-logo.svg" alt="TRON" class="w-3 h-3 inline-block">
+                                        TRON Network
+                                    </p>
                                 </div>
                                 
                                 <!-- Payment Requirements Box -->
@@ -1164,10 +1176,15 @@
                                         <i data-feather="alert-circle" class="w-4 h-4"></i>
                                         <span>Important Payment Information</span>
                                     </h4>
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <img src="images/usdt-logo.svg" alt="USDT" class="w-6 h-6">
+                                        <img src="images/bep20-logo.svg" alt="BEP-20" class="w-6 h-6">
+                                        <img src="images/trc20-logo.svg" alt="TRC-20" class="w-6 h-6">
+                                    </div>
                                     <ul class="text-xs text-ninja-light/80 space-y-2">
                                         <li class="flex items-start gap-2">
                                             <span class="text-neon-green">•</span>
-                                            <span>Always send <strong>exactly</strong> the amount for your selected plan</span>
+                                            <span>Always send <strong>exactly</strong> the amount in USDT for your selected plan</span>
                                         </li>
                                         <li class="flex items-start gap-2">
                                             <span class="text-neon-green">•</span>
@@ -1218,7 +1235,13 @@
                                         </div>
                                         <div>
                                             <h4 class="font-bold text-lg mb-2 group-hover/step:text-neon-green transition-colors duration-300">Make the payment</h4>
-                                            <p class="text-ninja-light/80">Send the exact amount in USDT to one of the wallet addresses shown on the left. Be sure to use the correct network (BEP-20 or TRC20).</p>
+                                            <p class="text-ninja-light/80">
+                                                Send the exact amount in USDT to one of the wallet addresses shown on the left. Be sure to use the correct network (BEP-20 or TRC20).
+                                                <span class="flex items-center gap-2 mt-2">
+                                                    <img src="images/usdt-logo.svg" alt="USDT" class="w-5 h-5">
+                                                    <span class="text-xs opacity-80">We accept USDT payments on Binance Smart Chain (BEP-20) and TRON (TRC20) networks</span>
+                                                </span>
+                                            </p>
                                         </div>
                                     </li>
                                     
