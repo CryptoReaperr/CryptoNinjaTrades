@@ -366,7 +366,10 @@
                 <div class="xl:col-span-2">
                     <div class="ninja-chart-container" data-aos="fade-up">
                         <div class="flex flex-wrap justify-between items-center mb-6">
-                            <h2 id="chart-title" class="text-xl font-bold">Bitcoin (BTC) Price Movement</h2>
+                            <div class="flex items-center gap-3">
+                                <img id="coin-image" src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" class="w-8 h-8 rounded-full shadow-glow-sm"/>
+                                <h2 id="chart-title" class="text-xl font-bold">Bitcoin (BTC) Price Movement</h2>
+                            </div>
                             <select id="crypto-select" class="crypto-selector">
                                 <!-- Options populated by market-trends.js -->
                             </select>
@@ -378,9 +381,21 @@
                         </div>
                         
                         <!-- Current price and change -->
-                        <div class="flex gap-4 items-end mb-8">
+                        <div class="flex flex-wrap items-end gap-4 mb-4">
                             <h3 id="current-price" class="text-3xl font-bold">$71,245.00</h3>
                             <span id="price-change" class="trend-up"><i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>4.23%</span>
+                            <span id="market-rank" class="bg-ninja-dark/50 text-ninja-light/80 px-3 py-1 rounded-full text-sm">#1</span>
+                        </div>
+                        
+                        <!-- External links -->
+                        <div class="flex items-center gap-4 mb-8">
+                            <span class="text-sm text-ninja-light/70">Data Sources:</span>
+                            <a id="coingecko-link" href="https://www.coingecko.com/en/coins/bitcoin" target="_blank" class="text-sm text-neon-green hover:underline flex items-center">
+                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i>CoinGecko
+                            </a>
+                            <a id="coinmarketcap-link" href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank" class="text-sm text-neon-green hover:underline flex items-center">
+                                <i data-feather="external-link" class="w-4 h-4 mr-1"></i>CoinMarketCap
+                            </a>
                         </div>
                         
                         <!-- Chart canvas -->
