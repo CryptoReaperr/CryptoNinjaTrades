@@ -31,7 +31,7 @@
 
 /* Animation for the ticker */
 .ticker-animation {
-    animation: ticker 60s linear infinite; /* Slowed down from 30s to 60s */
+    animation: ticker 120s linear infinite; /* Slowed down further to 120s (2 minutes) */
 }
 
 @keyframes ticker {
@@ -119,6 +119,6 @@
 /* Animation speed variations */
 @media (prefers-reduced-motion) {
     .ticker-animation {
-        animation: ticker 60s linear infinite; /* slower for accessibility */
+        animation: ticker 180s linear infinite; /* even slower for accessibility */
     }
 }

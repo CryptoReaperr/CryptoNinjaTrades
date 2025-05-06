@@ -134,9 +134,44 @@ function updateTickerUI(cryptoData) {
         
         // Generate new ticker items
         cryptoData.forEach(crypto => {
-            // Create a link wrapper for the ticker item
+            // Create a link wrapper for the ticker item - always use CoinMarketCap URLs
             const tickerLink = document.createElement('a');
-            tickerLink.href = crypto.coinMarketCapUrl || `https://coinmarketcap.com/currencies/${crypto.symbol.toLowerCase()}/`;
+            
+            // Use coinMarketCapUrl if available, or generate it based on either slug or symbol
+            let cmcUrl;
+            if (crypto.coinMarketCapUrl) {
+                cmcUrl = crypto.coinMarketCapUrl;
+            } else if (crypto.slug) {
+                cmcUrl = `https://coinmarketcap.com/currencies/${crypto.slug}/`;
+            } else if (crypto.symbol) {
+                // Convert common symbols to their known CoinMarketCap slugs
+                const slugMap = {
+                    'BTC': 'bitcoin',
+                    'ETH': 'ethereum',
+                    'SOL': 'solana',
+                    'BNB': 'bnb',
+                    'XRP': 'xrp',
+                    'ADA': 'cardano',
+                    'DOGE': 'dogecoin',
+                    'AVAX': 'avalanche',
+                    'MATIC': 'polygon',
+                    'DOT': 'polkadot',
+                    'LINK': 'chainlink',
+                    'UNI': 'uniswap',
+                    'SHIB': 'shiba-inu',
+                    'LTC': 'litecoin'
+                };
+                
+                const symbol = crypto.symbol.toUpperCase();
+                const slug = slugMap[symbol] || symbol.toLowerCase();
+                cmcUrl = `https://coinmarketcap.com/currencies/${slug}/`;
+            } else {
+                // Fallback - use the name if available, otherwise just link to CoinMarketCap homepage
+                const slug = crypto.name ? crypto.name.toLowerCase().replace(/\s+/g, '-') : '';
+                cmcUrl = slug ? `https://coinmarketcap.com/currencies/${slug}/` : 'https://coinmarketcap.com/';
+            }
+            
+            tickerLink.href = cmcUrl;
             tickerLink.target = '_blank';
             tickerLink.rel = 'noopener noreferrer';
             tickerLink.className = 'ticker-item';
@@ -165,9 +200,9 @@ function updateTickerUI(cryptoData) {
             changeElement.className = `ticker-change ${crypto.isPositive ? 'positive' : 'negative'}`;
             changeElement.textContent = crypto.change24hFormatted;
             
-            // Add a subtle external link icon
+            // Add a small external link icon indicating this links to CoinMarketCap
             const linkIcon = document.createElement('span');
-            linkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-3 h-3 ml-1 opacity-50"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+            linkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-3 h-3 ml-1 opacity-50"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
             
             // Add the elements to the link
             tickerLink.appendChild(symbolElement);
@@ -192,13 +227,70 @@ function handleTickerError() {
     
     // Sample backup data to ensure UI always looks good
     const backupData = [
-        { symbol: 'BTC', name: 'Bitcoin', priceFormatted: '$61,245.37', change24hFormatted: '+2.14%', isPositive: true },
-        { symbol: 'ETH', name: 'Ethereum', priceFormatted: '$3,458.91', change24hFormatted: '+1.23%', isPositive: true },
-        { symbol: 'BNB', name: 'Binance Coin', priceFormatted: '$608.42', change24hFormatted: '-0.53%', isPositive: false },
-        { symbol: 'SOL', name: 'Solana', priceFormatted: '$132.75', change24hFormatted: '+5.67%', isPositive: true },
-        { symbol: 'XRP', name: 'Ripple', priceFormatted: '$0.5492', change24hFormatted: '-1.12%', isPositive: false },
-        { symbol: 'ADA', name: 'Cardano', priceFormatted: '$0.4872', change24hFormatted: '+0.89%', isPositive: true },
-        { symbol: 'AVAX', name: 'Avalanche', priceFormatted: '$41.50', change24hFormatted: '+8.01%', isPositive: true }
+        { 
+            symbol: 'BTC', 
+            name: 'Bitcoin', 
+            priceFormatted: '$71,245.38', 
+            change24hFormatted: '+4.23%', 
+            isPositive: true,
+            slug: 'bitcoin'
+        },
+        { 
+            symbol: 'ETH', 
+            name: 'Ethereum', 
+            priceFormatted: '$3,187.29', 
+            change24hFormatted: '+6.12%', 
+            isPositive: true,
+            slug: 'ethereum'
+        },
+        { 
+            symbol: 'BNB', 
+            name: 'Binance Coin', 
+            priceFormatted: '$591.21', 
+            change24hFormatted: '+3.15%', 
+            isPositive: true,
+            slug: 'bnb'
+        },
+        { 
+            symbol: 'SOL', 
+            name: 'Solana', 
+            priceFormatted: '$169.45', 
+            change24hFormatted: '+9.24%', 
+            isPositive: true,
+            slug: 'solana'
+        },
+        { 
+            symbol: 'XRP', 
+            name: 'Ripple', 
+            priceFormatted: '$0.47', 
+            change24hFormatted: '-7.14%', 
+            isPositive: false,
+            slug: 'xrp'
+        },
+        { 
+            symbol: 'ADA', 
+            name: 'Cardano', 
+            priceFormatted: '$0.51', 
+            change24hFormatted: '+2.00%', 
+            isPositive: true,
+            slug: 'cardano'
+        },
+        { 
+            symbol: 'DOGE', 
+            name: 'Dogecoin', 
+            priceFormatted: '$0.151', 
+            change24hFormatted: '-5.03%', 
+            isPositive: false,
+            slug: 'dogecoin'
+        },
+        { 
+            symbol: 'AVAX', 
+            name: 'Avalanche', 
+            priceFormatted: '$41.50', 
+            change24hFormatted: '+10.61%', 
+            isPositive: true,
+            slug: 'avalanche'
+        }
     ];
     
     updateTickerUI(backupData);
