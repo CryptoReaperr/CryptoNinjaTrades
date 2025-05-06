@@ -1,110 +1,56 @@
-# Crypto Ninja Trades - VIP Club Website
+# Crypto Ninja Trades - Static Website
 
-A professional, ninja-themed website for Crypto Ninja Trades, delivering an engaging trading platform for VIP members with interactive design elements.
+This is a complete static version of the Crypto Ninja Trades website. It has been optimized for easy deployment to any web hosting service via FTP or direct file upload.
 
-## 🚀 Quick Deployment Guide
+## Features
 
-### 🔹 Deployment Options
+- Fully responsive design that works on all devices (mobile, tablet, desktop)
+- Real-time cryptocurrency ticker showing live prices for top 20 cryptos using CoinGecko API (free, no API key required)
+- Interactive cryptocurrency market trends visualization with price charts
+- Modern dark-mode design with sleek animations and particle effects
+- All pages fully functional: Home, News, Trends, Academy, Login
 
-#### Option 1: FTP Deployment (Recommended for Beginners)
+## Quick Installation Guide
 
-1. **Download the project** from this Replit to your computer by clicking on the three dots (⋮) in the Files panel and selecting "Download as zip"
-2. **Extract the downloaded zip file** to a folder on your computer
-3. **Upload all files** to your web hosting using the included script:
-   - Open a terminal/command prompt
-   - Navigate to the extracted project folder
-   - Run: `chmod +x deploy.sh` (on Mac/Linux) to make the script executable
-   - Run: `./deploy.sh` (on Mac/Linux) or `bash deploy.sh` (on Windows)
-   - Follow the prompts to enter your FTP server details
-4. **Create a .env file** on your server with your secret keys (see DEPLOY_GUIDE.md)
+1. Download this package
+2. Extract the contents to your local machine
+3. Upload all files to your web hosting via FTP
+4. No configuration needed - the site will work immediately
 
-#### Option 2: Using Git (For More Advanced Users)
+## Automated Deployment
 
-1. **Install Git** on your computer if you don't have it: [Download Git](https://git-scm.com/downloads)
-2. **Clone the repository** to your local computer:
-   - Open a terminal/command prompt
-   - Run: `git clone https://github.com/yourusername/crypto-ninja-trades.git`
-   - Note: Replace the URL with your actual Git repository URL
-3. **Upload to your web server** using either:
-   - FTP: Use FileZilla or other FTP client to upload all files to your server
-   - Git on server (if your hosting supports it):
-     - SSH into your server
-     - Navigate to your website directory
-     - Run: `git clone https://github.com/yourusername/crypto-ninja-trades.git .`
+For convenience, you can use the included script to create a deployable archive:
 
-> **Note:** Make sure your server supports Python 3.9+ and Flask applications!
-> For complete instructions, read the [DEPLOY_GUIDE.md](DEPLOY_GUIDE.md) file.
-
-## ✨ Project Highlights
-
-This website offers a complete platform for crypto trading enthusiasts:
-
-- ✅ Trading signals with +80% success rate since January 2023
-- ✅ Educational academy for crypto futures trading
-- ✅ Risk management advice and best practices
-- ✅ Interactive user dashboard with live crypto data
-- ✅ Telegram login integration for easy access
-- ✅ Responsive design with adaptive layouts for all devices
-
-## 🔧 Technical Features
-
-### Frontend
-- Interactive UI with advanced animations and transitions
-- Dark mode color scheme with blue-grey accents
-- Mobile-responsive design that works on all devices
-- Copy-to-clipboard functionality for payment addresses
-- Back-to-top button and smooth scrolling
-- SVG graphics for fast loading
-
-### Backend
-- Flask-based web application with gunicorn server
-- SQLite database for easy deployment (no database server required)
-- Telegram authentication system
-- Real-time crypto price data API integration
-- News feeds from cryptocurrency sources
-
-## 🔍 File Structure
-
-```
-📂 root
- ┣ 📂 services/       # API service modules
- ┣ 📂 static/         # CSS, JS, and images
- ┃  ┣ 📂 css/         # Stylesheet files
- ┃  ┣ 📂 js/          # JavaScript files
- ┃  ┗ 📂 images/      # Website images
- ┣ 📂 templates/      # HTML templates for all pages
- ┣ 📄 app.py          # Main Flask application
- ┣ 📄 config.py       # Configuration settings
- ┣ 📄 extensions.py   # Flask extensions setup
- ┣ 📄 main.py         # Entry point for the application
- ┣ 📄 models.py       # Database models
- ┗ 📄 DEPLOY_GUIDE.md # Detailed deployment instructions
+```bash
+./copy_to_ftp.sh
 ```
 
-## 🎨 Design Elements
+This will create a `crypto_ninja_trades_static.tar.gz` file that contains all necessary files for deployment.
 
-- **Color Scheme:** Dark backgrounds with blue-grey accent colors
-- **Typography:** Inter for body text, Montserrat for headings
-- **Animations:** Subtle page transitions, hover effects, and scroll animations
-- **Layout:** Responsive design with mobile-first approach
+## File Structure
 
-## 💻 Technologies Used
+- `index.html` - Main homepage
+- `news.html` - Cryptocurrency news page
+- `trends.html` - Market trends and analysis page
+- `login.html` - Login page for members
+- `js/` - All JavaScript files
+  - `crypto-ticker.js` - Real-time cryptocurrency ticker (using CoinGecko API)
+  - `market-trends.js` - Interactive market trends visualizations
+  - Other utility and animation scripts
+- `css/` - Stylesheets
+- `images/` - Site graphics and assets
 
-- **Frontend:** HTML5, Tailwind CSS, Vanilla JavaScript, GSAP animations
-- **Backend:** Flask, SQLAlchemy, Python 3.9+
-- **Integrations:** Telegram login API, cryptocurrency data APIs
+## External APIs
 
-## 📱 Social Media and Contact
+This static site uses the following free public APIs:
 
-- **Telegram:** https://t.me/cryptoninjatrades
-- **Twitter/X:** https://x.com/ninjatradesBTC
-- **Discord:** https://discord.gg/EZtXMRnBBa
-- **Email:** support@cryptoninjatrades.com
+- CoinGecko API - For real-time cryptocurrency prices (no API key required)
+- No other external APIs or backend services required
 
-## 📋 Technical Requirements
+## Notes
 
-See the detailed requirements in [DEPLOY_GUIDE.md](DEPLOY_GUIDE.md) for server setup instructions.
+- Cookie consent functionality is included but works client-side only
+- All animations are optimized for performance
+- The site includes a full dark mode (default)
 
----
-
-© 2025 Crypto Ninja Trades. All Rights Reserved.
+For support or questions: support@cryptoninjatrades.com
