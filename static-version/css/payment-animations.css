@@ -3,6 +3,32 @@
  * Enhanced 2025 visual effects for the payment process
  */
 
+/* Copy Toast Notification */
+#copy-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: #375F7C;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    font-weight: 500;
+    font-size: 14px;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+#copy-toast.translate-y-0 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 /* Floating animation for payment icons */
 @keyframes float {
   0% {

@@ -98,6 +98,7 @@
     <link rel="stylesheet" href="css/ultra-responsive.css">
     <link rel="stylesheet" href="css/ticker.css">
     <link rel="stylesheet" href="css/cookie-consent.css">
+    <link rel="stylesheet" href="css/payment-animations.css">
 </head>
 <body class="bg-ninja-black text-ninja-light font-inter font-crisp custom-scrollbar overflow-x-hidden">
     <!-- Loading Screen -->
@@ -120,7 +121,10 @@
     <div class="scanlines"></div>
     
     <!-- Toast notification for copied text -->
-    <div id="copy-toast" class="copy-toast">Copied!</div>
+    <div id="copy-toast" class="fixed top-4 right-4 bg-neon-green text-ninja-black py-2 px-4 rounded-md shadow-lg z-50 transform -translate-y-5 opacity-0 transition-all duration-300 font-medium flex items-center gap-2">
+        <i data-feather="check-circle" class="w-4 h-4"></i>
+        <span>Copied to clipboard!</span>
+    </div>
     
     <!-- Theme Toggle -->
     <div id="theme-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Light/Dark Mode">
@@ -1587,5 +1591,8 @@
     
     <!-- Crypto Ticker script - uses real API data -->
     <script src="js/crypto-ticker.js"></script>
+    
+    <!-- Payment utilities script -->
+    <script src="js/payment-utils.js"></script>
 </body>
 </html>
