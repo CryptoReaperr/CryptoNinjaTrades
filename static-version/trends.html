@@ -305,196 +305,313 @@
                 </a>
                 
                 <!-- Desktop Navigation -->
-                <nav class="hidden md:flex gap-6">
-                    <a href="index.html" class="font-medium hover:text-neon-green transition-colors duration-300">Home</a>
-                    <a href="index.html#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
-                    <a href="index.html#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
-                    <a href="index.html#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
-                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300">News</a>
-                    <a href="trends.html" class="font-medium text-neon-green transition-colors duration-300">Trends</a>
-                    <a href="index.html#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
-                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">Home</a>
+                    <a href="news.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">News</a>
+                    <a href="trends.html" class="text-sm text-neon-green font-medium transition-colors duration-300">Trends</a>
+                    <a href="academy.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">Academy</a>
+                    <a href="login.html" class="ml-4 bg-neon-green/20 hover:bg-neon-green/30 text-neon-green px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105">Login</a>
                 </nav>
                 
-                <!-- Join Now Button (Desktop) -->
-                <a href="index.html#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 z-20">
-                    Join Now
-                </a>
-                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
-                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
-                </button>
+                <div class="md:hidden relative z-30">
+                    <button id="mobile-menu-btn" class="flex items-center p-2 text-ninja-light/80 hover:text-white focus:outline-none">
+                        <svg class="icon-open h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        <svg class="icon-close h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30 hidden">
-            <div class="container mx-auto px-4 py-5">
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2 border-t border-ninja-gray/20 mt-3">
                 <nav class="flex flex-col gap-4">
-                    <a href="index.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Home</a>
-                    <a href="index.html#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
-                    <a href="index.html#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
-                    <a href="index.html#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
-                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">News</a>
-                    <a href="trends.html" class="font-medium text-neon-green transition-colors duration-300 py-2">Trends</a>
-                    <a href="index.html#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
-                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
-                    
-                    <!-- Join Now Button (Mobile) -->
-                    <a href="index.html#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
-                        Join Now
-                    </a>
+                    <a href="index.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">Home</a>
+                    <a href="news.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">News</a>
+                    <a href="trends.html" class="text-sm text-neon-green font-medium transition-colors duration-300">Trends</a>
+                    <a href="academy.html" class="text-sm text-ninja-light/80 hover:text-white transition-colors duration-300">Academy</a>
+                    <a href="login.html" class="text-center mt-2 bg-neon-green/20 hover:bg-neon-green/30 text-neon-green px-4 py-2 rounded-md text-sm font-medium transition-all duration-300">Login</a>
                 </nav>
             </div>
         </div>
     </header>
-
-    <main class="container mx-auto pt-32 pb-20 px-6">
-        <!-- Hero Section -->
+    
+    <!-- Crypto Ticker -->
+    <div class="ticker-wrapper mt-20 bg-ninja-dark/70 backdrop-blur-sm border-y border-ninja-gray/30">
+        <div class="ticker-container">
+            <!-- Populated by crypto-ticker.js -->
+        </div>
+    </div>
+    
+    <main class="container mx-auto px-4 pt-8 pb-16">
         <section class="text-center mb-16 relative py-16">
             <div class="hero-grid"></div>
             <div class="absolute -top-8 -left-8 w-16 h-16 opacity-20">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#375F7C" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+                <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z" fill="#375F7C" opacity="0.5"/>
+                </svg>
             </div>
-            <div class="absolute -bottom-6 -right-6 w-12 h-12 opacity-10">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#567890" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
+            <div class="absolute -bottom-8 -right-8 w-16 h-16 opacity-20 rotate-45">
+                <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z" fill="#567890" opacity="0.5"/>
+                </svg>
             </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat tracking-tight text-white glitch-text" data-text="Market Trends">Market Trends</h1>
+            <p class="text-lg text-ninja-light/70 max-w-3xl mx-auto mb-12">Real-time analysis of cryptocurrency price movements and market trends. Track the performance of top digital assets.</p>
             
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 glitch-text" data-aos="fade-down" data-text="Crypto Market Trends">Crypto Market Trends</h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                Visualize market movements with our advanced ninja-style trend analysis tools. Track the stealthy movements of the crypto market like a true ninja trader.
-            </p>
-            
-            <!-- Crypto Selector -->
-            <div class="flex flex-wrap justify-center items-center gap-4 mt-8" data-aos="fade-up" data-aos-delay="300">
-                <label for="crypto-select" class="text-gray-300">Select Cryptocurrency:</label>
-                <select id="crypto-select" class="crypto-selector">
-                    <option value="BTC">Bitcoin (BTC)</option>
-                    <option value="ETH">Ethereum (ETH)</option>
-                    <option value="SOL">Solana (SOL)</option>
-                    <option value="DOGE">Dogecoin (DOGE)</option>
-                    <option value="ADA">Cardano (ADA)</option>
-                    <option value="BNB">Binance Coin (BNB)</option>
-                </select>
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <div class="xl:col-span-2">
+                    <div class="ninja-chart-container" data-aos="fade-up">
+                        <div class="flex flex-wrap justify-between items-center mb-6">
+                            <h2 id="chart-title" class="text-xl font-bold">Bitcoin (BTC) Price Movement</h2>
+                            <select id="crypto-select" class="crypto-selector">
+                                <!-- Options populated by market-trends.js -->
+                            </select>
+                        </div>
+                        <div class="absolute top-4 right-4 animate-pulse-slow opacity-10 w-16 h-16 rotate-12 ninja-star">
+                            <svg viewBox="0 0 24 24" class="w-full h-full" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z" fill="#375F7C"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Current price and change -->
+                        <div class="flex gap-4 items-end mb-8">
+                            <h3 id="current-price" class="text-3xl font-bold">$71,245.00</h3>
+                            <span id="price-change" class="trend-up"><i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>4.23%</span>
+                        </div>
+                        
+                        <!-- Chart canvas -->
+                        <div id="chart-container" class="w-full h-[400px]">
+                            <canvas id="price-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="mb-16" data-aos="fade-up" data-aos-delay="100">
+                    <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-1 gap-6">
+                        <!-- Average Price -->
+                        <div class="stat-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-sm text-gray-400 mb-1">Average Price</h3>
+                                    <p class="text-2xl font-bold" id="avg-price">$69,874.21</p>
+                                </div>
+                                <div class="p-2 rounded-full bg-blue-500/10">
+                                    <i data-feather="activity" class="text-blue-400 h-5 w-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Minimum Price -->
+                        <div class="stat-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-sm text-gray-400 mb-1">Minimum Price</h3>
+                                    <p class="text-2xl font-bold" id="min-price">$68,112.47</p>
+                                </div>
+                                <div class="p-2 rounded-full bg-red-500/10">
+                                    <i data-feather="arrow-down" class="text-red-400 h-5 w-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Maximum Price -->
+                        <div class="stat-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-sm text-gray-400 mb-1">Maximum Price</h3>
+                                    <p class="text-2xl font-bold" id="max-price">$72,456.19</p>
+                                </div>
+                                <div class="p-2 rounded-full bg-green-500/10">
+                                    <i data-feather="arrow-up" class="text-green-400 h-5 w-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trading Volume -->
+                        <div class="stat-card">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-sm text-gray-400 mb-1">Trading Volume</h3>
+                                    <p class="text-2xl font-bold" id="volume">$32,445,623,851</p>
+                                </div>
+                                <div class="p-2 rounded-full bg-purple-500/10">
+                                    <i data-feather="bar-chart-2" class="text-purple-400 h-5 w-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Market Analysis Cards -->
+                    <div class="mt-8 space-y-6">
+                        <div class="ninja-chart-container p-6" data-aos="fade-up" data-aos-delay="150">
+                            <h3 class="text-lg font-bold mb-4 flex items-center">
+                                <i data-feather="trending-up" class="mr-2 h-5 w-5 text-neon-green"></i>
+                                Market Analysis
+                            </h3>
+                            <p class="text-sm text-ninja-light/80 leading-relaxed">
+                                Bitcoin shows positive momentum with a 4.23% increase over the past 24 hours. The price has maintained support above the $68,000 level, suggesting a strong bullish trend. Watch for resistance near the $72,500 level.
+                            </p>
+                        </div>
+                        
+                        <div class="ninja-chart-container p-6" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="text-lg font-bold mb-4 flex items-center">
+                                <i data-feather="alert-circle" class="mr-2 h-5 w-5 text-yellow-400"></i>
+                                Risk Assessment
+                            </h3>
+                            <p class="text-sm text-ninja-light/80 leading-relaxed">
+                                Current volatility index: Moderate. Market sentiment is positive with reduced selling pressure. The RSI indicator shows the asset is approaching overbought territory, suggesting caution for new long positions.
+                            </p>
+                        </div>
+                        
+                        <div class="ninja-chart-container p-6" data-aos="fade-up" data-aos-delay="250">
+                            <h3 class="text-lg font-bold mb-4 flex items-center">
+                                <i data-feather="clock" class="mr-2 h-5 w-5 text-electric-blue"></i>
+                                Future Outlook
+                            </h3>
+                            <p class="text-sm text-ninja-light/80 leading-relaxed">
+                                Technical indicators suggest continued upward momentum in the short term. Key support levels have been established, with the 50-day moving average providing a solid foundation for future growth.
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
         
         <section class="mb-16" data-aos="fade-up">
-            <div class="ninja-chart-container relative overflow-hidden">
-                <!-- Ninja star decoration -->
-                <div class="ninja-star absolute top-4 right-4 w-10 h-10 opacity-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00c8ff" width="100%" height="100%"><path d="M12 22.5L9 18l-6-1 4.5-3L5.8 8l5.2 1.7L16 5.9l-1.7 5.2L20 15l-6 1z"/></svg>
-                </div>
-                
-                <!-- Chart title and stats -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                    <div>
-                        <h2 class="text-2xl font-bold" id="chart-title">Bitcoin (BTC) Price Movement</h2>
-                        <p class="text-gray-400" id="chart-subtitle">7-day price history</p>
-                    </div>
-                    <div class="flex items-center mt-2 md:mt-0 text-lg">
-                        <span class="mr-4">Current: <span id="current-price" class="font-bold">$71,245.38</span></span>
-                        <span id="price-change" class="trend-up"><i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>4.23%</span>
-                    </div>
-                </div>
-                
-                <!-- Chart canvas -->
-                <div id="chart-container" class="w-full h-[400px]">
-                    <canvas id="price-chart"></canvas>
-                </div>
-            </div>
-        </section>
-        
-        <section class="mb-16" data-aos="fade-up" data-aos-delay="100">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <!-- Average Price -->
-                <div class="stat-card">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm text-gray-400 mb-1">Average Price</h3>
-                            <p class="text-2xl font-bold" id="avg-price">$69,874.21</p>
-                        </div>
-                        <div class="p-2 rounded-full bg-blue-500/10">
-                            <i data-feather="activity" class="text-blue-400 h-5 w-5"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Minimum Price -->
-                <div class="stat-card">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm text-gray-400 mb-1">Minimum Price</h3>
-                            <p class="text-2xl font-bold" id="min-price">$68,112.47</p>
-                        </div>
-                        <div class="p-2 rounded-full bg-red-500/10">
-                            <i data-feather="arrow-down" class="text-red-400 h-5 w-5"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Maximum Price -->
-                <div class="stat-card">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm text-gray-400 mb-1">Maximum Price</h3>
-                            <p class="text-2xl font-bold" id="max-price">$72,456.19</p>
-                        </div>
-                        <div class="p-2 rounded-full bg-green-500/10">
-                            <i data-feather="arrow-up" class="text-green-400 h-5 w-5"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Volatility Indicator -->
-                <div class="stat-card">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm text-gray-400 mb-1">Trend Analysis</h3>
-                            <p class="text-2xl font-bold" id="trend-indicator">Bullish</p>
-                        </div>
-                        <div class="p-2 rounded-full bg-purple-500/10">
-                            <i data-feather="trending-up" class="text-purple-400 h-5 w-5" id="trend-icon"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="mb-16" data-aos="fade-up" data-aos-delay="200">
             <div class="ninja-chart-container">
-                <h2 class="text-2xl font-bold mb-4">Ninja Market Insights</h2>
-                <div class="text-gray-300">
-                    <p class="mb-4">Our ninja market analysis tools track patterns and movements that ordinary traders might miss. By studying these trends, our ninja traders gain an edge in predicting future price movements.</p>
-                    
-                    <div class="bg-ninja-black/50 p-4 rounded-lg border border-ninja-gray/20 my-4">
-                        <h3 class="text-lg font-bold mb-2 flex items-center">
-                            <i data-feather="alert-circle" class="h-5 w-5 mr-2 text-neon-green"></i>
-                            Ninja Trading Tip
-                        </h3>
-                        <p id="ninja-tip" class="text-gray-400">Always monitor support and resistance levels to find optimal entry and exit points for your trades.</p>
-                    </div>
-                    
-                    <p>Remember that market trends can shift rapidly. Like a ninja, stay vigilant and adapt your strategy to the changing market landscape.</p>
+                <h2 class="text-2xl font-bold mb-6">Popular Trading Pairs</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-full">
+                        <thead>
+                            <tr class="border-b border-ninja-gray/30 text-left">
+                                <th class="pb-4 font-medium text-ninja-light/70">Pair</th>
+                                <th class="pb-4 font-medium text-ninja-light/70">Price</th>
+                                <th class="pb-4 font-medium text-ninja-light/70">24h Change</th>
+                                <th class="pb-4 font-medium text-ninja-light/70">24h Volume</th>
+                                <th class="pb-4 font-medium text-ninja-light/70">Market Cap</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-xs font-bold">B</div>
+                                        <span>BTC/USD</span>
+                                    </div>
+                                </td>
+                                <td class="py-4">$71,245.00</td>
+                                <td class="py-4 trend-up">+4.23%</td>
+                                <td class="py-4">$32.4B</td>
+                                <td class="py-4">$1.38T</td>
+                            </tr>
+                            <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-bold">E</div>
+                                        <span>ETH/USD</span>
+                                    </div>
+                                </td>
+                                <td class="py-4">$3,187.29</td>
+                                <td class="py-4 trend-up">+6.12%</td>
+                                <td class="py-4">$14.7B</td>
+                                <td class="py-4">$382.4B</td>
+                            </tr>
+                            <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs font-bold">S</div>
+                                        <span>SOL/USD</span>
+                                    </div>
+                                </td>
+                                <td class="py-4">$165.72</td>
+                                <td class="py-4 trend-up">+5.46%</td>
+                                <td class="py-4">$4.2B</td>
+                                <td class="py-4">$72.8B</td>
+                            </tr>
+                            <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold">B</div>
+                                        <span>BNB/USD</span>
+                                    </div>
+                                </td>
+                                <td class="py-4">$586.15</td>
+                                <td class="py-4 trend-up">+0.98%</td>
+                                <td class="py-4">$1.8B</td>
+                                <td class="py-4">$87.6B</td>
+                            </tr>
+                            <tr class="hover:bg-ninja-gray/5 transition-colors">
+                                <td class="py-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs font-bold">X</div>
+                                        <span>XRP/USD</span>
+                                    </div>
+                                </td>
+                                <td class="py-4">$0.5317</td>
+                                <td class="py-4 trend-down">-2.12%</td>
+                                <td class="py-4">$1.2B</td>
+                                <td class="py-4">$28.4B</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+        </section>
+        
+        <section class="mb-20" data-aos="fade-up">
+            <div class="ninja-chart-container">
+                <h2 class="text-2xl font-bold mb-4">Trading Tips</h2>
+                <ul class="space-y-6">
+                    <li class="flex gap-4">
+                        <div class="p-2 rounded-full bg-electric-blue/20 h-min">
+                            <i data-feather="trending-up" class="text-electric-blue h-5 w-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-1">Follow the Trend</h3>
+                            <p class="text-sm text-ninja-light/70">The trend is your friend until it bends. Look for assets showing strong upward momentum with solid support levels.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="p-2 rounded-full bg-neon-green/20 h-min">
+                            <i data-feather="percent" class="text-neon-green h-5 w-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-1">Manage Your Risk</h3>
+                            <p class="text-sm text-ninja-light/70">Never risk more than 1-2% of your total portfolio on a single trade. Use stop losses to protect your investments.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="p-2 rounded-full bg-ninja-purple/20 h-min">
+                            <i data-feather="activity" class="text-ninja-purple h-5 w-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium mb-1">Monitor Market Sentiment</h3>
+                            <p class="text-sm text-ninja-light/70">Keep an eye on social media trends, news events, and overall market sentiment to anticipate potential price movements.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
     </main>
     
     <!-- Footer -->
-    <footer class="py-12 bg-ninja-dark border-t border-ninja-gray/30">
+    <footer class="bg-ninja-dark/95 border-t border-ninja-gray/20 py-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <!-- Logo and Copyright -->
-                <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <div class="flex items-center gap-3 justify-center md:justify-start">
-                        <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full glow-border">
-                        <h2 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h2>
-                    </div>
-                    <p class="text-sm text-ninja-light/70 mt-2">
-                        © 2025 Crypto Ninja Trades. All Rights Reserved.
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div class="md:col-span-1">
+                    <a href="index.html" class="flex items-center gap-3 logo-link mb-4">
+                        <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h3 class="text-lg font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h3>
+                        </div>
+                    </a>
+                    <p class="text-sm text-ninja-light/70 mb-6">
+                        Expert cryptocurrency analysis and trading signals to help you maximize profits in the digital asset markets.
                     </p>
                 </div>
                 
@@ -539,13 +656,16 @@
         </div>
     </footer>
 
+    <!-- Cookie Consent Banner - Will be injected by JS -->
+    <div id="cookie-consent-container"></div>
+
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     
-    <!-- Price Chart Initialization -->
+    <!-- Initialize UI and Base Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS (Animate on Scroll)
@@ -582,303 +702,26 @@
                     iconClose.classList.toggle('hidden');
                 });
             }
-            
-            // Initialize static price chart with sample data
-            const ctx = document.getElementById('price-chart').getContext('2d');
-            
-            // Create gradient for chart
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(55, 95, 124, 0.6)');
-            gradient.addColorStop(1, 'rgba(55, 95, 124, 0.0)');
-            
-            // Sample data for Bitcoin price chart
-            const data = {
-                labels: ['Apr 29', 'Apr 30', 'May 1', 'May 2', 'May 3', 'May 4', 'May 5'],
-                datasets: [{
-                    label: 'BTC Price (USD)',
-                    data: [68982, 68112, 69455, 70321, 69874, 71012, 71245],
-                    borderColor: '#375F7C',
-                    borderWidth: 3,
-                    pointBackgroundColor: '#567890',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6,
-                    pointHoverRadius: 8,
-                    tension: 0.3,
-                    fill: true,
-                    backgroundColor: gradient
-                }]
-            };
-            
-            // Chart configuration
-            const config = {
-                type: 'line',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            backgroundColor: '#1A1A1A',
-                            titleColor: '#E0E0E0',
-                            bodyColor: '#E0E0E0',
-                            borderColor: '#375F7C',
-                            borderWidth: 1,
-                            padding: 12,
-                            displayColors: false,
-                            callbacks: {
-                                label: function(context) {
-                                    return `$${context.raw.toLocaleString()}`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                color: 'rgba(74, 99, 120, 0.1)',
-                                borderColor: 'rgba(74, 99, 120, 0.2)'
-                            },
-                            ticks: {
-                                color: '#94A3B8'
-                            }
-                        },
-                        y: {
-                            grid: {
-                                color: 'rgba(74, 99, 120, 0.1)',
-                                borderColor: 'rgba(74, 99, 120, 0.2)'
-                            },
-                            ticks: {
-                                color: '#94A3B8',
-                                callback: function(value) {
-                                    return '$' + value.toLocaleString();
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            
-            // Create chart
-            const priceChart = new Chart(ctx, config);
-            
-            // Handle cryptocurrency selection
-            const cryptoSelect = document.getElementById('crypto-select');
-            if (cryptoSelect) {
-                cryptoSelect.addEventListener('change', function() {
-                    const selectedCrypto = this.value;
-                    const cryptoNames = {
-                        'BTC': 'Bitcoin',
-                        'ETH': 'Ethereum',
-                        'SOL': 'Solana',
-                        'BNB': 'Binance Coin',
-                        'XRP': 'XRP',
-                        'ADA': 'Cardano',
-                        'DOGE': 'Dogecoin',
-                        'AVAX': 'Avalanche'
-                    };
-                    
-                    // Update chart title
-                    document.getElementById('chart-title').textContent = `${cryptoNames[selectedCrypto]} (${selectedCrypto}) Price Movement`;
-                    
-                    // Update chart with sample data for the selected crypto
-                    // In a real application, this would fetch data from an API
-                    let newData;
-                    switch (selectedCrypto) {
-                        case 'ETH':
-                            newData = [2937, 2890, 2976, 3045, 2998, 3112, 3187];
-                            document.getElementById('current-price').textContent = '$3,187.29';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>6.12%';
-                            document.getElementById('avg-price').textContent = '$3,020.71';
-                            document.getElementById('min-price').textContent = '$2,890.33';
-                            document.getElementById('max-price').textContent = '$3,187.29';
-                            document.getElementById('trend-indicator').textContent = 'Bullish';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'trending-up');
-                            break;
-                        case 'SOL':
-                            newData = [157, 149, 152, 148, 155, 164, 169];
-                            document.getElementById('current-price').textContent = '$169.45';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>9.24%';
-                            document.getElementById('avg-price').textContent = '$156.29';
-                            document.getElementById('min-price').textContent = '$148.12';
-                            document.getElementById('max-price').textContent = '$169.45';
-                            document.getElementById('trend-indicator').textContent = 'Very Bullish';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'trending-up');
-                            break;
-                        case 'BNB':
-                            newData = [602, 594, 587, 578, 569, 583, 591];
-                            document.getElementById('current-price').textContent = '$591.21';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>3.15%';
-                            document.getElementById('avg-price').textContent = '$586.29';
-                            document.getElementById('min-price').textContent = '$569.87';
-                            document.getElementById('max-price').textContent = '$602.34';
-                            document.getElementById('trend-indicator').textContent = 'Neutral';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'minus');
-                            break;
-                        case 'XRP':
-                            newData = [0.56, 0.53, 0.52, 0.54, 0.51, 0.49, 0.47];
-                            document.getElementById('current-price').textContent = '$0.47';
-                            document.getElementById('price-change').className = 'trend-down';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-down" class="inline h-5 w-5 mr-1"></i>-7.14%';
-                            document.getElementById('avg-price').textContent = '$0.52';
-                            document.getElementById('min-price').textContent = '$0.47';
-                            document.getElementById('max-price').textContent = '$0.56';
-                            document.getElementById('trend-indicator').textContent = 'Bearish';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'trending-down');
-                            break;
-                        case 'ADA':
-                            newData = [0.46, 0.45, 0.47, 0.49, 0.52, 0.50, 0.51];
-                            document.getElementById('current-price').textContent = '$0.51';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>2.00%';
-                            document.getElementById('avg-price').textContent = '$0.48';
-                            document.getElementById('min-price').textContent = '$0.45';
-                            document.getElementById('max-price').textContent = '$0.52';
-                            document.getElementById('trend-indicator').textContent = 'Neutral';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'minus');
-                            break;
-                        case 'DOGE':
-                            newData = [0.147, 0.153, 0.158, 0.155, 0.162, 0.159, 0.151];
-                            document.getElementById('current-price').textContent = '$0.151';
-                            document.getElementById('price-change').className = 'trend-down';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-down" class="inline h-5 w-5 mr-1"></i>-5.03%';
-                            document.getElementById('avg-price').textContent = '$0.155';
-                            document.getElementById('min-price').textContent = '$0.147';
-                            document.getElementById('max-price').textContent = '$0.162';
-                            document.getElementById('trend-indicator').textContent = 'Neutral';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'minus');
-                            break;
-                        case 'AVAX':
-                            newData = [34.5, 35.2, 36.8, 38.1, 37.9, 39.3, 41.5];
-                            document.getElementById('current-price').textContent = '$41.50';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>10.61%';
-                            document.getElementById('avg-price').textContent = '$37.61';
-                            document.getElementById('min-price').textContent = '$34.50';
-                            document.getElementById('max-price').textContent = '$41.50';
-                            document.getElementById('trend-indicator').textContent = 'Very Bullish';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'trending-up');
-                            break;
-                        default: // BTC
-                            newData = [68982, 68112, 69455, 70321, 69874, 71012, 71245];
-                            document.getElementById('current-price').textContent = '$71,245.38';
-                            document.getElementById('price-change').className = 'trend-up';
-                            document.getElementById('price-change').innerHTML = '<i data-feather="trending-up" class="inline h-5 w-5 mr-1"></i>4.23%';
-                            document.getElementById('avg-price').textContent = '$69,874.21';
-                            document.getElementById('min-price').textContent = '$68,112.47';
-                            document.getElementById('max-price').textContent = '$72,456.19';
-                            document.getElementById('trend-indicator').textContent = 'Bullish';
-                            document.getElementById('trend-icon').setAttribute('data-feather', 'trending-up');
-                    }
-                    
-                    // Update chart data
-                    priceChart.data.datasets[0].data = newData;
-                    priceChart.update();
-                    
-                    // Update icons
-                    feather.replace();
-                });
-            }
-            
-            // Randomize ninja trading tips
-            const tips = [
-                "Always monitor support and resistance levels to find optimal entry and exit points for your trades.",
-                "Risk management is key. Never invest more than you can afford to lose in any single trade.",
-                "The trend is your friend. Align your trades with the overall market direction for better results.",
-                "Watch for divergences between price action and technical indicators for potential reversal signals.",
-                "Stay patient and disciplined. Emotional trading often leads to mistakes and losses.",
-                "Confirm signals across multiple timeframes for stronger trade conviction.",
-                "Learn to identify key chart patterns that match your trading style and time horizon.",
-                "When uncertainty is high, reduce your position size or stay on the sidelines."
-            ];
-            
-            // Set a random tip
-            const tipElement = document.getElementById('ninja-tip');
-            if (tipElement) {
-                tipElement.textContent = tips[Math.floor(Math.random() * tips.length)];
-            }
         });
     </script>
     
-    <!-- Custom JS -->
+    <!-- Crypto Ticker & Market Trends Integration -->
+    <script src="js/crypto-ticker.js"></script>
+    <script src="js/market-trends.js"></script>
+    
+    <!-- Particles Background -->
+    <script src="js/particles.js"></script>
+    
+    <!-- Liquid Mesh Background -->
     <script src="js/liquid-mesh.js"></script>
-    <script>
-        // Initialize liquid mesh if available
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof LiquidMesh !== 'undefined') {
-                const liquidMeshElement = document.querySelector('.liquid-mesh');
-                if (liquidMeshElement) {
-                    const mesh = new LiquidMesh(liquidMeshElement, {
-                        color: '#375F7C',
-                        backgroundColor: 'transparent',
-                        density: window.innerWidth > 768 ? 20 : 10
-                    });
-                }
-            }
-        });
-    </script>
     
-    <!-- Cookie consent script -->
+    <!-- Cookie Consent -->
     <script src="js/cookie-consent.js"></script>
     
-    <!-- Crypto Ticker -->
-    <div class="crypto-ticker fixed left-0 bottom-0 w-full bg-ninja-dark/80 backdrop-blur-md z-40 border-t border-ninja-gray/30">
-        <div class="ticker-wrap">
-            <div class="ticker-container" id="ticker-container">
-                <!-- Hardcoded crypto prices for static site -->
-                <div class="ticker-item">
-                    <span class="ticker-symbol">BTC Bitcoin</span>
-                    <span class="ticker-price">$71,245.38</span>
-                    <span class="ticker-change positive">+4.23%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">ETH Ethereum</span>
-                    <span class="ticker-price">$3,187.29</span>
-                    <span class="ticker-change positive">+5.12%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">SOL Solana</span>
-                    <span class="ticker-price">$169.45</span>
-                    <span class="ticker-change positive">+9.24%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">BNB Binance Coin</span>
-                    <span class="ticker-price">$561.21</span>
-                    <span class="ticker-change positive">+3.15%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">XRP Ripple</span>
-                    <span class="ticker-price">$0.47</span>
-                    <span class="ticker-change negative">-7.14%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">ADA Cardano</span>
-                    <span class="ticker-price">$0.51</span>
-                    <span class="ticker-change positive">+2.00%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">DOGE Dogecoin</span>
-                    <span class="ticker-price">$0.151</span>
-                    <span class="ticker-change negative">-1.03%</span>
-                </div>
-                <div class="ticker-item">
-                    <span class="ticker-symbol">AVAX Avalanche</span>
-                    <span class="ticker-price">$41.50</span>
-                    <span class="ticker-change positive">+8.01%</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Theme Toggle -->
+    <script src="js/theme-toggle.js"></script>
     
-    <!-- Crypto Ticker script - uses real API data -->
-    <script src="js/crypto-ticker.js"></script>
+    <!-- Scroll-Based Header Animations -->
+    <script src="js/scroll-header.js"></script>
 </body>
 </html>
