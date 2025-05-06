@@ -31,7 +31,7 @@
 
 /* Animation for the ticker */
 .ticker-animation {
-    animation: ticker 30s linear infinite;
+    animation: ticker 60s linear infinite; /* Slowed down from 30s to 60s */
 }
 
 @keyframes ticker {
@@ -43,6 +43,11 @@
     }
 }
 
+/* When hovering over the ticker, pause the animation */
+.crypto-ticker:hover .ticker-animation {
+    animation-play-state: paused;
+}
+
 /* Individual ticker items */
 .ticker-item {
     display: inline-flex;
@@ -50,6 +55,13 @@
     padding: 0 20px;
     height: 100%;
     position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.ticker-item:hover {
+    background-color: rgba(55, 95, 124, 0.2);
 }
 
 .ticker-item:not(:last-child)::after {

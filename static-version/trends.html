@@ -467,8 +467,8 @@
                                 <i data-feather="trending-up" class="mr-2 h-5 w-5 text-neon-green"></i>
                                 Market Analysis
                             </h3>
-                            <p class="text-sm text-ninja-light/80 leading-relaxed">
-                                Bitcoin shows positive momentum with a 4.23% increase over the past 24 hours. The price has maintained support above the $68,000 level, suggesting a strong bullish trend. Watch for resistance near the $72,500 level.
+                            <p class="text-sm text-ninja-light/80 leading-relaxed" data-analysis="market">
+                                Bitcoin shows positive momentum with continued institutional adoption. The price has maintained support above key levels, suggesting a strong bullish trend.
                             </p>
                         </div>
                         
@@ -477,7 +477,7 @@
                                 <i data-feather="alert-circle" class="mr-2 h-5 w-5 text-yellow-400"></i>
                                 Risk Assessment
                             </h3>
-                            <p class="text-sm text-ninja-light/80 leading-relaxed">
+                            <p class="text-sm text-ninja-light/80 leading-relaxed" data-analysis="risk">
                                 Current volatility index: Moderate. Market sentiment is positive with reduced selling pressure. The RSI indicator shows the asset is approaching overbought territory, suggesting caution for new long positions.
                             </p>
                         </div>
@@ -487,9 +487,27 @@
                                 <i data-feather="clock" class="mr-2 h-5 w-5 text-electric-blue"></i>
                                 Future Outlook
                             </h3>
-                            <p class="text-sm text-ninja-light/80 leading-relaxed">
-                                Technical indicators suggest continued upward momentum in the short term. Key support levels have been established, with the 50-day moving average providing a solid foundation for future growth.
+                            <p class="text-sm text-ninja-light/80 leading-relaxed" data-analysis="outlook">
+                                Technical indicators suggest continued upward momentum in the short term. Key support levels have been established, with solid on-chain fundamentals.
                             </p>
+                        </div>
+                        
+                        <!-- Additional Stats Box -->
+                        <div class="ninja-chart-container p-6 mt-6" data-aos="fade-up" data-aos-delay="300">
+                            <h3 class="text-lg font-bold mb-4 flex items-center">
+                                <i data-feather="bar-chart" class="mr-2 h-5 w-5 text-neon-green"></i>
+                                Additional Metrics
+                            </h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col">
+                                    <span class="text-sm text-ninja-light/70">Market Cap</span>
+                                    <span id="market-cap" class="text-base font-medium">$1.38T</span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-sm text-ninja-light/70">7D Change</span>
+                                    <span id="price-change-7d" class="text-base font-medium text-green-400">+15.81%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -500,7 +518,7 @@
             <div class="ninja-chart-container">
                 <h2 class="text-2xl font-bold mb-6">Popular Trading Pairs</h2>
                 <div class="overflow-x-auto">
-                    <table class="w-full min-w-full">
+                    <table class="w-full min-w-full" id="trading-pairs-table">
                         <thead>
                             <tr class="border-b border-ninja-gray/30 text-left">
                                 <th class="pb-4 font-medium text-ninja-light/70">Pair</th>
@@ -511,65 +529,57 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Trading pairs populated dynamically by market-trends.js -->
                             <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
                                 <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-xs font-bold">B</div>
-                                        <span>BTC/USD</span>
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" class="w-8 h-8 rounded-full">
+                                        <div>
+                                            <p class="font-medium">Bitcoin</p>
+                                            <p class="text-sm text-ninja-light/70">BTC/USD</p>
+                                        </div>
                                     </div>
                                 </td>
-                                <td class="py-4">$71,245.00</td>
-                                <td class="py-4 trend-up">+4.23%</td>
-                                <td class="py-4">$32.4B</td>
-                                <td class="py-4">$1.38T</td>
+                                <td class="py-4 font-medium">$71,245.00</td>
+                                <td class="py-4 trend-up">
+                                    <i data-feather="arrow-up-right" class="inline h-4 w-4 mr-1"></i>+4.23%
+                                </td>
+                                <td class="py-4 font-medium">$32.4B</td>
+                                <td class="py-4 font-medium">$1.38T</td>
                             </tr>
                             <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
                                 <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-bold">E</div>
-                                        <span>ETH/USD</span>
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" class="w-8 h-8 rounded-full">
+                                        <div>
+                                            <p class="font-medium">Ethereum</p>
+                                            <p class="text-sm text-ninja-light/70">ETH/USD</p>
+                                        </div>
                                     </div>
                                 </td>
-                                <td class="py-4">$3,187.29</td>
-                                <td class="py-4 trend-up">+6.12%</td>
-                                <td class="py-4">$14.7B</td>
-                                <td class="py-4">$382.4B</td>
+                                <td class="py-4 font-medium">$3,187.29</td>
+                                <td class="py-4 trend-up">
+                                    <i data-feather="arrow-up-right" class="inline h-4 w-4 mr-1"></i>+5.12%
+                                </td>
+                                <td class="py-4 font-medium">$14.7B</td>
+                                <td class="py-4 font-medium">$382.4B</td>
                             </tr>
                             <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
                                 <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs font-bold">S</div>
-                                        <span>SOL/USD</span>
+                                    <div class="flex items-center gap-3">
+                                        <div class="animate-pulse bg-ninja-dark rounded-full w-8 h-8 flex items-center justify-center">
+                                            <i data-feather="loader" class="w-4 h-4 text-neon-green"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Loading...</p>
+                                            <p class="text-sm text-ninja-light/70">...</p>
+                                        </div>
                                     </div>
                                 </td>
-                                <td class="py-4">$165.72</td>
-                                <td class="py-4 trend-up">+5.46%</td>
-                                <td class="py-4">$4.2B</td>
-                                <td class="py-4">$72.8B</td>
-                            </tr>
-                            <tr class="border-b border-ninja-gray/10 hover:bg-ninja-gray/5 transition-colors">
-                                <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold">B</div>
-                                        <span>BNB/USD</span>
-                                    </div>
-                                </td>
-                                <td class="py-4">$586.15</td>
-                                <td class="py-4 trend-up">+0.98%</td>
-                                <td class="py-4">$1.8B</td>
-                                <td class="py-4">$87.6B</td>
-                            </tr>
-                            <tr class="hover:bg-ninja-gray/5 transition-colors">
-                                <td class="py-4">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs font-bold">X</div>
-                                        <span>XRP/USD</span>
-                                    </div>
-                                </td>
-                                <td class="py-4">$0.5317</td>
-                                <td class="py-4 trend-down">-2.12%</td>
-                                <td class="py-4">$1.2B</td>
-                                <td class="py-4">$28.4B</td>
+                                <td class="py-4 font-medium">$0.00</td>
+                                <td class="py-4">0.00%</td>
+                                <td class="py-4 font-medium">$0.0</td>
+                                <td class="py-4 font-medium">$0.0</td>
                             </tr>
                         </tbody>
                     </table>

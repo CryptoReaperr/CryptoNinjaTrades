@@ -72,7 +72,9 @@ function processCoinGeckoResponse(apiData) {
             isPositive: change24h >= 0,
             image: crypto.image,
             marketCap: crypto.market_cap,
-            marketCapRank: crypto.market_cap_rank
+            marketCapRank: crypto.market_cap_rank,
+            id: crypto.id,
+            coinMarketCapUrl: `https://coinmarketcap.com/currencies/${crypto.id}/`
         };
     });
 }
@@ -132,12 +134,28 @@ function updateTickerUI(cryptoData) {
         
         // Generate new ticker items
         cryptoData.forEach(crypto => {
-            const tickerItem = document.createElement('div');
-            tickerItem.className = 'ticker-item';
+            // Create a link wrapper for the ticker item
+            const tickerLink = document.createElement('a');
+            tickerLink.href = crypto.coinMarketCapUrl || `https://coinmarketcap.com/currencies/${crypto.symbol.toLowerCase()}/`;
+            tickerLink.target = '_blank';
+            tickerLink.rel = 'noopener noreferrer';
+            tickerLink.className = 'ticker-item';
+            tickerLink.title = `View ${crypto.name} on CoinMarketCap`;
             
+            // Create ticker content elements
             const symbolElement = document.createElement('span');
             symbolElement.className = 'ticker-symbol';
-            symbolElement.textContent = `${crypto.symbol} ${crypto.name}`;
+            
+            // If we have an image, display it with the symbol
+            if (crypto.image) {
+                const imgElement = document.createElement('img');
+                imgElement.src = crypto.image;
+                imgElement.alt = crypto.name;
+                imgElement.className = 'w-5 h-5 inline-block rounded-full mr-2';
+                symbolElement.appendChild(imgElement);
+            }
+            
+            symbolElement.appendChild(document.createTextNode(`${crypto.symbol} ${crypto.name}`));
             
             const priceElement = document.createElement('span');
             priceElement.className = 'ticker-price';
@@ -147,11 +165,18 @@ function updateTickerUI(cryptoData) {
             changeElement.className = `ticker-change ${crypto.isPositive ? 'positive' : 'negative'}`;
             changeElement.textContent = crypto.change24hFormatted;
             
-            tickerItem.appendChild(symbolElement);
-            tickerItem.appendChild(priceElement);
-            tickerItem.appendChild(changeElement);
+            // Add a subtle external link icon
+            const linkIcon = document.createElement('span');
+            linkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-3 h-3 ml-1 opacity-50"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
             
-            container.appendChild(tickerItem);
+            // Add the elements to the link
+            tickerLink.appendChild(symbolElement);
+            tickerLink.appendChild(priceElement);
+            tickerLink.appendChild(changeElement);
+            tickerLink.appendChild(linkIcon);
+            
+            // Add the ticker item to the container
+            container.appendChild(tickerLink);
         });
         
         // Apply animation
