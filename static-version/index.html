@@ -127,19 +127,23 @@
     </div>
     
     <!-- Theme Toggle -->
-    <div id="theme-toggle" class="fixed bottom-6 right-6 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Light/Dark Mode">
-        <div class="theme-toggle-switch w-10 h-10 flex items-center justify-center relative overflow-hidden">
-            <i data-feather="moon" class="w-5 h-5 text-neon-green absolute dark-icon"></i>
-            <i data-feather="sun" class="w-5 h-5 text-amber-400 absolute light-icon hidden"></i>
+    <div id="theme-toggle" class="fixed bottom-6 right-6 z-50 p-2 rounded-full shadow-lg transition-colors duration-300 cursor-pointer flex items-center justify-center" title="Toggle Light/Dark Mode">
+        <div class="relative w-10 h-10 rounded-full overflow-hidden bg-ninja-dark border border-ninja-gray/30 hover:border-neon-green/50">
+            <div class="theme-toggle-switch w-full h-full flex items-center justify-center">
+                <i data-feather="moon" class="w-5 h-5 text-neon-green absolute dark-icon"></i>
+                <i data-feather="sun" class="w-5 h-5 text-amber-400 absolute light-icon hidden"></i>
+            </div>
         </div>
         <span class="theme-toggle-label sr-only">Toggle Theme</span>
     </div>
     
     <!-- Animation Mode Toggle -->
-    <div id="animation-toggle" class="fixed bottom-6 right-20 z-40 bg-ninja-dark p-2 rounded-full shadow-lg border border-ninja-gray/30 hover:border-neon-green/50 transition-colors duration-300 cursor-pointer" title="Toggle Animation Mode">
-        <div class="animation-toggle-switch w-10 h-10 flex items-center justify-center relative overflow-hidden">
-            <i data-feather="zap" class="w-5 h-5 text-neon-green absolute basic-icon"></i>
-            <i data-feather="zap-off" class="w-5 h-5 text-gray-400 absolute advanced-icon hidden"></i>
+    <div id="animation-toggle" class="fixed bottom-6 right-20 z-50 p-2 rounded-full shadow-lg transition-colors duration-300 cursor-pointer flex items-center justify-center" title="Toggle Animation Mode">
+        <div class="relative w-10 h-10 rounded-full overflow-hidden bg-ninja-dark border border-ninja-gray/30 hover:border-neon-green/50">
+            <div class="animation-toggle-switch w-full h-full flex items-center justify-center">
+                <i data-feather="zap" class="w-5 h-5 text-neon-green absolute basic-icon"></i>
+                <i data-feather="zap-off" class="w-5 h-5 text-gray-400 absolute advanced-icon hidden"></i>
+            </div>
         </div>
         <span class="animation-toggle-label sr-only">Toggle Animation Mode</span>
     </div>
@@ -159,14 +163,14 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex gap-6">
-                    <a href="index.html" class="font-medium text-neon-green transition-colors duration-300">Home</a>
+                    <a href="/" class="font-medium text-neon-green transition-colors duration-300">Home</a>
                     <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300">Benefits</a>
                     <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300">Requirements</a>
                     <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300">Plans</a>
-                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300">News</a>
-                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="/news" class="font-medium hover:text-neon-green transition-colors duration-300">News</a>
+                    <a href="/trends" class="font-medium hover:text-neon-green transition-colors duration-300">Trends</a>
                     <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300">Payment</a>
-                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
+                    <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
                 </nav>
                 
                 <!-- Join Now Button (Desktop) -->
@@ -186,14 +190,14 @@
         <div id="mobile-menu" class="mobile-menu md:hidden bg-ninja-dark/95 backdrop-blur-md absolute w-full border-b border-ninja-gray/30">
             <div class="container mx-auto px-4 py-5">
                 <nav class="flex flex-col gap-4">
-                    <a href="index.html" class="font-medium text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="/" class="font-medium text-neon-green transition-colors duration-300 py-2">Home</a>
                     <a href="#benefits" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Benefits</a>
                     <a href="#requirements" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Requirements</a>
                     <a href="#plans" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Plans</a>
-                    <a href="news.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">News</a>
-                    <a href="trends.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="/news" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="/trends" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
                     <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
-                    <a href="login.html" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
+                    <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
                     
                     <!-- Join Now Button (Mobile) -->
                     <a href="#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
@@ -343,7 +347,7 @@
                         <span>Join VIP Club</span>
                         <i data-feather="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"></i>
                     </a>
-                    <a href="login.html" class="bg-transparent border-2 border-neon-green/50 hover:border-neon-green text-white px-8 py-4 rounded-md font-bold transition-all duration-300 text-lg hover:bg-neon-green/10 hover:scale-105 flex items-center justify-center gap-2 group">
+                    <a href="/login" class="bg-transparent border-2 border-neon-green/50 hover:border-neon-green text-white px-8 py-4 rounded-md font-bold transition-all duration-300 text-lg hover:bg-neon-green/10 hover:scale-105 flex items-center justify-center gap-2 group">
                         <i data-feather="lock" class="w-5 h-5"></i>
                         <span>Member Login</span>
                     </a>
@@ -1340,12 +1344,12 @@
                 
                 <!-- Quick Links -->
                 <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-2">
-                    <a href="index.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
-                    <a href="news.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
-                    <a href="trends.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
+                    <a href="/" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
+                    <a href="/news" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
+                    <a href="/trends" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
                     <a href="#payment" class="text-sm text-neon-green hover:text-electric-blue transition-colors">Join VIP</a>
-                    <a href="terms.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
-                    <a href="privacy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
+                    <a href="/terms" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
+                    <a href="/privacy" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
                 </div>
             </div>
             
