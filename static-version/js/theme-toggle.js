@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
  * Set up and handle theme mode switching
  */
 function initThemeToggle() {
-  // Get theme toggle button
-  const themeToggle = document.getElementById('theme-toggle');
-  if (!themeToggle) {
-    console.log('Theme toggle not found');
+  // Get theme toggle buttons
+  const themeToggle = document.getElementById('theme-toggle'); // Bottom right corner toggle
+  const themeToggleHeader = document.getElementById('theme-toggle-header'); // Desktop header toggle
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile'); // Mobile menu toggle
+  
+  if (!themeToggle && !themeToggleHeader && !themeToggleMobile) {
+    console.log('No theme toggle buttons found');
     return;
   }
   
@@ -29,69 +32,98 @@ function initThemeToggle() {
   console.log('Saved theme mode:', savedTheme);
   
   // Initialize theme based on saved preference or default to dark
-  if (savedTheme === 'light') {
+  const isLightTheme = savedTheme === 'light';
+  if (isLightTheme) {
     document.body.classList.add('light-theme');
-    themeToggle.classList.add('active');
+    if (themeToggle) themeToggle.classList.add('active');
+    if (themeToggleHeader) themeToggleHeader.classList.add('active');
+    if (themeToggleMobile) themeToggleMobile.classList.add('active');
     toggleThemeIcons(true);
-    // We don't need to call refreshParticles() here as particles are initialized after this script runs
     console.log('Applied light theme on init');
   } else {
     document.body.classList.remove('light-theme');
-    themeToggle.classList.remove('active');
+    if (themeToggle) themeToggle.classList.remove('active');
+    if (themeToggleHeader) themeToggleHeader.classList.remove('active');
+    if (themeToggleMobile) themeToggleMobile.classList.remove('active');
     toggleThemeIcons(false);
     console.log('Applied dark theme on init');
   }
   
-  // Apply click handler to all elements inside the toggle
-  const toggleElements = [themeToggle, themeToggle.querySelector('.theme-toggle-switch'), themeToggle.querySelector('.theme-toggle-label')];
-  
-  // Add click handlers to all elements
-  toggleElements.forEach(element => {
-    if (element) {
-      element.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent any default action
-        e.stopPropagation(); // Stop event bubbling
-        console.log('Theme toggle or child clicked');
-        
-        // Toggle the active class on the main toggle element
-        themeToggle.classList.toggle('active');
-        
-        if (themeToggle.classList.contains('active')) {
-          // Light theme mode
-          document.body.classList.add('light-theme');
-          localStorage.setItem('themeMode', 'light');
-          toggleThemeIcons(true);
-          refreshParticles();
-          console.log('Switched to light theme');
-        } else {
-          // Dark theme mode
-          document.body.classList.remove('light-theme');
-          localStorage.setItem('themeMode', 'dark');
-          toggleThemeIcons(false);
-          refreshParticles();
-          console.log('Switched to dark theme');
-        }
-      });
+  // Function to handle theme toggle click
+  const handleThemeToggle = (e) => {
+    e.preventDefault(); // Prevent any default action
+    e.stopPropagation(); // Stop event bubbling
+    console.log('Theme toggle or child clicked');
+    
+    // Toggle themes
+    const newTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light';
+    
+    if (newTheme === 'light') {
+      // Light theme mode
+      document.body.classList.add('light-theme');
+      localStorage.setItem('themeMode', 'light');
+      if (themeToggle) themeToggle.classList.add('active');
+      if (themeToggleHeader) themeToggleHeader.classList.add('active');
+      if (themeToggleMobile) themeToggleMobile.classList.add('active');
+      toggleThemeIcons(true);
+      refreshParticles();
+      console.log('Switched to light theme');
+    } else {
+      // Dark theme mode
+      document.body.classList.remove('light-theme');
+      localStorage.setItem('themeMode', 'dark');
+      if (themeToggle) themeToggle.classList.remove('active');
+      if (themeToggleHeader) themeToggleHeader.classList.remove('active');
+      if (themeToggleMobile) themeToggleMobile.classList.remove('active');
+      toggleThemeIcons(false);
+      refreshParticles();
+      console.log('Switched to dark theme');
     }
-  });
+  };
+  
+  // Add click event handlers to the original toggle button (bottom right)
+  if (themeToggle) {
+    const toggleElements = [themeToggle, themeToggle.querySelector('.theme-toggle-switch'), themeToggle.querySelector('.theme-toggle-label')];
+    toggleElements.forEach(element => {
+      if (element) element.addEventListener('click', handleThemeToggle);
+    });
+  }
+  
+  // Add click event handler to the header toggle button
+  if (themeToggleHeader) {
+    themeToggleHeader.addEventListener('click', handleThemeToggle);
+  }
+  
+  // Add click event handler to the mobile toggle button
+  if (themeToggleMobile) {
+    themeToggleMobile.addEventListener('click', handleThemeToggle);
+  }
 }
 
 /**
  * Toggle the sun/moon icons based on theme
  */
 function toggleThemeIcons(isLight) {
-  const darkIcon = document.querySelector('.dark-icon');
-  const lightIcon = document.querySelector('.light-icon');
+  // Get all dark and light icons
+  const darkIcons = document.querySelectorAll('.dark-icon');
+  const lightIcons = document.querySelectorAll('.light-icon');
   
-  if (darkIcon && lightIcon) {
+  // Update all theme toggle icons
+  darkIcons.forEach(icon => {
     if (isLight) {
-      darkIcon.classList.add('hidden');
-      lightIcon.classList.remove('hidden');
+      icon.classList.add('hidden');
     } else {
-      darkIcon.classList.remove('hidden');
-      lightIcon.classList.add('hidden');
+      icon.classList.remove('hidden');
     }
-  }
+  });
+  
+  lightIcons.forEach(icon => {
+    if (isLight) {
+      icon.classList.remove('hidden');
+    } else {
+      icon.classList.add('hidden');
+    }
+  });
 }
 
 /**

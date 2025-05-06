@@ -126,19 +126,10 @@
         <span>Copied to clipboard!</span>
     </div>
     
-    <!-- Theme Toggle -->
-    <div id="theme-toggle" class="fixed bottom-6 right-6 z-50 p-2 rounded-full shadow-lg transition-colors duration-300 cursor-pointer flex items-center justify-center" title="Toggle Light/Dark Mode">
-        <div class="relative w-10 h-10 rounded-full overflow-hidden bg-ninja-dark border border-ninja-gray/30 hover:border-neon-green/50">
-            <div class="theme-toggle-switch w-full h-full flex items-center justify-center">
-                <i data-feather="moon" class="w-5 h-5 text-neon-green absolute dark-icon"></i>
-                <i data-feather="sun" class="w-5 h-5 text-amber-400 absolute light-icon hidden"></i>
-            </div>
-        </div>
-        <span class="theme-toggle-label sr-only">Toggle Theme</span>
-    </div>
+
     
     <!-- Animation Mode Toggle -->
-    <div id="animation-toggle" class="fixed bottom-6 right-20 z-50 p-2 rounded-full shadow-lg transition-colors duration-300 cursor-pointer flex items-center justify-center" title="Toggle Animation Mode">
+    <div id="animation-toggle" class="fixed bottom-6 right-6 z-50 p-2 rounded-full shadow-lg transition-colors duration-300 cursor-pointer flex items-center justify-center" title="Toggle Animation Mode">
         <div class="relative w-10 h-10 rounded-full overflow-hidden bg-ninja-dark border border-ninja-gray/30 hover:border-neon-green/50">
             <div class="animation-toggle-switch w-full h-full flex items-center justify-center">
                 <i data-feather="zap" class="w-5 h-5 text-neon-green absolute basic-icon"></i>
@@ -153,7 +144,7 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <!-- Logo and Branding -->
-                <a href="index.html" class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-3">
                     <img src="images/official-logo.png" alt="Crypto Ninja Trades logo" class="w-12 h-12 rounded-full">
                     <div>
                         <h1 class="text-xl font-montserrat font-bold text-white">Crypto Ninja <span class="text-neon-green">Trades</span></h1>
@@ -173,10 +164,19 @@
                     <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300">Login</a>
                 </nav>
                 
-                <!-- Join Now Button (Desktop) -->
-                <a href="#plans" class="hidden md:block bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
-                    Join Now
-                </a>
+                <!-- Join Now Button and Theme Toggle (Desktop) -->
+                <div class="hidden md:flex items-center gap-3">
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle-header" class="w-8 h-8 bg-ninja-dark/80 rounded-md border border-ninja-gray/30 flex items-center justify-center hover:border-neon-green/50 transition-colors">
+                        <i data-feather="moon" class="w-4 h-4 text-neon-green dark-icon"></i>
+                        <i data-feather="sun" class="w-4 h-4 text-amber-400 light-icon hidden"></i>
+                    </button>
+                    
+                    <!-- Join Now Button -->
+                    <a href="#plans" class="bg-neon-green text-ninja-black px-5 py-2 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300">
+                        Join Now
+                    </a>
+                </div>
                 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
@@ -199,10 +199,17 @@
                     <a href="#payment" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Payment</a>
                     <a href="/login" class="font-medium hover:text-neon-green transition-colors duration-300 py-2">Login</a>
                     
-                    <!-- Join Now Button (Mobile) -->
-                    <a href="#plans" class="bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center mt-2">
-                        Join Now
-                    </a>
+                    <!-- Theme Toggle and Join Button (Mobile) -->
+                    <div class="flex items-center gap-3 mt-3">
+                        <button id="theme-toggle-mobile" class="w-10 h-10 bg-ninja-dark/80 rounded-md border border-ninja-gray/30 flex items-center justify-center hover:border-neon-green/50 transition-colors">
+                            <i data-feather="moon" class="w-5 h-5 text-neon-green dark-icon"></i>
+                            <i data-feather="sun" class="w-5 h-5 text-amber-400 light-icon hidden"></i>
+                        </button>
+                        
+                        <a href="#plans" class="flex-1 bg-neon-green text-ninja-black px-5 py-3 rounded-md font-bold hover:bg-electric-blue transition-colors duration-300 text-center">
+                            Join Now
+                        </a>
+                    </div>
                 </nav>
             </div>
         </div>
