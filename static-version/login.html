@@ -486,7 +486,7 @@
                                 <input type="password" id="password" class="form-input w-full pl-12 pr-4 py-3 rounded-md" placeholder="••••••••">
                             </div>
                         </div>
-                        <a href="dashboard.html" class="primary-button w-full py-3 px-4 rounded-md font-bold transition-all duration-300 text-white text-center">
+                        <a href="/dashboard" class="primary-button w-full py-3 px-4 rounded-md font-bold transition-all duration-300 text-white text-center">
                             Sign In
                         </a>
                     </form>
@@ -494,7 +494,7 @@
                     <!-- Register Link -->
                     <div class="text-center mt-8 pt-6 border-t border-ninja-gray/20">
                         <p class="text-ninja-light/70 mb-4">Don't have an account yet?</p>
-                        <a href="index.html#plans" class="inline-block bg-transparent border border-blue-500 text-blue-400 py-2 px-8 rounded-md font-medium hover:bg-blue-500/10 transition-all duration-300">Join VIP Club</a>
+                        <a href="/#plans" class="inline-block bg-transparent border border-blue-500 text-blue-400 py-2 px-8 rounded-md font-medium hover:bg-blue-500/10 transition-all duration-300">Join VIP Club</a>
                     </div>
                 </div>
             </div>
@@ -531,12 +531,12 @@
                 
                 <!-- Quick Links -->
                 <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-2">
-                    <a href="index.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
-                    <a href="news.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
-                    <a href="trends.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
-                    <a href="index.html#payment" class="text-sm text-neon-green hover:text-electric-blue transition-colors">Join VIP</a>
-                    <a href="terms.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
-                    <a href="privacy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
+                    <a href="/" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
+                    <a href="/news" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
+                    <a href="/trends" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
+                    <a href="/#payment" class="text-sm text-neon-green hover:text-electric-blue transition-colors">Join VIP</a>
+                    <a href="/terms" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
+                    <a href="/privacy" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
                 </div>
             </div>
             
@@ -614,7 +614,7 @@
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 // Redirect to dashboard
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             });
         }
     </script>
