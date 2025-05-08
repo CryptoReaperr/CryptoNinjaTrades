@@ -1,0 +1,123 @@
+/* Mobile fixed bottom CTA bar - 2025 design */
+.fixed-bottom-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(5, 7, 9, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(42, 48, 64, 0.3);
+  padding: 1rem;
+  z-index: 40;
+  display: none;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.fixed-bottom-cta.active {
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .fixed-bottom-cta {
+    display: flex;
+  }
+  
+  /* Add padding to body to account for fixed bar */
+  body {
+    padding-bottom: 5rem;
+  }
+}
+
+.fixed-bottom-cta .button-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.fixed-bottom-cta .action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  color: #B8C2CC;
+  font-size: 0.75rem;
+  transition: color 0.2s ease;
+  flex: 1;
+  max-width: 6rem;
+  text-align: center;
+}
+
+.fixed-bottom-cta .action-button.primary {
+  color: #00FF94;
+}
+
+.fixed-bottom-cta .icon-container {
+  background: rgba(0, 255, 148, 0.1);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(0, 255, 148, 0.2);
+  transition: all 0.3s ease;
+}
+
+.fixed-bottom-cta .action-button:hover .icon-container {
+  background: rgba(0, 255, 148, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fixed-bottom-cta .primary .icon-container {
+  background: rgba(0, 255, 148, 0.2);
+  border: 1px solid rgba(0, 255, 148, 0.4);
+}
+
+.fixed-bottom-cta .primary:hover .icon-container {
+  background: rgba(0, 255, 148, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 148, 0.3);
+}
+
+.fixed-bottom-cta .join-button {
+  background: linear-gradient(135deg, #00FF94 0%, #00E5FF 100%);
+  color: #0A0E17;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 255, 148, 0.3);
+  border: none;
+  transition: all 0.3s ease;
+  max-width: none;
+}
+
+.fixed-bottom-cta .join-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 255, 148, 0.4);
+}
+
+.fixed-bottom-cta .indicator {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3rem;
+  height: 0.25rem;
+  background-color: rgba(42, 48, 64, 0.5);
+  border-radius: 0.25rem 0.25rem 0 0;
+  transition: background-color 0.3s ease;
+}
+
+.fixed-bottom-cta:hover .indicator {
+  background-color: #00FF94;
+}
