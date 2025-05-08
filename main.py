@@ -18,6 +18,11 @@ def index():
 def serve_file(path):
     logger.debug(f"Requested path: {path}")
     
+    # Handle hash/anchor tags (like #requirements) by serving the index page
+    if path.startswith('#'):
+        logger.debug(f"Hash/anchor tag detected: {path}, serving index.html")
+        return send_from_directory('static-version', 'index.html')
+    
     # Check if the path already has an extension
     if '.' in path:
         # If it has an extension, serve directly from static-version
