@@ -968,24 +968,38 @@
                             <div
                                 class="relative z-10 bg-ninja-dark rounded-lg overflow-hidden border border-ninja-gray/30 shadow-xl"
                             >
-                                <div class="aspect-video relative">
-                                    <!-- Real Telegram Signal Example -->
-                                    <img 
-                                        src="images/telegram-signal-example.png" 
-                                        alt="Real Crypto Ninja Trades Telegram Signal"
-                                        class="w-full h-full object-cover rounded-t-lg"
-                                    />
-                                    
-                                    <!-- Signal Highlight Overlay -->
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-t from-ninja-black/30 to-transparent rounded-t-lg"
-                                    >
-                                        <div class="absolute bottom-4 left-4">
-                                            <div class="bg-ninja-black/70 backdrop-blur-sm px-3 py-1 rounded-full inline-flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-neon-green mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div class="relative">
+                                    <!-- Signal container with custom styling -->
+                                    <div class="bg-ninja-black rounded-lg border border-ninja-gray/30 p-4 mb-4">
+                                        <!-- Important Note Box -->
+                                        <div class="mb-4 bg-ninja-dark/80 rounded-lg p-4 border border-ninja-gray/20 flex items-start gap-3">
+                                            <div class="text-neon-green shrink-0 mt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-bold mb-1">Important Note</h5>
+                                                <p class="text-sm text-ninja-light/80">While our signals have a high success rate, trading always involves risk. Never invest more than you can afford to lose, and always use proper risk management strategies.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Real Telegram Signal Example -->
+                                        <div class="rounded-lg overflow-hidden border border-ninja-gray/30 shadow-lg mb-2 mx-auto max-w-lg">
+                                            <img 
+                                                src="images/telegram-signal-example-new.png" 
+                                                alt="Real Crypto Ninja Trades Telegram Signal"
+                                                class="w-full object-contain"
+                                            />
+                                        </div>
+                                        
+                                        <!-- Authentic Badge -->
+                                        <div class="flex justify-center">
+                                            <div class="inline-flex items-center gap-2 bg-neon-green/10 text-neon-green px-3 py-1.5 rounded-full">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                <span class="text-white text-xs">Actual Signal Example</span>
+                                                <span class="text-sm font-medium">Actual Signal Example</span>
                                             </div>
                                         </div>
                                     </div>
