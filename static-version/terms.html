@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Crypto Ninja Trades</title>
+    
+    <!-- Failsafe loader removal script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Force remove loader after 4 seconds no matter what
+            setTimeout(function() {
+                // Check all possible loader IDs
+                ['page-loader', 'loading-screen'].forEach(function(id) {
+                    var loader = document.getElementById(id);
+                    if (loader) {
+                        loader.style.display = 'none';
+                        setTimeout(function() {
+                            if (loader.parentNode) {
+                                loader.parentNode.removeChild(loader);
+                            }
+                        }, 100);
+                    }
+                });
+            }, 4000);
+        });
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/next-level.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <link rel="stylesheet" href="css/immersive.css">
+    <link rel="stylesheet" href="css/ultra-responsive.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <link rel="stylesheet" href="css/ticker.css">
+    
+    <!-- AOS Library for Scroll Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    screens: {
+                        '3xl': '1920px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 5s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    transitionProperty: {
+                        'border': 'border-color, border-width, border-opacity',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-ninja-black text-ninja-light flex flex-col min-h-screen">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="loading-content flex flex-col items-center">
+            <img src="images/logo-animated.svg" alt="Crypto Ninja Trades" class="w-20 h-20 mb-4">
+            <div class="loading-spinner"></div>
+            <p class="mt-4 text-sm text-ninja-light/50">Loading secure environment...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-ninja-black/80 backdrop-blur-md transition-all duration-300 border-b border-ninja-gray/20" id="site-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.svg" alt="Crypto Ninja Trades" class="h-10 w-auto">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="trends.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="news.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">News</a>
+                    <a href="index.html#payment" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Pricing</a>
+                    <a href="login.html" class="text-neon-green hover:text-electric-blue transition-colors duration-300">Login</a>
+                    <a href="index.html#payment" class="ml-2 bg-neon-green hover:bg-electric-blue text-ninja-black py-2 px-4 rounded-md font-medium transition-all duration-300 flex items-center gap-1">
+                        <span>Join Now</span>
+                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-1 rounded-full bg-ninja-gray/20 hover:bg-ninja-gray/30 transition-colors duration-300 flex items-center justify-center" aria-label="Toggle Theme">
+                        <i data-feather="sun" class="w-5 h-5 text-ninja-light/90 theme-icon-light hidden"></i>
+                        <i data-feather="moon" class="w-5 h-5 text-ninja-light/90 theme-icon-dark"></i>
+                    </button>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden flex items-center text-ninja-light focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2 border-t border-ninja-gray/20 mt-3">
+                <nav class="flex flex-col gap-3">
+                    <a href="index.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="trends.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="news.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="index.html#payment" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Pricing</a>
+                    <a href="login.html" class="text-neon-green hover:text-electric-blue transition-colors duration-300 py-2">Login</a>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-ninja-gray/20">
+                        <a href="index.html#payment" class="bg-neon-green hover:bg-electric-blue text-ninja-black py-2 px-4 rounded-md font-medium transition-all duration-300 flex items-center gap-1">
+                            <span>Join Now</span>
+                            <i data-feather="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <!-- Mobile Theme Toggle -->
+                        <button id="mobile-theme-toggle" class="p-2 rounded-full bg-ninja-gray/20 hover:bg-ninja-gray/30 transition-colors duration-300 flex items-center justify-center" aria-label="Toggle Theme">
+                            <i data-feather="sun" class="w-5 h-5 text-ninja-light/90 theme-icon-light hidden"></i>
+                            <i data-feather="moon" class="w-5 h-5 text-ninja-light/90 theme-icon-dark"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 pb-16 sm:pt-28 lg:pt-32">
+        <div class="container mx-auto px-4">
+            <!-- Page Header with Animation -->
+            <div class="mb-12 relative">
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-neon-green/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-40 -right-20 w-80 h-80 bg-electric-blue/10 rounded-full blur-3xl"></div>
+                
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 relative z-10" data-aos="fade-up">Terms of Service</h1>
+                <p class="text-lg text-ninja-light/70 max-w-3xl relative z-10" data-aos="fade-up" data-aos-delay="100">
+                    Please read these terms carefully before using our services. By accessing or using Crypto Ninja Trades, you agree to be bound by these terms.
+                </p>
+                
+                <div class="absolute right-0 top-0 opacity-10 hidden lg:block">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Terms Content -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Sidebar Navigation -->
+                <div class="hidden md:block md:col-span-1">
+                    <div class="sticky top-32 bg-ninja-dark/50 backdrop-blur-md p-5 rounded-xl border border-ninja-gray/20">
+                        <h3 class="text-lg font-semibold mb-4 text-neon-green">Quick Navigation</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#introduction" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Introduction</a></li>
+                            <li><a href="#services" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Services</a></li>
+                            <li><a href="#eligibility" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Eligibility</a></li>
+                            <li><a href="#content" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Content & Intellectual Property</a></li>
+                            <li><a href="#payments" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Payments & Subscriptions</a></li>
+                            <li><a href="#user-conduct" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">User Conduct</a></li>
+                            <li><a href="#disclaimers" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Disclaimers</a></li>
+                            <li><a href="#limitation" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Limitation of Liability</a></li>
+                            <li><a href="#termination" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Termination</a></li>
+                            <li><a href="#changes" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Changes to Terms</a></li>
+                            <li><a href="#contact" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="md:col-span-3 space-y-10">
+                    <section id="introduction" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Introduction</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            Welcome to Crypto Ninja Trades. These Terms of Service ("Terms") govern your access to and use of the Crypto Ninja Trades website, mobile applications, and online services (collectively, the "Services") operated by Crypto Ninja Trades ("we," "us," or "our").
+                            
+                            By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use our Services.
+                        </p>
+                    </section>
+                    
+                    <section id="services" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Services</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            Our Services provide educational content, market analysis, trading signals, and community engagement related to cryptocurrency markets. The specific features and functionalities available to you may depend on your subscription type.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Educational Purpose</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            All information, analysis, and signals provided through our Services are for educational and informational purposes only. We do not provide personalized financial, investment, legal, or tax advice.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Service Modifications</h3>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We reserve the right to modify, suspend, or discontinue any part of our Services at any time, with or without notice. We will not be liable to you or any third party for any modification, suspension, or discontinuation of our Services.
+                        </p>
+                    </section>
+                    
+                    <section id="eligibility" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Eligibility</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            You must be at least 18 years old to access or use our Services. By accessing or using our Services, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms.
+                            
+                            Our Services are not available to residents of jurisdictions where cryptocurrency trading or related activities are prohibited by law. It is your responsibility to ensure that your use of our Services complies with the laws applicable in your jurisdiction.
+                        </p>
+                    </section>
+                    
+                    <section id="content" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Content & Intellectual Property</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            All content provided through our Services, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, is the property of Crypto Ninja Trades or our content suppliers and is protected by international copyright, trademark, and other intellectual property laws.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">License</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, non-sublicensable license to access and use our Services and content for your personal, non-commercial use only.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Restrictions</h3>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            You may not:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80">
+                            <li>Reproduce, duplicate, copy, sell, resell, or exploit any portion of our Services or content without our express written permission</li>
+                            <li>Use our Services or content for any commercial purpose</li>
+                            <li>Remove any copyright, trademark, or other proprietary notices from our Services or content</li>
+                            <li>Modify, adapt, or create derivative works based on our Services or content</li>
+                            <li>Use any data mining, robots, or similar data gathering and extraction methods on our Services</li>
+                            <li>Frame or utilize framing techniques to enclose any trademark, logo, or other proprietary information without our express written consent</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="payments" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Payments & Subscriptions</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            We offer various subscription plans for access to premium features of our Services. All prices are displayed in USD unless otherwise specified.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Cryptocurrency Payments</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            We accept payments in various cryptocurrencies. Due to the volatile nature of cryptocurrency markets, the USD equivalent value of cryptocurrency payments is determined at the time of payment processing. We do not provide refunds for changes in the value of cryptocurrencies after payment has been processed.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Subscription Terms</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            Subscription plans are prepaid and non-refundable unless otherwise required by applicable law. Subscriptions automatically renew at the end of each subscription period unless cancelled before the renewal date.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Refund Policy</h3>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            Due to the digital nature of our Services and the instant access provided upon payment, we generally do not offer refunds. However, we may consider refund requests on a case-by-case basis at our sole discretion.
+                        </p>
+                    </section>
+                    
+                    <section id="user-conduct" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">User Conduct</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            You agree not to use our Services to:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80">
+                            <li>Violate any applicable law, regulation, or contractual obligation</li>
+                            <li>Infringe upon the rights of any third party, including intellectual property rights</li>
+                            <li>Harass, abuse, threaten, or defame any person or entity</li>
+                            <li>Distribute viruses, malware, or other harmful computer code</li>
+                            <li>Attempt to gain unauthorized access to our Services or related systems</li>
+                            <li>Interfere with or disrupt the integrity or performance of our Services</li>
+                            <li>Collect or store personal data about other users without their consent</li>
+                            <li>Impersonate any person or entity or misrepresent your affiliation with any person or entity</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="disclaimers" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Disclaimers</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            <strong class="text-neon-green">Not Financial Advice:</strong> Information provided through our Services is for educational and informational purposes only and should not be construed as financial, investment, legal, or tax advice. You should consult with a professional advisor before making any investment decisions.
+                        </p>
+                        
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            <strong class="text-neon-green">Risk Disclosure:</strong> Cryptocurrency trading involves significant risk and is not suitable for all investors. The value of cryptocurrencies can be highly volatile, and you may lose some or all of your investment. Past performance is not indicative of future results.
+                        </p>
+                        
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            <strong class="text-neon-green">No Guarantee of Results:</strong> We do not guarantee any specific results from using our Services, including but not limited to financial returns or trading performance.
+                        </p>
+                        
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            <strong class="text-neon-green">"As Is" and "As Available" Basis:</strong> Our Services are provided on an "as is" and "as available" basis, without any warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.
+                        </p>
+                    </section>
+                    
+                    <section id="limitation" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Limitation of Liability</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            To the maximum extent permitted by applicable law, in no event shall Crypto Ninja Trades, its affiliates, directors, employees, agents, or licensors be liable for any indirect, punitive, incidental, special, consequential, or exemplary damages, including without limitation damages for loss of profits, goodwill, use, data, or other intangible losses, that result from the use of, or inability to use, our Services.
+                            
+                            Our liability is limited to the maximum extent permitted by law. If applicable law does not permit such limitation, our liability shall be limited to the amount you paid for access to our Services in the twelve months preceding the claim.
+                        </p>
+                    </section>
+                    
+                    <section id="termination" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Termination</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We may terminate or suspend your access to our Services immediately, without prior notice or liability, for any reason, including without limitation if you breach these Terms.
+                            
+                            Upon termination, your right to use our Services will immediately cease. All provisions of these Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, limitations of liability, and dispute resolution provisions.
+                        </p>
+                    </section>
+                    
+                    <section id="changes" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Changes to Terms</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We reserve the right to modify these Terms at any time. We will notify you of any material changes by posting the updated Terms on our website with a new effective date. Your continued use of our Services after the effective date constitutes your acceptance of the modified Terms.
+                            
+                            It is your responsibility to review these Terms periodically to ensure you are aware of any changes.
+                        </p>
+                    </section>
+                    
+                    <section id="contact" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Contact Us</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            If you have any questions or concerns about these Terms or our Services, please contact us at: <a href="mailto:hello@cryptoninjatrades.com" class="text-neon-green hover:text-electric-blue transition-colors duration-200">hello@cryptoninjatrades.com</a>
+                        </p>
+                    </section>
+                    
+                    <!-- Last Updated -->
+                    <div class="text-right text-ninja-light/50 text-sm mt-10" data-aos="fade-up">
+                        <p>Last Updated: May 6, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ninja-dark py-12 border-t border-ninja-gray/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center md:items-start justify-between mb-8">
+                <!-- Logo and Social Links -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <a href="index.html" class="inline-block mb-4">
+                        <img src="images/logo.svg" alt="Crypto Ninja Trades" class="h-10 w-auto">
+                    </a>
+                    <p class="text-sm text-ninja-light/70 max-w-xs mb-4">
+                        Professional cryptocurrency signals, education, and community. Join the ninja way of trading.
+                    </p>
+                    <div class="flex items-center gap-4 mt-4">
+                        <a href="https://t.me/cryptoninjatrades" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://x.com/ninjatradesbtc" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:hello@cryptoninjatrades.com" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="mail" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://discord.gg/EZtXMRnBBa" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-2">
+                    <a href="index.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
+                    <a href="news.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
+                    <a href="trends.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
+                    <a href="index.html#payment" class="text-sm text-neon-green hover:text-electric-blue transition-colors">Join VIP</a>
+                    <a href="terms.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
+                    <a href="privacy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mt-6 pt-6 border-t border-ninja-gray/20">
+                <p class="text-xs text-ninja-light/50 mb-4 md:mb-0">
+                    © 2025 Crypto Ninja Trades. All Rights Reserved.
+                </p>
+                <p class="text-xs text-ninja-light/50 text-center md:text-right">
+                    Trading cryptocurrencies involves risk. Past performance is not indicative of future results.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            // Initialize Feather Icons
+            feather.replace();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.querySelector('.icon-open');
+            const iconClose = document.querySelector('.icon-close');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="js/liquid-mesh.js"></script>
+    <script>
+        // Initialize liquid mesh if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof LiquidMesh !== 'undefined') {
+                const liquidMeshElement = document.querySelector('.liquid-mesh');
+                if (liquidMeshElement) {
+                    const mesh = new LiquidMesh(liquidMeshElement, {
+                        color: '#375F7C',
+                        backgroundColor: 'transparent',
+                        density: window.innerWidth > 768 ? 20 : 10
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <!-- Theme Toggle JS -->
+    <script src="js/theme-toggle.js"></script>
+    
+    <!-- Cookie consent script -->
+    <script src="js/cookie-consent.js"></script>
+    
+    <!-- CoinMarketCap API integration -->
+    <script src="js/coinmarketcap-api.js"></script>
+    
+    <!-- Crypto Ticker script - uses real API data -->
+    <script src="js/crypto-ticker.js"></script>
+</body>
+</html>

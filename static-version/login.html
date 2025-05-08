@@ -486,9 +486,9 @@
                                 <input type="password" id="password" class="form-input w-full pl-12 pr-4 py-3 rounded-md" placeholder="••••••••">
                             </div>
                         </div>
-                        <button type="submit" class="primary-button w-full py-3 px-4 rounded-md font-bold transition-all duration-300 text-white">
+                        <a href="dashboard.html" class="primary-button w-full py-3 px-4 rounded-md font-bold transition-all duration-300 text-white text-center">
                             Sign In
-                        </button>
+                        </a>
                     </form>
                     
                     <!-- Register Link -->
@@ -608,13 +608,13 @@
             });
         }
         
-        // Form submission (demo)
+        // Form submission (redirects to dashboard)
         const loginForm = document.querySelector('form');
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                // Demo alert
-                alert('Login functionality would be implemented here in a real application.');
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
             });
         }
     </script>

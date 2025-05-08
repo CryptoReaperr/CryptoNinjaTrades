@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Crypto Ninja Trades</title>
+    
+    <!-- Failsafe loader removal script -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Force remove loader after 4 seconds no matter what
+            setTimeout(function() {
+                // Check all possible loader IDs
+                ['page-loader', 'loading-screen'].forEach(function(id) {
+                    var loader = document.getElementById(id);
+                    if (loader) {
+                        loader.style.display = 'none';
+                        setTimeout(function() {
+                            if (loader.parentNode) {
+                                loader.parentNode.removeChild(loader);
+                            }
+                        }, 100);
+                    }
+                });
+            }, 4000);
+        });
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/next-level.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
+    <link rel="stylesheet" href="css/immersive.css">
+    <link rel="stylesheet" href="css/ultra-responsive.css">
+    <link rel="stylesheet" href="css/cookie-consent.css">
+    <link rel="stylesheet" href="css/ticker.css">
+    
+    <!-- AOS Library for Scroll Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ninja-black': '#0A0A0A',
+                        'ninja-dark': '#1A1A1A',
+                        'ninja-gray': '#333333',
+                        'ninja-light': '#E0E0E0',
+                        'neon-green': '#375F7C', /* Changed to a sophisticated blue-grey */
+                        'electric-blue': '#567890', /* Changed to a muted steel blue-grey */
+                        'ninja-purple': '#2F414F',
+                        'ninja-gold': '#4A6378',
+                        'ninja-red': '#FF3333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    },
+                    screens: {
+                        '3xl': '1920px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 5s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    transitionProperty: {
+                        'border': 'border-color, border-width, border-opacity',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-ninja-black text-ninja-light flex flex-col min-h-screen">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-ninja-black z-50 flex items-center justify-center">
+        <div class="loading-content flex flex-col items-center">
+            <img src="images/logo-animated.svg" alt="Crypto Ninja Trades" class="w-20 h-20 mb-4">
+            <div class="loading-spinner"></div>
+            <p class="mt-4 text-sm text-ninja-light/50">Loading secure environment...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-ninja-black/80 backdrop-blur-md transition-all duration-300 border-b border-ninja-gray/20" id="site-header">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.svg" alt="Crypto Ninja Trades" class="h-10 w-auto">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Home</a>
+                    <a href="trends.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Trends</a>
+                    <a href="news.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">News</a>
+                    <a href="index.html#payment" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300">Pricing</a>
+                    <a href="login.html" class="text-neon-green hover:text-electric-blue transition-colors duration-300">Login</a>
+                    <a href="index.html#payment" class="ml-2 bg-neon-green hover:bg-electric-blue text-ninja-black py-2 px-4 rounded-md font-medium transition-all duration-300 flex items-center gap-1">
+                        <span>Join Now</span>
+                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="p-1 rounded-full bg-ninja-gray/20 hover:bg-ninja-gray/30 transition-colors duration-300 flex items-center justify-center" aria-label="Toggle Theme">
+                        <i data-feather="sun" class="w-5 h-5 text-ninja-light/90 theme-icon-light hidden"></i>
+                        <i data-feather="moon" class="w-5 h-5 text-ninja-light/90 theme-icon-dark"></i>
+                    </button>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden flex items-center text-ninja-light focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6 icon-open"></i>
+                    <i data-feather="x" class="w-6 h-6 icon-close hidden"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2 border-t border-ninja-gray/20 mt-3">
+                <nav class="flex flex-col gap-3">
+                    <a href="index.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Home</a>
+                    <a href="trends.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Trends</a>
+                    <a href="news.html" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">News</a>
+                    <a href="index.html#payment" class="text-ninja-light/90 hover:text-neon-green transition-colors duration-300 py-2">Pricing</a>
+                    <a href="login.html" class="text-neon-green hover:text-electric-blue transition-colors duration-300 py-2">Login</a>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-ninja-gray/20">
+                        <a href="index.html#payment" class="bg-neon-green hover:bg-electric-blue text-ninja-black py-2 px-4 rounded-md font-medium transition-all duration-300 flex items-center gap-1">
+                            <span>Join Now</span>
+                            <i data-feather="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <!-- Mobile Theme Toggle -->
+                        <button id="mobile-theme-toggle" class="p-2 rounded-full bg-ninja-gray/20 hover:bg-ninja-gray/30 transition-colors duration-300 flex items-center justify-center" aria-label="Toggle Theme">
+                            <i data-feather="sun" class="w-5 h-5 text-ninja-light/90 theme-icon-light hidden"></i>
+                            <i data-feather="moon" class="w-5 h-5 text-ninja-light/90 theme-icon-dark"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 pb-16 sm:pt-28 lg:pt-32">
+        <div class="container mx-auto px-4">
+            <!-- Page Header with Animation -->
+            <div class="mb-12 relative">
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-neon-green/10 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-40 -right-20 w-80 h-80 bg-electric-blue/10 rounded-full blur-3xl"></div>
+                
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 relative z-10" data-aos="fade-up">Privacy Policy</h1>
+                <p class="text-lg text-ninja-light/70 max-w-3xl relative z-10" data-aos="fade-up" data-aos-delay="100">
+                    At Crypto Ninja Trades, we take your privacy seriously. This policy outlines how we collect, use, and protect your information.
+                </p>
+                
+                <div class="absolute right-0 top-0 opacity-10 hidden lg:block">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM12 19.2C9.5 19.2 7.29 17.92 6 15.98C6.03 13.99 10 12.9 12 12.9C13.99 12.9 17.97 13.99 18 15.98C16.71 17.92 14.5 19.2 12 19.2Z" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Policy Content -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Sidebar Navigation -->
+                <div class="hidden md:block md:col-span-1">
+                    <div class="sticky top-32 bg-ninja-dark/50 backdrop-blur-md p-5 rounded-xl border border-ninja-gray/20">
+                        <h3 class="text-lg font-semibold mb-4 text-neon-green">Quick Navigation</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#introduction" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Introduction</a></li>
+                            <li><a href="#information-collection" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Information Collection</a></li>
+                            <li><a href="#information-usage" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Information Usage</a></li>
+                            <li><a href="#information-protection" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Information Protection</a></li>
+                            <li><a href="#cookies" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Cookies</a></li>
+                            <li><a href="#third-party" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Third-Party Services</a></li>
+                            <li><a href="#rights" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Your Rights</a></li>
+                            <li><a href="#changes" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Policy Changes</a></li>
+                            <li><a href="#contact" class="text-ninja-light/80 hover:text-neon-green transition-colors duration-200">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="md:col-span-3 space-y-10">
+                    <section id="introduction" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Introduction</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            This Privacy Policy describes how Crypto Ninja Trades ("we", "our", or "us") collects, uses, and shares information about you when you use our website, mobile applications, and online services (collectively, the "Services"). 
+                            
+                            By using our Services, you agree to the collection, use, and sharing of your information as described in this Privacy Policy. If you do not agree with our policies and practices, do not use our Services.
+                        </p>
+                    </section>
+                    
+                    <section id="information-collection" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Information Collection</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            We collect information that you provide directly to us, information we collect automatically when you use our Services, and information from third-party sources.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Information You Provide</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            We collect information you provide when you create an account, subscribe to our services, contact us, or otherwise communicate with us. This may include:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80 mb-6">
+                            <li>Contact information (name, email address)</li>
+                            <li>Account credentials (username, password)</li>
+                            <li>Payment information (processed securely through third-party payment processors)</li>
+                            <li>Communication preferences</li>
+                            <li>Any other information you choose to provide</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold mb-2 text-neon-green">Information Collected Automatically</h3>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            When you access or use our Services, we automatically collect certain information, including:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80">
+                            <li>Log and usage data (IP address, browser type, pages visited)</li>
+                            <li>Device information (device type, operating system)</li>
+                            <li>Location information (general location based on IP address)</li>
+                            <li>Cookie and tracking technology data</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="information-usage" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Information Usage</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            We use the information we collect to:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80">
+                            <li>Provide, maintain, and improve our Services</li>
+                            <li>Process transactions and send related information</li>
+                            <li>Send administrative messages and communications</li>
+                            <li>Respond to your comments, questions, and requests</li>
+                            <li>Personalize your experience with our Services</li>
+                            <li>Send promotional communications about new features, offers, or services</li>
+                            <li>Monitor and analyze trends, usage, and activities</li>
+                            <li>Detect, investigate, and prevent fraudulent or unauthorized transactions</li>
+                            <li>Comply with legal obligations</li>
+                        </ul>
+                    </section>
+                    
+                    <section id="information-protection" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Information Protection</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We implement appropriate technical and organizational security measures to protect your personal information from unauthorized access, disclosure, alteration, and destruction. However, no internet or email transmission is ever fully secure or error-free, so you should take special care in deciding what information you send to us.
+                            
+                            We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.
+                        </p>
+                    </section>
+                    
+                    <section id="cookies" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Cookies</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We use cookies and similar tracking technologies to collect and track information about your use of our Services. Cookies are small data files placed on your device that help us improve our Services and your experience, see which areas and features of our Services are popular, and count visits.
+                            
+                            You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies. If you disable or refuse cookies, please note that some parts of our Services may become inaccessible or not function properly.
+                        </p>
+                    </section>
+                    
+                    <section id="third-party" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Third-Party Services</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            Our Services may contain links to and from third-party websites, applications, or services. If you follow a link to any of these, please note that these have their own privacy policies and that we do not accept any responsibility or liability for these policies or for any personal data that may be collected through these third-party services. Please check these policies before you submit any personal data to these third parties.
+                            
+                            We may also integrate third-party analytics tools that help us understand how users engage with our Services. These third parties may use cookies, web beacons, and other technologies to collect information about your use of our Services and other websites and applications.
+                        </p>
+                    </section>
+                    
+                    <section id="rights" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Your Rights</h2>
+                        <p class="text-ninja-light/80 leading-relaxed mb-4">
+                            Depending on your location, you may have certain rights regarding your personal information, including:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-ninja-light/80">
+                            <li>The right to access and receive a copy of your personal information</li>
+                            <li>The right to correct inaccurate or incomplete information</li>
+                            <li>The right to deletion of your personal information under certain circumstances</li>
+                            <li>The right to restrict or object to processing of your personal information</li>
+                            <li>The right to data portability</li>
+                            <li>The right to withdraw consent at any time, where processing is based on your consent</li>
+                        </ul>
+                        <p class="text-ninja-light/80 leading-relaxed mt-4">
+                            To exercise these rights, please contact us at <a href="mailto:hello@cryptoninjatrades.com" class="text-neon-green hover:text-electric-blue transition-colors duration-200">hello@cryptoninjatrades.com</a>.
+                        </p>
+                    </section>
+                    
+                    <section id="changes" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Policy Changes</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated Privacy Policy on this page with a new effective date. We encourage you to review the Privacy Policy whenever you access our Services to stay informed about our information practices.
+                        </p>
+                    </section>
+                    
+                    <section id="contact" class="bg-ninja-dark/30 backdrop-blur-md p-6 rounded-xl border border-ninja-gray/20" data-aos="fade-up">
+                        <h2 class="text-2xl font-bold mb-4 text-white">Contact Us</h2>
+                        <p class="text-ninja-light/80 leading-relaxed">
+                            If you have any questions or concerns about this Privacy Policy or our information practices, please contact us at: <a href="mailto:hello@cryptoninjatrades.com" class="text-neon-green hover:text-electric-blue transition-colors duration-200">hello@cryptoninjatrades.com</a>
+                        </p>
+                    </section>
+                    
+                    <!-- Last Updated -->
+                    <div class="text-right text-ninja-light/50 text-sm mt-10" data-aos="fade-up">
+                        <p>Last Updated: May 6, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ninja-dark py-12 border-t border-ninja-gray/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center md:items-start justify-between mb-8">
+                <!-- Logo and Social Links -->
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <a href="index.html" class="inline-block mb-4">
+                        <img src="images/logo.svg" alt="Crypto Ninja Trades" class="h-10 w-auto">
+                    </a>
+                    <p class="text-sm text-ninja-light/70 max-w-xs mb-4">
+                        Professional cryptocurrency signals, education, and community. Join the ninja way of trading.
+                    </p>
+                    <div class="flex items-center gap-4 mt-4">
+                        <a href="https://t.me/cryptoninjatrades" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://x.com/ninjatradesbtc" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="mailto:hello@cryptoninjatrades.com" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="mail" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://discord.gg/EZtXMRnBBa" target="_blank" class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-2">
+                    <a href="index.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Home</a>
+                    <a href="news.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">News</a>
+                    <a href="trends.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Trends</a>
+                    <a href="index.html#payment" class="text-sm text-neon-green hover:text-electric-blue transition-colors">Join VIP</a>
+                    <a href="terms.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Terms</a>
+                    <a href="privacy.html" class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors">Privacy</a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mt-6 pt-6 border-t border-ninja-gray/20">
+                <p class="text-xs text-ninja-light/50 mb-4 md:mb-0">
+                    © 2025 Crypto Ninja Trades. All Rights Reserved.
+                </p>
+                <p class="text-xs text-ninja-light/50 text-center md:text-right">
+                    Trading cryptocurrencies involves risk. Past performance is not indicative of future results.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            // Initialize Feather Icons
+            feather.replace();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.querySelector('.icon-open');
+            const iconClose = document.querySelector('.icon-close');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="js/liquid-mesh.js"></script>
+    <script>
+        // Initialize liquid mesh if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof LiquidMesh !== 'undefined') {
+                const liquidMeshElement = document.querySelector('.liquid-mesh');
+                if (liquidMeshElement) {
+                    const mesh = new LiquidMesh(liquidMeshElement, {
+                        color: '#375F7C',
+                        backgroundColor: 'transparent',
+                        density: window.innerWidth > 768 ? 20 : 10
+                    });
+                }
+            }
+        });
+    </script>
+    
+    <!-- Theme Toggle JS -->
+    <script src="js/theme-toggle.js"></script>
+    
+    <!-- Cookie consent script -->
+    <script src="js/cookie-consent.js"></script>
+    
+    <!-- CoinMarketCap API integration -->
+    <script src="js/coinmarketcap-api.js"></script>
+    
+    <!-- Crypto Ticker script - uses real API data -->
+    <script src="js/crypto-ticker.js"></script>
+</body>
+</html>
