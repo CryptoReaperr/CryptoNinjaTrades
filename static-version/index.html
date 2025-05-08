@@ -61,43 +61,9 @@
         />
 
         <!-- Tailwind CSS -->
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css/tailwind-output.css">
         <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            "ninja-black": "#0A0A0A",
-                            "ninja-dark": "#1A1A1A",
-                            "ninja-gray": "#333333",
-                            "ninja-light": "#E0E0E0",
-                            "neon-green":
-                                "#375F7C" /* Changed to a sophisticated blue-grey */,
-                            "electric-blue":
-                                "#567890" /* Changed to a muted steel blue-grey */,
-                            "ninja-purple": "#2F414F",
-                            "ninja-gold": "#4A6378",
-                            "ninja-red": "#FF3333",
-                        },
-                        fontFamily: {
-                            inter: ["Inter", "sans-serif"],
-                            montserrat: ["Montserrat", "sans-serif"],
-                        },
-                        screens: {
-                            "3xl": "1920px",
-                        },
-                        animation: {
-                            "pulse-slow":
-                                "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                            float: "float 6s ease-in-out infinite",
-                            "spin-slow": "spin 5s linear infinite",
-                        },
-                        keyframes: {
-                            float: {
-                                "0%, 100%": { transform: "translateY(0)" },
-                                "50%": { transform: "translateY(-10px)" },
-                            },
-                        },
+            /* Config moved to tailwind.config.js */
                         transitionProperty: {
                             border: "border-color, border-width, border-opacity",
                         },
