@@ -2436,7 +2436,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="py-8 bg-ninja-dark border-t border-ninja-gray/30">
+        <footer class="py-8 bg-ninja-dark border-t border-ninja-gray/30 mt-20">
             <div class="container mx-auto px-4">
                 <div
                     class="flex flex-col md:flex-row justify-between items-center"
@@ -2467,14 +2467,14 @@
                                 <i data-feather="send" class="w-5 h-5"></i>
                             </a>
                             <a
-                                href="https://x.com/ninjatradesbtc"
+                                href="https://x.com/ninjatradesBTC"
                                 target="_blank"
                                 class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300"
                             >
                                 <i data-feather="twitter" class="w-5 h-5"></i>
                             </a>
                             <a
-                                href="mailto:hello@cryptoninjatrades.com"
+                                href="mailto:support@cryptoninjatrades.com"
                                 class="text-ninja-light/70 hover:text-neon-green transition-colors duration-300"
                             >
                                 <i data-feather="mail" class="w-5 h-5"></i>
@@ -2498,32 +2498,32 @@
                     >
                         <a
                             href="/"
-                            class="footer-link text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
+                            class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
                             >Home</a
                         >
                         <a
                             href="/news"
-                            class="footer-link text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
+                            class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
                             >News</a
                         >
                         <a
                             href="/trends"
-                            class="footer-link text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
+                            class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
                             >Trends</a
                         >
                         <a
                             href="/#payment"
-                            class="footer-link text-sm text-neon-green hover:text-electric-blue transition-colors"
+                            class="text-sm text-neon-green hover:text-electric-blue transition-colors"
                             >Join VIP</a
                         >
                         <a
                             href="/terms"
-                            class="footer-link text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
+                            class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
                             >Terms</a
                         >
                         <a
                             href="/privacy"
-                            class="footer-link text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
+                            class="text-sm text-ninja-light/70 hover:text-neon-green transition-colors"
                             >Privacy</a
                         >
                     </div>
@@ -2750,11 +2750,11 @@
                 }
 
                 // Add event handlers for footer links
-                const footerLinks = document.querySelectorAll('.footer-link');
-                footerLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
+                const footerLinks = document.querySelectorAll(".footer-link");
+                footerLinks.forEach((link) => {
+                    link.addEventListener("click", function (e) {
                         e.preventDefault();
-                        window.location.href = this.getAttribute('href');
+                        window.location.href = this.getAttribute("href");
                     });
                 });
 
