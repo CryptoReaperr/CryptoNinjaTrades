@@ -61,9 +61,49 @@
         />
 
         <!-- Tailwind CSS -->
-        <link rel="stylesheet" href="css/tailwind-output.css">
+        <script src="https://cdn.tailwindcss.com"></script>
         <script>
-            /* Config moved to tailwind.config.js */
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            "ninja-black": "#0A0A0A",
+                            "ninja-dark": "#1A1A1A",
+                            "ninja-gray": "#333333",
+                            "ninja-light": "#E0E0E0",
+                            "neon-green":
+                                "#375F7C" /* Changed to a sophisticated blue-grey */,
+                            "electric-blue":
+                                "#567890" /* Changed to a muted steel blue-grey */,
+                            "ninja-purple": "#2F414F",
+                            "ninja-gold": "#4A6378",
+                            "ninja-red": "#FF3333",
+                        },
+                        fontFamily: {
+                            inter: ["Inter", "sans-serif"],
+                            montserrat: ["Montserrat", "sans-serif"],
+                        },
+                        screens: {
+                            "3xl": "1920px",
+                        },
+                        animation: {
+                            "pulse-slow":
+                                "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                            float: "float 6s ease-in-out infinite",
+                            "spin-slow": "spin 5s linear infinite",
+                        },
+                        keyframes: {
+                            float: {
+                                "0%, 100%": { transform: "translateY(0)" },
+                                "50%": { transform: "translateY(-10px)" },
+                            },
+                        },
+                        transitionProperty: {
+                            border: "border-color, border-width, border-opacity",
+                        },
+                    },
+                },
+            };
         </script>
 
         <!-- GSAP (Animation Library) -->
@@ -85,7 +125,6 @@
         <link rel="stylesheet" href="css/ticker.css" />
         <link rel="stylesheet" href="css/cookie-consent.css" />
         <link rel="stylesheet" href="css/payment-animations.css" />
-        <link rel="stylesheet" href="css/mobile-cta.css" />
     </head>
     <body
         class="bg-ninja-black text-ninja-light font-inter font-crisp custom-scrollbar overflow-x-hidden"
@@ -2396,41 +2435,6 @@
             </div>
         </section>
 
-        <!-- Mobile Fixed Bottom CTA Bar -->
-        <div id="fixed-bottom-cta" class="fixed-bottom-cta">
-            <div class="indicator"></div>
-            <div class="button-container">
-                <a href="#benefits" class="action-button">
-                    <div class="icon-container">
-                        <i data-feather="award" class="w-5 h-5 text-neon-green"></i>
-                    </div>
-                    <span>Benefits</span>
-                </a>
-                <a href="#plans" class="action-button">
-                    <div class="icon-container">
-                        <i data-feather="layers" class="w-5 h-5 text-neon-green"></i>
-                    </div>
-                    <span>Plans</span>
-                </a>
-                <a href="#plans" class="join-button">
-                    <i data-feather="zap" class="w-4 h-4"></i>
-                    <span>Join Now</span>
-                </a>
-                <a href="#payment" class="action-button">
-                    <div class="icon-container">
-                        <i data-feather="credit-card" class="w-5 h-5 text-neon-green"></i>
-                    </div>
-                    <span>Payment</span>
-                </a>
-                <a href="https://t.me/cryptoninjatrades" target="_blank" class="action-button">
-                    <div class="icon-container">
-                        <i data-feather="send" class="w-5 h-5 text-neon-green"></i>
-                    </div>
-                    <span>Contact</span>
-                </a>
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="py-8 bg-ninja-dark border-t border-ninja-gray/30 mt-20">
             <div class="container mx-auto px-4">
@@ -2665,23 +2669,6 @@
                     }
                 }, 2000);
 
-                // Mobile Fixed Bottom CTA Bar
-                const fixedBottomCta = document.getElementById("fixed-bottom-cta");
-                let hasShownCta = false;
-                
-                // Show the CTA after scrolling 300px
-                window.addEventListener("scroll", () => {
-                    if (window.innerWidth <= 767) { // Mobile only
-                        if (window.scrollY > 300 && !hasShownCta) {
-                            fixedBottomCta.classList.add("active");
-                            hasShownCta = true;
-                        } else if (window.scrollY < 100 && hasShownCta) {
-                            fixedBottomCta.classList.remove("active");
-                            hasShownCta = false;
-                        }
-                    }
-                });
-                
                 // Static crypto ticker with sample data
                 const tickerContainer =
                     document.getElementById("ticker-container");
